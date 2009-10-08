@@ -1,0 +1,46 @@
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+    <p id="errorExplanation"><%=  error %> cannot be blank.</p>
+  <% end %>
+<% end %>
+<p>
+  Search tip: multiple selections can be made in the selection boxes by holding ctrl.
+</p>
+<p>
+  <%= f.label :name, "Query Name (Required)" %><br />
+  <%= f.text_field :name %>
+</p>
+<p>
+  <%= f.label :description, "Query Description (Optional)" %><br />
+  <%= f.text_field :description %>
+</p>
+<p>
+  <%= f.label :isolate_name, "Isolate Name (Keyword)" %><br />
+  <%= f.text_field :isolate_name %>
+</p>
+<p>
+  <%= f.label :virus_type, "Virus Subtype" %><br />
+  <%= select_tag 'query[virus_type]', options_for_select(@types, @selected_types), {:size => 3, :multiple => true} %>
+</p>
+<table border="0" cellpadding="0" >
+  <tr>
+    <td valign="top">
+    <%= f.label :location %><br />
+    <%= select_tag 'query[location]', options_for_select(@locations, @selected_locations), {:size => 20, :multiple => true} %>
+    </td>
+    <td valign="top" >
+    <%= f.label :host %><br/>
+    <%= select_tag 'query[host]', options_for_select(@hosts, @selected_hosts), {:size => 20, :multiple => true} %>
+    </td>
+  </tr>
+</table>
+<p>
+  Date Range<br />
+  <%= f.date_select :min_collect_date, :order => [:month, :day, :year], :start_year => 2000, :end_year => Date.today.year, :include_blank => true, :default => nil %> to
+  <%= f.date_select :max_collect_date, :order => [:month, :day, :year], :start_year => 2000, :end_year => Date.today.year, :include_blank => true, :default => nil %>
+</p>
+<p>
+  Genes (all included if none are checked)<br />
+  PB2<%= f.check_box :pb2%>PB1<%= f.check_box :pb1%>PA<%= f.check_box :pa%>HA<%= f.check_box :ha%>
+  NP<%= f.check_box :np%>NA<%= f.check_box :na%>M<%= f.check_box :m%>NS<%= f.check_box :ns%>
+</p>

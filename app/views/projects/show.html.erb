@@ -1,0 +1,37 @@
+<p>
+  <b>Project:</b>
+  <%=h @project.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @project.description %>
+</p>
+
+<%= link_to 'Edit Project', edit_project_path(@project) %>
+
+<p><b>Listing queries:</b></p>
+
+<div class="list">
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+  <% @queries.each do |query| %>
+  <tr>
+    <td><%=h query.name %></td>
+    <td><%=h query.description %></td>
+    <td><%= link_to 'Show Results', query %></td>
+    <td><%= link_to 'Download Nucleotides', '/files/'+session[:user_id].to_s+'/'+@project.id.to_s+'/'+query.id.to_s+'/seq.fas' %></td>
+    <td><%= link_to 'Download Georefs', '/files/'+session[:user_id].to_s+'/'+@project.id.to_s+'/'+query.id.to_s+'/georef.csv' %></td>
+    <td><%= link_to 'Edit', edit_query_path(query) %></td>
+    <td><%= link_to 'Delete', query, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+</div>
+<br />
+
+<%= link_to 'New query', new_query_path(:id => @project.id) %> |
+<%= link_to 'Back to Projects', :controller => 'projects', :action => 'index' %>

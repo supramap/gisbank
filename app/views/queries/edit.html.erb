@@ -1,0 +1,12 @@
+<h1>Editing query</h1>
+
+<% form_for(@query) do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+  <p>
+    <%= submit_tag 'Update', :onclick => "this.disabled=1; showHideSpinner();", :confirm => "The old nucleotide and georef files will be overwritten.  Continue?" %>
+    <img id="spinner" src="/images/ajax-loader.gif" alt="Searching..." style="visibility:hidden;" />
+  </p>
+<% end %>
+
+<%= link_to 'Show', @query %> |
+<%= link_to 'Back', :back %>

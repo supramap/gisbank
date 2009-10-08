@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Projects: <%= controller.action_name %></title>
+  <link href="/css/main.css" media="screen" rel="stylesheet" type="text/css" />
+  <%= javascript_include_tag :defaults %>
+</head>
+<body>
+  <div id="wrapper">
+    <div id="header"></div>
+    <div id="nav1">
+    <ul id="menus">
+      <li><a class="current" href="/projects">Projects</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact Us</a></li>
+    </ul>
+        <div id="user-nav">
+            <% if !current_user %>
+              <%= link_to "Register", new_account_path %> |
+              <%= link_to "Log In", new_user_session_path %>
+            <% else %>
+              <%= link_to "My Account", account_path %> |
+              <%= link_to "Logout", user_session_path, :method => :delete, :confirm => "Are you sure you want to logout?" %>
+            <% end %>
+        </div>
+    </div>
+
+    <div id="content-wrapper">
+      <div id="main">
+      <p style="color: green"><%= flash[:notice] %></p>
+      <%= yield %>
+      </div>
+    </div>
+    <div id="footer"></div>
+  </div>
+</body>
+</html>
