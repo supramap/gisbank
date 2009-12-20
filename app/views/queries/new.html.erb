@@ -4,7 +4,7 @@
   <%= f.hidden_field(:project_id, :value => params[:id]) %>
   <%= render :partial => 'form', :locals => { :f => f } %>
   <p>
-    <%= submit_tag "Search", :onclick => "this.disabled=1; showHideSpinner();" %>
+	<%= submit_tag "Search"%>
     <img id="spinner" src="/images/ajax-loader.gif" alt="Searching..." style="visibility:hidden;" />
   </p>
 <% end %>

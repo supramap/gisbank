@@ -15,10 +15,6 @@
   <%= f.text_field :description %>
 </p>
 <p>
-  <%= f.label :isolate_name, "Isolate Name (Keyword)" %><br />
-  <%= f.text_field :isolate_name %>
-</p>
-<p>
   <%= f.label :virus_type, "Virus Subtype" %><br />
   <%= select_tag 'query[virus_type]', options_for_select(@types, @selected_types), {:size => 3, :multiple => true} %>
 </p>

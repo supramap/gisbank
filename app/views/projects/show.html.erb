@@ -8,9 +8,12 @@
   <%=h @project.description %>
 </p>
 
-<%= link_to 'Edit Project', edit_project_path(@project) %>
+<%= link_to 'Edit Project', edit_project_path(@project) %> |
+<%= link_to 'Back to Projects', :controller => 'projects', :action => 'index' %> | 
+<%= link_to 'New query', new_query_path(:id => @project.id) %>
 
-<p><b>Listing queries:</b></p>
+<p><b>Listing queries:</b>
+</p>
 
 <div class="list">
 <table>
@@ -32,6 +35,3 @@
 </table>
 </div>
 <br />
-
-<%= link_to 'New query', new_query_path(:id => @project.id) %> |
-<%= link_to 'Back to Projects', :controller => 'projects', :action => 'index' %>

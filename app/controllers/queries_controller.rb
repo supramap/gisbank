@@ -13,10 +13,19 @@ class QueriesController < ApplicationController
   def new
     @query = Query.new
 
+    @isolates = ['-ALL-']
+    Isolate.find(:all, :select => 'name').each { |it|
+      if (it.name != nil)
+        @isolates << it.name
+      end
+    }
+    @isolates.sort!
+    @selected_iso = ['-ALL-']
+
     @types = ['-ALL-']
     Isolate.find(:all, :select => 'Distinct virus_type').each { |it|
       if (it.virus_type != nil)
-        @types = @types | [it.virus_type]
+        @types = @types << it.virus_type
       end
     }
     @types.sort!
@@ -25,7 +34,7 @@ class QueriesController < ApplicationController
     @hosts = ['-ALL-']
     Isolate.find(:all, :select => 'Distinct host').each { |it|
       if (it.host != nil)
-          @hosts = @hosts | [it.host]
+          @hosts = @hosts << it.host
       end
     }
     @hosts.sort!
@@ -34,7 +43,7 @@ class QueriesController < ApplicationController
     @locations = ['-ALL-']
     Isolate.find(:all, :select => 'Distinct location').each { |it|
       if (it.location != nil)
-        @locations = @locations | [it.location]
+        @locations = @locations << it.location
       end
     }
     @locations.sort!
@@ -79,17 +88,28 @@ class QueriesController < ApplicationController
     @query = Query.new(params[:query])
 
     respond_to do |format|
-      if @query.save
-        @folder = Createfile.file_prep(session[:user_id],@query.project_id,@query.id)
-        @seqs = @query.sequences(@query.isolates)
-        Createfile.make_fasta(@folder,@seqs)
-        Createfile.make_csv(@folder,@seqs)
-        flash[:notice] = 'Query was successfully created.'
-        format.html { redirect_to(@query) }
-        format.xml  { render :xml => @query, :status => :created, :location => @query }
+      @seqs = @query.sequences(@query.isolates)
+      if (@seqs.empty?)
+        flash[:notice] = "No results found."
+        format.html { redirect_to :action => "new", :id => @query.project_id } 
       else
-        flash[:errors] = @query.errors
-        format.html { redirect_to :action => "new", :id => @query.project_id }
+        puts @seqs.length
+        if(@seqs.length > 1000)
+          flash[:notice] = "Query too large, please narrow search parameters as necessary"
+          format.html { redirect_to :action => "new", :id => @query.project_id } 
+        else
+          if @query.save
+            @folder = Createfile.file_prep(session[:user_id],@query.project_id,@query.id)
+            Createfile.make_fasta(@folder,@seqs)
+            Createfile.make_csv(@folder,@seqs)
+            flash[:notice] = 'Query was successfully created.'
+            format.html { redirect_to(@query) }
+            format.xml  { render :xml => @query, :status => :created, :location => @query }
+          else
+            flash[:errors] = @query.errors
+            format.html { redirect_to :action => "new", :id => @query.project_id }
+          end
+        end
       end
     end
   end

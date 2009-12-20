@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(:version => 20090721025943) do
     t.string   "host",                      :limit => 50
     t.string   "location",                  :limit => 255
     t.string   "notes",                     :limit => 50
-    t.datetime "updated_at"
+    t.datetime "update_date"
     t.string   "is_public",                 :limit => 50
     t.string   "isolate_submitter",         :limit => 255
     t.string   "sample_lab",                :limit => 50

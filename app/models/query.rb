@@ -47,6 +47,9 @@ class Query < ActiveRecord::Base
   private
 
   def find_isolates
+    #conds = conditions
+    #puts "The query conds: #{conds}"
+    #Isolate.find(:all, :conditions => conds)
     Isolate.find(:all, :conditions => conditions)
   end
 
@@ -71,6 +74,7 @@ class Query < ActiveRecord::Base
   end
 
   def conditions
+    #puts "The query conditions: #{condition_clauses}, #*{[condition_options]}"
     [conditions_clauses.join(' AND '), *conditions_options]
   end
 
@@ -79,7 +83,8 @@ class Query < ActiveRecord::Base
   end
 
   def conditions_options
-    conditions_parts.map { |condition| condition[1..-1] }.flatten
+   #puts "condition parts: #{condition_parts}"
+   conditions_parts.map { |condition| condition[1..-1] }.flatten
   end
 
   def conditions_parts

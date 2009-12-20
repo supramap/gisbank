@@ -6,7 +6,7 @@ development:
   database: gisbank
   pool: 5
   username: gisbank
-  password: g1sbank
+  password: gisbank
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -14,15 +14,15 @@ development:
 test:
   adapter: mysql
   encoding: utf8
-  database: gisaid
+  database: gisbank
   pool: 5
-  username: gisaid
-  password: g1said
+  username: gisbank
+  password: gisbank
 
 production:
   adapter: mysql
   encoding: utf8
-  database: gisaid
+  database: gisbank
   pool: 5
-  username: gisaid
-  password: g1said
+  username: gisbank
+  password: gisbank
