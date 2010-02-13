@@ -9,24 +9,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090721025943) do
+ActiveRecord::Schema.define(:version => 20100105190955) do
 
   create_table "isolates", :force => true do |t|
     t.string   "tax_id",                    :limit => 50
     t.string   "isolate_id",                :limit => 50
-    t.string   "sequence_ids",              :limit => 255
+    t.string   "sequence_ids"
     t.string   "name",                      :limit => 50
     t.string   "virus_type",                :limit => 50
     t.string   "passage",                   :limit => 50
-    t.datetime "collect_date"
+    t.string   "collect_date",              :limit => 50
     t.string   "host",                      :limit => 50
-    t.string   "location",                  :limit => 255
+    t.string   "location"
     t.string   "notes",                     :limit => 50
     t.datetime "update_date"
     t.string   "is_public",                 :limit => 50
-    t.string   "isolate_submitter",         :limit => 255
+    t.string   "isolate_submitter"
     t.string   "sample_lab",                :limit => 50
-    t.string   "sequence_lab",              :limit => 255
+    t.string   "sequence_lab"
     t.string   "iv_animal_vaccin_product",  :limit => 50
     t.string   "resist_to_adamantanes",     :limit => 50
     t.string   "resist_to_oseltamivir",     :limit => 50
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(:version => 20090721025943) do
     t.string   "iv_sample_id",              :limit => 50
     t.string   "date_selected_for_vaccine", :limit => 50
     t.string   "provider_sample_id",        :limit => 50
-    t.string   "antigen_character",         :limit => 255
+    t.string   "antigen_character"
     t.string   "pathogen_test_info",        :limit => 50
     t.string   "antiviral_resistance",      :limit => 50
     t.string   "authors",                   :limit => 50
@@ -59,10 +59,21 @@ ActiveRecord::Schema.define(:version => 20090721025943) do
     t.datetime "vaccination_last_year"
     t.text     "pathogenicity"
     t.text     "computed_antiviral"
+    t.integer  "latitude",                  :limit => 10, :precision => 10, :scale => 0
+    t.integer  "longitude",                 :limit => 10, :precision => 10, :scale => 0
     t.datetime "created_at"
-    t.float    "latitude"
-    t.float    "longitude"
   end
+
+  add_index "isolates", ["host"], :name => "host"
+  add_index "isolates", ["id"], :name => "id"
+  add_index "isolates", ["isolate_id"], :name => "isolate_id"
+  add_index "isolates", ["location"], :name => "location"
+  add_index "isolates", ["name", "host", "location"], :name => "name_host_location"
+  add_index "isolates", ["name"], :name => "name"
+  add_index "isolates", ["tax_id", "isolate_id", "name"], :name => "tax_id_iso_id_name"
+  add_index "isolates", ["tax_id", "isolate_id"], :name => "tax_iso"
+  add_index "isolates", ["tax_id", "isolate_id"], :name => "unique_isolates_u1", :unique => true
+  add_index "isolates", ["tax_id"], :name => "tax_id"
 
   create_table "projects", :force => true do |t|
     t.integer  "user_id"
@@ -78,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20090721025943) do
     t.string   "description"
     t.string   "isolate_name"
     t.string   "virus_type"
+    t.string   "h1n1_swine_set"
     t.string   "host"
     t.string   "location"
     t.datetime "max_collect_date"
@@ -90,22 +102,29 @@ ActiveRecord::Schema.define(:version => 20090721025943) do
     t.boolean  "pb2"
     t.boolean  "pa"
     t.boolean  "np"
-    t.boolean  "m"
+    t.boolean  "mp"
     t.boolean  "ns"
   end
 
   create_table "sequences", :force => true do |t|
-    t.string   "genbank_acc_id",  :limit => 50
-    t.string   "sequence_id",     :limit => 50
-    t.string   "isolate_id",      :limit => 50
+    t.string   "genbank_acc_id", :limit => 50
+    t.string   "sequence_id",    :limit => 50
+    t.string   "isolate_id",     :limit => 50
     t.text     "data"
     t.datetime "created_at"
-    t.string   "sequence_type", :limit => 10
+    t.string   "sequence_type",  :limit => 50
   end
 
+  add_index "sequences", ["genbank_acc_id"], :name => "genbank_acc_id"
+  add_index "sequences", ["genbank_acc_id"], :name => "unique_sequences_genbank_acc_id", :unique => true
+  add_index "sequences", ["isolate_id", "sequence_type"], :name => "isolate_id"
+  add_index "sequences", ["isolate_id", "sequence_type"], :name => "unique_sequences_u2", :unique => true
+  add_index "sequences", ["sequence_id"], :name => "sequence_id"
+  add_index "sequences", ["sequence_id"], :name => "unique_sequences_sequence_id", :unique => true
+
   create_table "sessions", :force => true do |t|
-    t.string   "session_id", :null => false
-    t.text     "data"
+    t.string   "session_id",                       :null => false
+    t.text     "data",       :limit => 2147483647
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -114,22 +133,20 @@ ActiveRecord::Schema.define(:version => 20090721025943) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "users", :force => true do |t|
-    t.string    :login,               :null => false                # optional, you can use email instead, or both
-    t.string    :email,               :null => false                # optional, you can use login instead, or both
-    t.string    :crypted_password,    :null => false                # optional, see below
-    t.string    :password_salt,       :null => false                # optional, but highly recommended
-    t.string    :persistence_token,   :null => false                # required
-    t.string    :single_access_token, :null => false                # optional, see Authlogic::Session::Params
-    t.string    :perishable_token,    :null => false                # optional, see Authlogic::Session::Perishability
-
-    # Magic columns, just like ActiveRecord's created_at and updated_at. These are automatically maintained by Authlogic if they are present.
-    t.integer   :login_count,         :null => false, :default => 0 # optional, see Authlogic::Session::MagicColumns
-    t.integer   :failed_login_count,  :null => false, :default => 0 # optional, see Authlogic::Session::MagicColumns
-    t.datetime  :last_request_at                                    # optional, see Authlogic::Session::MagicColumns
-    t.datetime  :current_login_at                                   # optional, see Authlogic::Session::MagicColumns
-    t.datetime  :last_login_at                                      # optional, see Authlogic::Session::MagicColumns
-    t.string    :current_login_ip                                   # optional, see Authlogic::Session::MagicColumns
-    t.string    :last_login_ip                                      # optional, see Authlogic::Session::MagicColumns
+    t.string   "login",                              :null => false
+    t.string   "email",                              :null => false
+    t.string   "crypted_password",                   :null => false
+    t.string   "password_salt",                      :null => false
+    t.string   "persistence_token",                  :null => false
+    t.string   "single_access_token",                :null => false
+    t.string   "perishable_token",                   :null => false
+    t.integer  "login_count",         :default => 0, :null => false
+    t.integer  "failed_login_count",  :default => 0, :null => false
+    t.datetime "last_request_at"
+    t.datetime "current_login_at"
+    t.datetime "last_login_at"
+    t.string   "current_login_ip"
+    t.string   "last_login_ip"
   end
 
 end
