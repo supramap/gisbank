@@ -18,6 +18,10 @@
   <%= f.label :virus_type, "Virus Subtype" %><br />
   <%= select_tag 'query[virus_type]', options_for_select(@types, @selected_types), {:size => 3, :multiple => true} %>
 </p>
+<p>
+  <%= f.label :h1n1_swine_set, "H1N1 Lineage" %><br />
+  <%= select_tag 'query[h1n1_swine_set]', options_for_select(@lineage_options, @selected_lineage), :multiple => true, :size => 3 %>
+</p>
 <table border="0" cellpadding="0" >
   <tr>
     <td valign="top">
@@ -38,5 +42,5 @@
 <p>
   Genes (all included if none are checked)<br />
   PB2<%= f.check_box :pb2%>PB1<%= f.check_box :pb1%>PA<%= f.check_box :pa%>HA<%= f.check_box :ha%>
-  NP<%= f.check_box :np%>NA<%= f.check_box :na%>M<%= f.check_box :m%>NS<%= f.check_box :ns%>
+  NP<%= f.check_box :np%>NA<%= f.check_box :na%>MP<%= f.check_box :mp%>NS<%= f.check_box :ns%>
 </p>
