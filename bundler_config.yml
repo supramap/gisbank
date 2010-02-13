@@ -1,0 +1,2 @@
+mysql:
+    config: /usr/local/mysql-5.4.3-beta-osx10.5-x86_64/bin/mysql_config
