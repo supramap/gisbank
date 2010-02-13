@@ -12,7 +12,7 @@ class QueriesController < ApplicationController
   # GET /queries/new.xml
   def new
     @query = Query.new
-
+ 
     @isolates = ['-ALL-']
     Isolate.find(:all, :select => 'name').each { |it|
       if (it.name != nil)
@@ -29,7 +29,12 @@ class QueriesController < ApplicationController
       end
     }
     @types.sort!
-    @selected_types = ['-ALL-']
+    @selected_types = @types[1]
+    
+    @lineage_options = ['-ALL-',
+                        'Pandemic',
+                        'Seasonal']
+    @selected_lineage = @lineage_options[1]
 
     @hosts = ['-ALL-']
     Isolate.find(:all, :select => 'Distinct host').each { |it|
@@ -39,7 +44,7 @@ class QueriesController < ApplicationController
     }
     @hosts.sort!
     @selected_hosts = ['-ALL-']
-
+ 
     @locations = ['-ALL-']
     Isolate.find(:all, :select => 'Distinct location').each { |it|
       if (it.location != nil)
@@ -62,6 +67,11 @@ class QueriesController < ApplicationController
     }
     @types.sort!
     @selected_types = ['-ALL-']
+
+    @lineage_options = ['-ALL-',
+                        'Pandemic',
+                        'Seasonal']
+    @selected_lineage = @lineage_options[0]
 
     @hosts = ['-ALL-']
     Isolate.find(:all, :select => 'Distinct host').each { |it|
@@ -94,7 +104,7 @@ class QueriesController < ApplicationController
         format.html { redirect_to :action => "new", :id => @query.project_id } 
       else
         puts @seqs.length
-        if(@seqs.length > 1000)
+        if(@seqs.length > 100000)
           flash[:notice] = "Query too large, please narrow search parameters as necessary"
           format.html { redirect_to :action => "new", :id => @query.project_id } 
         else
@@ -102,6 +112,7 @@ class QueriesController < ApplicationController
             @folder = Createfile.file_prep(session[:user_id],@query.project_id,@query.id)
             Createfile.make_fasta(@folder,@seqs)
             Createfile.make_csv(@folder,@seqs)
+            Createfile.make_strain(@folder,@seqs)
             flash[:notice] = 'Query was successfully created.'
             format.html { redirect_to(@query) }
             format.xml  { render :xml => @query, :status => :created, :location => @query }
