@@ -2,6 +2,7 @@ class Query < ActiveRecord::Base
   belongs_to  :project
   validates_presence_of :project_id, :name
   serialize   :virus_type, Array
+  serialize   :lineage, Array
   serialize   :location, Array
   serialize   :host, Array
 
@@ -29,8 +30,8 @@ class Query < ActiveRecord::Base
     if np == true
       sequences = sequences << 'NP'
     end
-    if m == true
-      sequences = sequences << 'M'
+    if mp == true
+      sequences = sequences << 'MP'
     end
     if ns == true
       sequences = sequences << 'NS'
@@ -47,10 +48,8 @@ class Query < ActiveRecord::Base
   private
 
   def find_isolates
-    #conds = conditions
-    #puts "The query conds: #{conds}"
-    #Isolate.find(:all, :conditions => conds)
-    Isolate.find(:all, :conditions => conditions)
+    Isolate.find(:all, :select => 'id, tax_id, isolate_id, name, host, location, h1n1_swine_set, collect_date, latitude, longitude', 
+                 :include => [:sequences], :conditions => conditions)
   end
 
   def isolate_name_conditions
@@ -61,8 +60,16 @@ class Query < ActiveRecord::Base
     ["isolates.virus_type IN ('#{virus_type.join("','")}')"] unless virus_type == ['-ALL-']
   end
 
+  def h1n1_swine_set_conditions
+    ["isolates.h1n1_swine_set LIKE ?", "%#{h1n1_swine_set}%"] unless h1n1_swine_set == ['-ALL-']
+  end
+
   def location_conditions
-    ["isolates.location IN ('#{location.join("','")}')"] unless location == ['-ALL-']
+    if (location.size == 1)
+      ["isolates.location LIKE ?", "%#{location[0]}%"] unless location == ['-ALL-']
+    else
+      ["isolates.location IN ('#{location.join("','")}')"] unless location == ['-ALL-']
+    end
   end
 
   def host_conditions
@@ -74,7 +81,6 @@ class Query < ActiveRecord::Base
   end
 
   def conditions
-    #puts "The query conditions: #{condition_clauses}, #*{[condition_options]}"
     [conditions_clauses.join(' AND '), *conditions_options]
   end
 
@@ -83,8 +89,7 @@ class Query < ActiveRecord::Base
   end
 
   def conditions_options
-   #puts "condition parts: #{condition_parts}"
-   conditions_parts.map { |condition| condition[1..-1] }.flatten
+    conditions_parts.map { |condition| condition[1..-1] }.flatten
   end
 
   def conditions_parts
