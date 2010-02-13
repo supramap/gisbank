@@ -12,7 +12,7 @@
 <%= link_to 'Back to Projects', :controller => 'projects', :action => 'index' %> | 
 <%= link_to 'New query', new_query_path(:id => @project.id) %>
 
-<p><b>Listing queries:</b>
+<p><b>Listing queries:</b><%= will_paginate @queries %>
 </p>
 
 <div class="list">
@@ -28,6 +28,7 @@
     <td><%= link_to 'Show Results', query %></td>
     <td><%= link_to 'Download Nucleotides', '/files/'+session[:user_id].to_s+'/'+@project.id.to_s+'/'+query.id.to_s+'/seq.fas' %></td>
     <td><%= link_to 'Download Georefs', '/files/'+session[:user_id].to_s+'/'+@project.id.to_s+'/'+query.id.to_s+'/georef.csv' %></td>
+    <td><%= link_to 'Download Metadata', '/files/'+session[:user_id].to_s+'/'+@project.id.to_s+'/'+query.id.to_s+'/metadata.csv' %></td>
     <td><%= link_to 'Edit', edit_query_path(query) %></td>
     <td><%= link_to 'Delete', query, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
