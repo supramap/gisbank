@@ -14,6 +14,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @queries = @project.queries
+    @queries = @queries.paginate :page => params[:page], :per_page => 10, :order => 'created_at DESC'
   end
 
   # GET /projects/new
