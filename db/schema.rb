@@ -9,71 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100105190955) do
-
-  create_table "isolates", :force => true do |t|
-    t.string   "tax_id",                    :limit => 50
-    t.string   "isolate_id",                :limit => 50
-    t.string   "sequence_ids"
-    t.string   "name",                      :limit => 50
-    t.string   "virus_type",                :limit => 50
-    t.string   "passage",                   :limit => 50
-    t.string   "collect_date",              :limit => 50
-    t.string   "host",                      :limit => 50
-    t.string   "location"
-    t.string   "notes",                     :limit => 50
-    t.datetime "update_date"
-    t.string   "is_public",                 :limit => 50
-    t.string   "isolate_submitter"
-    t.string   "sample_lab",                :limit => 50
-    t.string   "sequence_lab"
-    t.string   "iv_animal_vaccin_product",  :limit => 50
-    t.string   "resist_to_adamantanes",     :limit => 50
-    t.string   "resist_to_oseltamivir",     :limit => 50
-    t.string   "resist_to_zanamivir",       :limit => 50
-    t.string   "resist_to_peramivir",       :limit => 50
-    t.string   "resist_to_other",           :limit => 50
-    t.string   "h1n1_swine_set",            :limit => 50
-    t.string   "lab_culture",               :limit => 50
-    t.string   "is_complete",               :limit => 50
-    t.string   "iv_sample_id",              :limit => 50
-    t.string   "date_selected_for_vaccine", :limit => 50
-    t.string   "provider_sample_id",        :limit => 50
-    t.string   "antigen_character"
-    t.string   "pathogen_test_info",        :limit => 50
-    t.string   "antiviral_resistance",      :limit => 50
-    t.string   "authors",                   :limit => 50
-    t.string   "is_vaccinated",             :limit => 50
-    t.string   "human_specimen_source",     :limit => 50
-    t.string   "animal_specimen_source",    :limit => 50
-    t.string   "animal_health_status",      :limit => 50
-    t.string   "animal_domestic_status",    :limit => 50
-    t.string   "source_name",               :limit => 50
-    t.string   "geoplace_name",             :limit => 50
-    t.integer  "host_age"
-    t.string   "host_gender",               :limit => 50
-    t.string   "zip_code",                  :limit => 50
-    t.string   "patient_status",            :limit => 50
-    t.string   "antiviral_treatment",       :limit => 50
-    t.string   "outbreak",                  :limit => 50
-    t.datetime "vaccination_last_year"
-    t.text     "pathogenicity"
-    t.text     "computed_antiviral"
-    t.integer  "latitude",                  :limit => 10, :precision => 10, :scale => 0
-    t.integer  "longitude",                 :limit => 10, :precision => 10, :scale => 0
-    t.datetime "created_at"
-  end
-
-  add_index "isolates", ["host"], :name => "host"
-  add_index "isolates", ["id"], :name => "id"
-  add_index "isolates", ["isolate_id"], :name => "isolate_id"
-  add_index "isolates", ["location"], :name => "location"
-  add_index "isolates", ["name", "host", "location"], :name => "name_host_location"
-  add_index "isolates", ["name"], :name => "name"
-  add_index "isolates", ["tax_id", "isolate_id", "name"], :name => "tax_id_iso_id_name"
-  add_index "isolates", ["tax_id", "isolate_id"], :name => "tax_iso"
-  add_index "isolates", ["tax_id", "isolate_id"], :name => "unique_isolates_u1", :unique => true
-  add_index "isolates", ["tax_id"], :name => "tax_id"
+ActiveRecord::Schema.define(:version => 20090716152226) do
 
   create_table "projects", :force => true do |t|
     t.integer  "user_id"
@@ -88,12 +24,16 @@ ActiveRecord::Schema.define(:version => 20100105190955) do
     t.string   "name"
     t.string   "description"
     t.string   "isolate_name"
+    t.string   "isolate_id"
+    t.string   "sequence_id"
     t.string   "virus_type"
-    t.string   "h1n1_swine_set"
+    t.string   "passage"
     t.string   "host"
     t.string   "location"
     t.datetime "max_collect_date"
     t.datetime "min_collect_date"
+    t.string   "fafsa"
+    t.string   "csv"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "ha"
@@ -102,29 +42,13 @@ ActiveRecord::Schema.define(:version => 20100105190955) do
     t.boolean  "pb2"
     t.boolean  "pa"
     t.boolean  "np"
-    t.boolean  "mp"
+    t.boolean  "m"
     t.boolean  "ns"
   end
 
-  create_table "sequences", :force => true do |t|
-    t.string   "genbank_acc_id", :limit => 50
-    t.string   "sequence_id",    :limit => 50
-    t.string   "isolate_id",     :limit => 50
-    t.text     "data"
-    t.datetime "created_at"
-    t.string   "sequence_type",  :limit => 50
-  end
-
-  add_index "sequences", ["genbank_acc_id"], :name => "genbank_acc_id"
-  add_index "sequences", ["genbank_acc_id"], :name => "unique_sequences_genbank_acc_id", :unique => true
-  add_index "sequences", ["isolate_id", "sequence_type"], :name => "isolate_id"
-  add_index "sequences", ["isolate_id", "sequence_type"], :name => "unique_sequences_u2", :unique => true
-  add_index "sequences", ["sequence_id"], :name => "sequence_id"
-  add_index "sequences", ["sequence_id"], :name => "unique_sequences_sequence_id", :unique => true
-
   create_table "sessions", :force => true do |t|
-    t.string   "session_id",                       :null => false
-    t.text     "data",       :limit => 2147483647
+    t.string   "session_id", :null => false
+    t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -133,20 +57,14 @@ ActiveRecord::Schema.define(:version => 20100105190955) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "users", :force => true do |t|
-    t.string   "login",                              :null => false
-    t.string   "email",                              :null => false
-    t.string   "crypted_password",                   :null => false
-    t.string   "password_salt",                      :null => false
-    t.string   "persistence_token",                  :null => false
-    t.string   "single_access_token",                :null => false
-    t.string   "perishable_token",                   :null => false
-    t.integer  "login_count",         :default => 0, :null => false
-    t.integer  "failed_login_count",  :default => 0, :null => false
-    t.datetime "last_request_at"
-    t.datetime "current_login_at"
-    t.datetime "last_login_at"
-    t.string   "current_login_ip"
-    t.string   "last_login_ip"
+    t.integer  "gisaid_user_id"
+    t.string   "login_name"
+    t.string   "email"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "organization"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

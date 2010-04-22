@@ -98,12 +98,11 @@ class QueriesController < ApplicationController
     @query = Query.new(params[:query])
 
     respond_to do |format|
-      @seqs = @query.sequences(@query.isolates)
+      @seqs = @query.sequences
       if (@seqs.empty?)
         flash[:notice] = "No results found."
         format.html { redirect_to :action => "new", :id => @query.project_id } 
       else
-        puts @seqs.length
         if(@seqs.length > 100000)
           flash[:notice] = "Query too large, please narrow search parameters as necessary"
           format.html { redirect_to :action => "new", :id => @query.project_id } 
@@ -133,9 +132,10 @@ class QueriesController < ApplicationController
     respond_to do |format|
       if @query.update_attributes(params[:query])
         @folder = Createfile.file_prep(session[:user_id],@query.project_id,@query.id)
-        @seqs = @query.sequences(@query.isolates)
+        @seqs = @query.sequences
         Createfile.make_fasta(@folder,@seqs)
         Createfile.make_csv(@folder,@seqs)
+        Createfile.make_strain(@folder,@seqs)
         flash[:notice] = 'Query was successfully updated.'
         format.html { redirect_to(@query) }
         format.xml  { head :ok }
