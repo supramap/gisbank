@@ -16,21 +16,21 @@
 </p>
 <p>
   <%= f.label :virus_type, "Virus Subtype" %><br />
-  <%= select_tag 'query[virus_type]', options_for_select(@types, @selected_types), {:size => 3, :multiple => true} %>
+  <%= select_tag 'query[virus_type]', options_for_select(@types, "-ALL-"), {:size => 3} %>
 </p>
 <p>
-  <%= f.label :h1n1_swine_set, "H1N1 Lineage" %><br />
-  <%= select_tag 'query[h1n1_swine_set]', options_for_select(@lineage_options, @selected_lineage), :multiple => true, :size => 3 %>
+  <%= f.label :h1n1_swine_set, "Pandemic/Seasonal H1N1" %><br />
+  <%= select_tag 'query[h1n1_swine_set]', options_for_select(@lineages, "-ALL-") %>
 </p>
 <table border="0" cellpadding="0" >
   <tr>
     <td valign="top">
     <%= f.label :location %><br />
-    <%= select_tag 'query[location]', options_for_select(@locations, @selected_locations), {:size => 20, :multiple => true} %>
+    <%= select_tag 'query[location]', options_for_select(@locations, "-ALL-"), {:size => 20, :multiple => true} %>
     </td>
     <td valign="top" >
     <%= f.label :host %><br/>
-    <%= select_tag 'query[host]', options_for_select(@hosts, @selected_hosts), {:size => 20, :multiple => true} %>
+    <%= select_tag 'query[host]', options_for_select(@hosts, "-ALL-"), {:size => 20, :multiple => true} %>
     </td>
   </tr>
 </table>

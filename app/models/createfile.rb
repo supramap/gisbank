@@ -1,7 +1,5 @@
 require 'fileutils'
 require 'date'
-require 'parsedate'
-include ParseDate
 
 class Createfile
 
@@ -37,7 +35,7 @@ class Createfile
   end
   
   def self.format_date(dt)
-    values = parsedate(dt)
+    values = Time.parse(dt)
     d = Time.local(*values)
     return d.strftime("%Y-%m-%d")
   end

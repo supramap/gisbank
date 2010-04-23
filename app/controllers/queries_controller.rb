@@ -5,91 +5,52 @@ class QueriesController < ApplicationController
   # GET /queries/1.xml
   def show
     @query = Query.find(params[:id])
-    @isos = @query.isolates
+    @sequences = @query.sequences
   end
 
   # GET /queries/new
   # GET /queries/new.xml
   def new
     @query = Query.new
- 
-    @isolates = ['-ALL-']
-    Isolate.find(:all, :select => 'name').each { |it|
-      if (it.name != nil)
-        @isolates << it.name
-      end
-    }
-    @isolates.sort!
-    @selected_iso = ['-ALL-']
 
-    @types = ['-ALL-']
-    Isolate.find(:all, :select => 'Distinct virus_type').each { |it|
-      if (it.virus_type != nil)
-        @types = @types << it.virus_type
-      end
-    }
-    @types.sort!
-    @selected_types = @types[1]
+    @types = ['-ALL-', 'A / H1N1']
     
-    @lineage_options = ['-ALL-',
-                        'Pandemic',
-                        'Seasonal']
-    @selected_lineage = @lineage_options[1]
-
+    @lineages = {'-ALL-'=>"-ALL-", "Pandemic"=>"Y", "Seasonal"=>"N"}
+    
     @hosts = ['-ALL-']
-    Isolate.find(:all, :select => 'Distinct host').each { |it|
-      if (it.host != nil)
-          @hosts = @hosts << it.host
-      end
+    Isolate.find(:all, :select => 'Distinct host', :order => "host").each { |it|
+        @hosts << it.host if it.host != nil
     }
-    @hosts.sort!
-    @selected_hosts = ['-ALL-']
  
     @locations = ['-ALL-']
-    Isolate.find(:all, :select => 'Distinct location').each { |it|
-      if (it.location != nil)
-        @locations = @locations << it.location
-      end
+    Isolate.find(:all, :select => 'Distinct location', :order => "location").each { |it|
+        @locations << it.location if it.location != nil
     }
-    @locations.sort!
-    @selected_locations = ['-ALL-']
   end
 
   # GET /queries/1/edit
   def edit
-    @query = Query.find(params[:id])
+    @query = Query.new
 
-    @types = ['-ALL-']
-    Isolate.find(:all, :select => 'Distinct virus_type').each { |it|
-      if (it.virus_type != nil)
-        @types = @types | [it.virus_type]
-      end
+    @types = ['-ALL-', 'A / H1N1']
+    
+    @lineages = ['-ALL-']
+    Isolate.find(:all, :select => 'Distinct h1n1_swine_set').each { |it|
+		@lineages << it.h1n1_swine_set if it.h1n1_swine_set != nil
     }
-    @types.sort!
-    @selected_types = ['-ALL-']
-
-    @lineage_options = ['-ALL-',
-                        'Pandemic',
-                        'Seasonal']
-    @selected_lineage = @lineage_options[0]
+    @lineages.sort!
 
     @hosts = ['-ALL-']
     Isolate.find(:all, :select => 'Distinct host').each { |it|
-      if (it.host != nil)
-          @hosts = @hosts | [it.host]
-      end
+        @hosts << it.host if it.host != nil
     }
     @hosts.sort!
-    @selected_hosts = ['-ALL-']
-
+ 
     @locations = ['-ALL-']
     Isolate.find(:all, :select => 'Distinct location').each { |it|
-      if (it.location != nil)
-        @locations = @locations | [it.location]
-      end
+        @locations << it.location if it.location != nil
     }
     @locations.sort!
-    @selected_locations = ['-ALL-']
   end
 
   # POST /queries

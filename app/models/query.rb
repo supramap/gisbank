@@ -1,13 +1,20 @@
 class Query < ActiveRecord::Base
   belongs_to  			:project
   validates_presence_of :project_id, :name
-  serialize   			:virus_type, Array
   serialize   			:lineage, Array
   serialize   			:location, Array
   serialize   			:host, Array
 
   def sequences
+    puts "!"*50
+    puts conditions
     @sequences ||= find_sequences 
+  end
+
+  private
+
+  def find_sequences
+    Sequence.find(:all, :joins => :isolate, :conditions => conditions)
   end
 
   def types
@@ -23,53 +30,14 @@ class Query < ActiveRecord::Base
 	@types = sequences
   end
 
-  private
-
-  def find_sequences
-    Sequence.find(:all, :joins => :isolate, :conditions => conditions)
-  end
-
-  def isolate_name_conditions
-    ["isolates.name LIKE ?", "%#{isolate_name}%"] unless isolate_name.blank?
-  end
-
-  def virus_type_conditions
-    ["isolates.virus_type IN (?)", virus_type] unless virus_type == ['-ALL-']
-  end
-
-  def h1n1_swine_set_conditions
-    ["isolates.h1n1_swine_set LIKE ?", "%#{h1n1_swine_set}%"] unless h1n1_swine_set == ['-ALL-']
-  end
-
-  def location_conditions
-    ["isolates.location IN (?)", location] unless location == ['-ALL-']
-  end
-
-  def host_conditions
-    ["isolates.host IN (?)", host] unless host == ['-ALL-']
-  end
-
-  def collect_date_conditions
-    ["isolates.collect_date BETWEEN ? AND ?", min_collect_date, max_collect_date] unless min_collect_date.blank? or max_collect_date.blank?
-  end
-
-  def sequence_type_conditions
-	["sequences.sequence_type IN (?)", types] unless types.empty?
-  end
-
   def conditions
-    [conditions_clauses.join(' AND '), *conditions_options]
-  end
-
-  def conditions_clauses
-    conditions_parts.map { |condition| condition.first }
-  end
-
-  def conditions_options
-    conditions_parts.map { |condition| condition[1..-1] }.flatten
-  end
-
-  def conditions_parts
-    private_methods(false).grep(/_conditions$/).map { |m| send(m) }.compact
+  	cond_hash = {}
+  	cond_hash["isolates.virus_type"] = virus_type if virus_type != '-ALL-'
+  	cond_hash["isolates.h1n1_swine_set"] = h1n1_swine_set if h1n1_swine_set != '-ALL-'
+  	cond_hash["isolates.location"] = location if location != ['-ALL-']
+  	cond_hash["isolates.host"] = host if host != ['-ALL-']
+  	cond_hash["isolates.collect_date"] = min_collect_date..max_collect_date unless min_collect_date.blank? or max_collect_date.blank?
+  	cond_hash["sequences.sequence_type"] = types unless types.empty?
+  	@conditions = cond_hash
   end
 end
