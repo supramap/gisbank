@@ -6,15 +6,16 @@ class Query < ActiveRecord::Base
   serialize   			:host, Array
 
   def sequences
-    puts "!"*50
-    puts conditions
-    @sequences ||= find_sequences 
+    @sequences ||= find_sequences
   end
 
   private
 
   def find_sequences
-    Sequence.find(:all, :joins => :isolate, :conditions => conditions)
+    Sequence.find(:all,
+    	:joins => :isolate,
+    	:select => "sequences.sequence_id, sequences.genbank_acc_id, sequences.data, isolates.latitude, isolates.longitude, isolates.collect_date, sequences.sequence_type, isolates.name, isolates.host, isolates.location, isolates.h1n1_swine_set",
+    	:conditions => conditions)
   end
 
   def types
