@@ -13,7 +13,7 @@ class Query < ActiveRecord::Base
 
   def find_sequences
     Sequence.find(:all,
-    	:joins => :isolate,
+    	:include => :isolate,
     	:select => "sequences.sequence_id, sequences.genbank_acc_id, sequences.data, isolates.latitude, isolates.longitude, isolates.collect_date, sequences.sequence_type, isolates.name, isolates.host, isolates.location, isolates.h1n1_swine_set",
     	:conditions => conditions)
   end

@@ -13,7 +13,9 @@ class Createfile
   end
 
   def self.make_fasta(folder, arr)
-    arr.each { |seq| fasta_block(folder, seq[:sequence_id], seq[:genbank_acc_id], seq[:data]) }
+    arr.each do |seq|
+    	fasta_block(folder, seq[:sequence_id], seq[:genbank_acc_id], seq[:data])
+    end
   end
 
   def self.make_csv(folder, arr)
@@ -26,10 +28,6 @@ class Createfile
     arr.each do |seq|
       strain_block(folder,seq[:sequence_id],seq[:genbank_acc_id],seq[:sequence_type],seq[:name],seq[:host],seq[:location],seq[:h1n1_swine_set])
     end
-  end
-
-  def self.print_stuff(stuff)
-    return stuff
   end
 
   def self.format_date(dt)
