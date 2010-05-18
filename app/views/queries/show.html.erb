@@ -11,9 +11,9 @@
 <%= link_to 'Back to Queries', project_path(@query.project_id) %> |
 <%= link_to 'Change Search Parameters', edit_query_path(@query) %>
 <br/>
-<%= link_to 'Download Nucleotides', '/files/'+session[:user_id].to_s+'/'+@query.project_id.to_s+'/'+@query.id.to_s+'/seq.fas' %> |
-<%= link_to 'Download Georefs', '/files/'+session[:user_id].to_s+'/'+@query.project_id.to_s+'/'+@query.id.to_s+'/georef.csv' %> |
-<%= link_to 'Download Metadata', '/files/'+session[:user_id].to_s+'/'+@query.project_id.to_s+'/'+@query.id.to_s+'/metadata.csv' %>
+<%= link_to 'Download Nucleotides', '/files'+session[:user_id].to_s+'/'+@query.project_id.to_s+'/'+@query.id.to_s+'/seq.fas' %> |
+<%= link_to 'Download Georefs', '/files'+session[:user_id].to_s+'/'+@query.project_id.to_s+'/'+@query.id.to_s+'/georef.csv' %> |
+<%= link_to 'Download Metadata', '/files'+session[:user_id].to_s+'/'+@query.project_id.to_s+'/'+@query.id.to_s+'/metadata.csv' %>
 
 <p>
 <b><%= @sequences.count %> results were found.</b>

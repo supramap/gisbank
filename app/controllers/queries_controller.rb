@@ -15,7 +15,7 @@ class QueriesController < ApplicationController
 
     @types = ['-ALL-', 'A / H1N1']
 
-    @lineages = {'-ALL-'=>"-ALL-", "Pandemic"=>"Y", "Seasonal"=>"N"}
+    @lineages = {'-ALL-'=>'-ALL-', 'Pandemic'=>'Y', 'Seasonal'=>'N'}
 
     @hosts = ['-ALL-']
     Isolate.find(:all, :select => 'Distinct host', :order => "host").each { |it|
@@ -26,31 +26,29 @@ class QueriesController < ApplicationController
     Isolate.find(:all, :select => 'Distinct location', :order => "location").each { |it|
         @locations << it.location if it.location != nil
     }
+
+    @proteins = ['-ALL-','HA', 'NA', 'PB1', 'PB2', 'PA', 'NP', 'MP', 'NS']
   end
 
   # GET /queries/1/edit
   def edit
-    @query = Query.new
+    @query = Query.find(params[:id])
 
     @types = ['-ALL-', 'A / H1N1']
 
-    @lineages = ['-ALL-']
-    Isolate.find(:all, :select => 'Distinct h1n1_swine_set').each { |it|
-		@lineages << it.h1n1_swine_set if it.h1n1_swine_set != nil
-    }
-    @lineages.sort!
+    @lineages = {'-ALL-'=>'-ALL-', 'Pandemic'=>'Y', 'Seasonal'=>'N'}
 
     @hosts = ['-ALL-']
-    Isolate.find(:all, :select => 'Distinct host').each { |it|
+    Isolate.find(:all, :select => 'Distinct host', :order => "host").each { |it|
         @hosts << it.host if it.host != nil
     }
-    @hosts.sort!
 
     @locations = ['-ALL-']
-    Isolate.find(:all, :select => 'Distinct location').each { |it|
+    Isolate.find(:all, :select => 'Distinct location', :order => "location").each { |it|
         @locations << it.location if it.location != nil
     }
-    @locations.sort!
+
+    @proteins = ['-ALL-','HA', 'NA', 'PB1', 'PB2', 'PA', 'NP', 'MP', 'NS']
   end
 
   # POST /queries

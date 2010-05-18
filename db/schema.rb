@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100105190955) do
+ActiveRecord::Schema.define(:version => 20100518195358) do
 
   create_table "isolates", :force => true do |t|
     t.string   "tax_id",                    :limit => 50
@@ -96,14 +96,7 @@ ActiveRecord::Schema.define(:version => 20100105190955) do
     t.datetime "min_collect_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "ha"
-    t.boolean  "na"
-    t.boolean  "pb1"
-    t.boolean  "pb2"
-    t.boolean  "pa"
-    t.boolean  "np"
-    t.boolean  "mp"
-    t.boolean  "ns"
+    t.string   "protein"
   end
 
   create_table "sequences", :force => true do |t|

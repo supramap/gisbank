@@ -22,25 +22,20 @@
   <%= f.label :h1n1_swine_set, "Pandemic/Seasonal H1N1" %><br />
   <%= select_tag 'query[h1n1_swine_set]', options_for_select(@lineages, "-ALL-") %>
 </p>
-<table border="0" cellpadding="0" >
-  <tr>
-    <td valign="top">
-    <%= f.label :location %><br />
-    <%= select_tag 'query[location]', options_for_select(@locations, "-ALL-"), {:size => 20, :multiple => true} %>
-    </td>
-    <td valign="top" >
-    <%= f.label :host %><br/>
-    <%= select_tag 'query[host]', options_for_select(@hosts, "-ALL-"), {:size => 20, :multiple => true} %>
-    </td>
-  </tr>
-</table>
+<p>
+  <%= f.label :location %><br />
+  <%= select_tag 'query[location]', options_for_select(@locations, "-ALL-"), {:size => 20, :multiple => true} %>
+</p>
+<p>
+  <%= f.label :host %><br/>
+  <%= select_tag 'query[host]', options_for_select(@hosts, "-ALL-"), {:size => 20, :multiple => true} %>
+</p>
+<p>
+  <%= f.label :protein, "Proteins" %><br />
+  <%= select_tag 'query[protein]', options_for_select(@proteins, "-ALL-"), {:size => 9, :multiple => true} %>
+</p>
 <p>
   Date Range<br />
   <%= f.date_select :min_collect_date, :order => [:month, :day, :year], :start_year => 2000, :end_year => Date.today.year, :include_blank => true, :default => nil %> to
   <%= f.date_select :max_collect_date, :order => [:month, :day, :year], :start_year => 2000, :end_year => Date.today.year, :include_blank => true, :default => nil %>
-</p>
-<p>
-  Genes (all included if none are checked)<br />
-  PB2<%= f.check_box :pb2%>PB1<%= f.check_box :pb1%>PA<%= f.check_box :pa%>HA<%= f.check_box :ha%>
-  NP<%= f.check_box :np%>NA<%= f.check_box :na%>MP<%= f.check_box :mp%>NS<%= f.check_box :ns%>
 </p>
