@@ -5,7 +5,6 @@ class QueriesController < ApplicationController
   # GET /queries/1.xml
   def show
     @query = Query.find(params[:id])
-    @sequences = @query.sequences
   end
 
   # GET /queries/new
