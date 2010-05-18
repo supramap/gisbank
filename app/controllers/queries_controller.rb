@@ -13,7 +13,7 @@ class QueriesController < ApplicationController
   def new
     @query = Query.new
 
-    @types = ['-ALL-', 'A / H1N1']
+    @types = ['-ALL-', 'A / H1N1', 'A / H5N1']
 
     @lineages = {'-ALL-'=>'-ALL-', 'Pandemic'=>'Y', 'Seasonal'=>'N'}
 
@@ -34,7 +34,7 @@ class QueriesController < ApplicationController
   def edit
     @query = Query.find(params[:id])
 
-    @types = ['-ALL-', 'A / H1N1']
+    @types = ['-ALL-', 'A / H1N1', 'A / H5N1']
 
     @lineages = {'-ALL-'=>'-ALL-', 'Pandemic'=>'Y', 'Seasonal'=>'N'}
 
