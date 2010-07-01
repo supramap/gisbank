@@ -1,7 +1,6 @@
 class Query < ActiveRecord::Base
   belongs_to  			:project
   validates_presence_of :project_id, :name
-  serialize   			:lineage, Array
   serialize   			:location, Array
   serialize   			:host, Array
   serialize				:protein, Array
@@ -14,7 +13,7 @@ class Query < ActiveRecord::Base
 
   def find_sequences
     Sequence.find(:all,
-    	:include => :isolate,
+    	:joins => :isolate,
     	:select => "sequences.sequence_id, sequences.genbank_acc_id, sequences.data, isolates.latitude, isolates.longitude, isolates.collect_date, sequences.sequence_type, isolates.name, isolates.host, isolates.location, isolates.h1n1_swine_set",
     	:conditions => conditions)
   end
@@ -27,6 +26,6 @@ class Query < ActiveRecord::Base
   	cond_hash["isolates.host"] = host if host != ['-ALL-']
   	cond_hash["sequences.sequence_type"] = protein if protein != ['-ALL-']
   	cond_hash["isolates.collect_date"] = min_collect_date..max_collect_date unless min_collect_date.blank? or max_collect_date.blank?
-  	@conditions = cond_hash
+  	return cond_hash
   end
 end

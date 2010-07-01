@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100518195358) do
+ActiveRecord::Schema.define(:version => 20100630180014) do
 
   create_table "isolates", :force => true do |t|
     t.string   "tax_id",                    :limit => 50
@@ -64,16 +64,11 @@ ActiveRecord::Schema.define(:version => 20100518195358) do
     t.datetime "created_at"
   end
 
-  add_index "isolates", ["host"], :name => "host"
-  add_index "isolates", ["id"], :name => "id"
-  add_index "isolates", ["isolate_id"], :name => "isolate_id"
-  add_index "isolates", ["location"], :name => "location"
-  add_index "isolates", ["name", "host", "location"], :name => "name_host_location"
-  add_index "isolates", ["name"], :name => "name"
-  add_index "isolates", ["tax_id", "isolate_id", "name"], :name => "tax_id_iso_id_name"
-  add_index "isolates", ["tax_id", "isolate_id"], :name => "tax_iso"
-  add_index "isolates", ["tax_id", "isolate_id"], :name => "unique_isolates_u1", :unique => true
-  add_index "isolates", ["tax_id"], :name => "tax_id"
+  add_index "isolates", ["collect_date"], :name => "index_isolates_on_collect_date"
+  add_index "isolates", ["h1n1_swine_set"], :name => "index_isolates_on_h1n1_swine_set"
+  add_index "isolates", ["host"], :name => "index_isolates_on_host"
+  add_index "isolates", ["location"], :name => "index_isolates_on_location"
+  add_index "isolates", ["virus_type"], :name => "index_isolates_on_virus_type"
 
   create_table "projects", :force => true do |t|
     t.integer  "user_id"
@@ -108,12 +103,8 @@ ActiveRecord::Schema.define(:version => 20100518195358) do
     t.string   "sequence_type",  :limit => 50
   end
 
-  add_index "sequences", ["genbank_acc_id"], :name => "genbank_acc_id"
-  add_index "sequences", ["genbank_acc_id"], :name => "unique_sequences_genbank_acc_id", :unique => true
-  add_index "sequences", ["isolate_id", "sequence_type"], :name => "isolate_id"
-  add_index "sequences", ["isolate_id", "sequence_type"], :name => "unique_sequences_u2", :unique => true
-  add_index "sequences", ["sequence_id"], :name => "sequence_id"
-  add_index "sequences", ["sequence_id"], :name => "unique_sequences_sequence_id", :unique => true
+  add_index "sequences", ["isolate_id"], :name => "index_sequences_on_isolate_id"
+  add_index "sequences", ["sequence_type"], :name => "index_sequences_on_sequence_type"
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id",                       :null => false
