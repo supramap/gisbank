@@ -22,5 +22,5 @@
 <%= f.label :min_collect_date, "Date Range" %><br />
 <%= f.date_select :min_collect_date, :order => [:month, :day, :year], :start_year => 2000, :end_year => Date.today.year, :include_blank => true, :default => nil %> to
 <%= f.date_select :max_collect_date, :order => [:month, :day, :year], :start_year => 2000, :end_year => Date.today.year, :include_blank => true, :default => nil %>
-<%= f.hidden_field(:project_id, :value => current_user.id) %>
+<%= f.hidden_field(:user_id, :value => current_user.id) %>
 <br/><br/>

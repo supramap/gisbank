@@ -74,7 +74,7 @@ class QueriesController < ApplicationController
     @query.destroy
 
     respond_to do |format|
-      format.html { redirect_to(project_url(@query.project_id)) }
+      format.html { redirect_to queries_path }
       format.xml  { head :ok }
     end
   end

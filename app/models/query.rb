@@ -13,8 +13,8 @@ class Query < ActiveRecord::Base
 
   def new_values(params)
   	selected_hash = {}
-    selected_hash[:types] = params ? params[:query][:type] : "-ALL-"
-    selected_hash[:lineages] = params ? params[:query][:lineage] : "-ALL-"
+    selected_hash[:types] = params ? params[:query][:virus_type] : "-ALL-"
+    selected_hash[:lineages] = params ? params[:query][:h1n1_swine_set] : "-ALL-"
     selected_hash[:hosts] = params ? params[:query][:hosts] : "-ALL-"
     selected_hash[:locations] = params ? params[:query][:locations] : "-ALL-"
     selected_hash[:proteins] = params ? params[:query][:proteins] : "-ALL-"
@@ -23,8 +23,8 @@ class Query < ActiveRecord::Base
 
   def edit_values(params)
   	selected_hash = {}
-    selected_hash[:types] = params ? params[:query][:type] : self.virus_type
-    selected_hash[:lineages] = params ? params[:query][:lineage] : self.h1n1_swine_set
+    selected_hash[:types] = params ? params[:query][:virus_type] : self.virus_type
+    selected_hash[:lineages] = params ? params[:query][:h1n1_swine_set] : self.h1n1_swine_set
     selected_hash[:hosts] = params ? params[:query][:hosts] : self.hosts
     selected_hash[:locations] = params ? params[:query][:locations] : self.locations
     selected_hash[:proteins] = params ? params[:query][:proteins] : self.proteins
