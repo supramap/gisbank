@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100630180014) do
+ActiveRecord::Schema.define(:version => 20100708173841) do
 
   create_table "isolates", :force => true do |t|
     t.string   "tax_id",                    :limit => 50
@@ -85,13 +85,13 @@ ActiveRecord::Schema.define(:version => 20100630180014) do
     t.string   "isolate_name"
     t.string   "virus_type"
     t.string   "h1n1_swine_set"
-    t.string   "host"
-    t.string   "location"
+    t.string   "hosts"
+    t.string   "locations"
     t.datetime "max_collect_date"
     t.datetime "min_collect_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "protein"
+    t.string   "proteins"
   end
 
   create_table "sequences", :force => true do |t|

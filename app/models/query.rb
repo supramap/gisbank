@@ -1,17 +1,23 @@
 class Query < ActiveRecord::Base
   belongs_to  			:project
   validates_presence_of :project_id, :name
-  serialize   			:location, Array
-  serialize   			:host, Array
-  serialize				:protein, Array
+  serialize   			:locations, Array
+  serialize   			:hosts, Array
+  serialize				:proteins, Array
+
+  def validate
+  	if min_collect_date.blank? and not max_collect_date.blank? or max_collect_date.blank? and not min_collect_date.blank?
+  	  errors.add :min_collect_date, "Both dates must be set to use date range"
+  	end
+  end
 
   def new_values(params)
   	selected_hash = {}
     selected_hash[:types] = params ? params[:query][:type] : "-ALL-"
     selected_hash[:lineages] = params ? params[:query][:lineage] : "-ALL-"
-    selected_hash[:hosts] = params ? params[:query][:host] : "-ALL-"
-    selected_hash[:locations] = params ? params[:query][:location] : "-ALL-"
-    selected_hash[:proteins] = params ? params[:query][:protein] : "-ALL-"
+    selected_hash[:hosts] = params ? params[:query][:hosts] : "-ALL-"
+    selected_hash[:locations] = params ? params[:query][:locations] : "-ALL-"
+    selected_hash[:proteins] = params ? params[:query][:proteins] : "-ALL-"
     return selected_hash
   end
 
@@ -19,9 +25,9 @@ class Query < ActiveRecord::Base
   	selected_hash = {}
     selected_hash[:types] = params ? params[:query][:type] : self.virus_type
     selected_hash[:lineages] = params ? params[:query][:lineage] : self.h1n1_swine_set
-    selected_hash[:hosts] = params ? params[:query][:host] : self.host
-    selected_hash[:locations] = params ? params[:query][:location] : self.location
-    selected_hash[:proteins] = params ? params[:query][:protein] : self.protein
+    selected_hash[:hosts] = params ? params[:query][:hosts] : self.hosts
+    selected_hash[:locations] = params ? params[:query][:locations] : self.locations
+    selected_hash[:proteins] = params ? params[:query][:proteins] : self.proteins
     return selected_hash
   end
 
@@ -88,9 +94,9 @@ class Query < ActiveRecord::Base
   	cond_hash = {}
   	cond_hash["isolates.virus_type"] = virus_type if virus_type != '-ALL-'
   	cond_hash["isolates.h1n1_swine_set"] = h1n1_swine_set if h1n1_swine_set != '-ALL-'
-  	cond_hash["isolates.location"] = location if location != ['-ALL-']
-  	cond_hash["isolates.host"] = host if host != ['-ALL-']
-  	cond_hash["sequences.sequence_type"] = protein if protein != ['-ALL-']
+  	cond_hash["isolates.location"] = locations if locations != ['-ALL-']
+  	cond_hash["isolates.host"] = hosts if hosts != ['-ALL-']
+  	cond_hash["sequences.sequence_type"] = proteins if proteins != ['-ALL-']
   	cond_hash["isolates.collect_date"] = min_collect_date..max_collect_date unless min_collect_date.blank? or max_collect_date.blank?
   	return cond_hash
   end

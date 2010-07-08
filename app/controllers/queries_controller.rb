@@ -6,12 +6,14 @@ class QueriesController < ApplicationController
   def show
     @query = Query.find(params[:id])
     @sequences = @query.sequences(params)
+    @project_id = @query.project_id
   end
 
   # GET /queries/new
   # GET /queries/new.xml
   def new
     @query = Query.new
+    @project_id = params[:id]
 	@form_values = Sequence.form_values
 	@selected_values = @query.new_values(nil)
   end
@@ -19,6 +21,7 @@ class QueriesController < ApplicationController
   # GET /queries/1/edit
   def edit
     @query = Query.find(params[:id])
+    @project_id = @query.project_id
 	@form_values = Sequence.form_values
 	@selected_values = @query.edit_values(nil)
   end
@@ -34,7 +37,7 @@ class QueriesController < ApplicationController
         format.html { redirect_to(@query) }
         format.xml  { render :xml => @query, :status => :created, :location => @query }
       else
-      	params[:id] = @query.project_id
+      	@project_id = @query.project_id
 		@form_values = Sequence.form_values
 		@selected_values = @query.new_values(params)
         format.html { render :action => "new" }
@@ -54,7 +57,7 @@ class QueriesController < ApplicationController
         format.html { redirect_to(@query) }
         format.xml  { head :ok }
       else
-      	params[:id] = @query.project_id
+      	@project_id = @query.project_id
 		@form_values = Sequence.form_values
 		@selected_values = @query.edit_values(params)
         format.html { render :action => "edit" }

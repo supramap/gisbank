@@ -11,16 +11,16 @@
 <%= select_tag 'query[h1n1_swine_set]', options_for_select(@form_values[:lineages], @selected_values[:lineages]) %><br />
 <br />
 <%= f.label :location %><br />
-<%= select_tag 'query[location]', options_for_select(@form_values[:locations], @selected_values[:locations]), {:size => 20, :multiple => true} %><br />
+<%= select_tag 'query[locations]', options_for_select(@form_values[:locations], @selected_values[:locations]), {:size => 20, :multiple => true} %><br />
 <br />
 <%= f.label :host %><br/>
-<%= select_tag 'query[host]', options_for_select(@form_values[:hosts], @selected_values[:hosts]), {:size => 20, :multiple => true} %><br />
+<%= select_tag 'query[hosts]', options_for_select(@form_values[:hosts], @selected_values[:hosts]), {:size => 20, :multiple => true} %><br />
 <br />
 <%= f.label :protein, "Proteins" %><br />
-<%= select_tag 'query[protein]', options_for_select(@form_values[:proteins], @selected_values[:proteins]), {:size => 9, :multiple => true} %><br />
+<%= select_tag 'query[proteins]', options_for_select(@form_values[:proteins], @selected_values[:proteins]), {:size => 9, :multiple => true} %><br />
 <br />
-Date Range<br />
+<%= f.label :min_collect_date, "Date Range" %><br />
 <%= f.date_select :min_collect_date, :order => [:month, :day, :year], :start_year => 2000, :end_year => Date.today.year, :include_blank => true, :default => nil %> to
 <%= f.date_select :max_collect_date, :order => [:month, :day, :year], :start_year => 2000, :end_year => Date.today.year, :include_blank => true, :default => nil %>
-<%= f.hidden_field(:project_id, :value => params[:id]) %>
+<%= f.hidden_field(:project_id, :value => @project_id) %>
 <br/><br/>

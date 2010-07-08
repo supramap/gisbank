@@ -16,6 +16,9 @@
     <div id="nav1">
     <ul id="menus">
       <li><a href="/projects">Projects</a></li>
+      <% if @project_id %>
+      <li><%= link_to "Queries", project_path(@project_id) %></li>
+      <% end %>
       <li><a href="/menu/about">About</a></li>
       <li><a href="/menu/contact">Contact Us</a></li>
     </ul>
