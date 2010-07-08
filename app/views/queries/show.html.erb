@@ -8,7 +8,7 @@
   <%=h @query.description %>
 </p>
 
-<%= link_to 'Back to Queries', project_path(@project_id) %> |
+<%= link_to 'Back to Queries', queries_path %> |
 <%= link_to 'Change Search Parameters', edit_query_path(@query) %> |
 <%= link_to 'Delete Query', query_path(@query), :confirm => 'Are you sure?', :method => "delete" %>
 <br/>

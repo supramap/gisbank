@@ -1,17 +1,9 @@
-<p>
-  <b>Project:</b>
-  <%=h @project.name %>
-</p>
+<h1>Listing Queries</h1>
+
+<%= link_to 'New query', new_query_path %>
 
 <p>
-  <b>Description:</b>
-  <%=h @project.description %>
-</p>
-
-<%= link_to 'New query', new_query_path(:id => @project.id) %> |
-<%= link_to 'Edit Project', edit_project_path(@project) %>
-
-<p><b>Listing queries:</b><%= will_paginate @queries %>
+  <b>Listing queries:</b><%= will_paginate @queries %>
 </p>
 
 <div class="list">

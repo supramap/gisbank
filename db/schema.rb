@@ -1,4 +1,4 @@
-# This file is auto-generated from the current state of the database. Instead of editing this file, 
+# This file is auto-generated from the current state of the database. Instead of editing this file,
 # please use the migrations feature of Active Record to incrementally modify your database, and
 # then regenerate this schema definition.
 #
@@ -70,16 +70,7 @@ ActiveRecord::Schema.define(:version => 20100708173841) do
   add_index "isolates", ["location"], :name => "index_isolates_on_location"
   add_index "isolates", ["virus_type"], :name => "index_isolates_on_virus_type"
 
-  create_table "projects", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "name"
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "queries", :force => true do |t|
-    t.integer  "project_id"
     t.string   "name"
     t.string   "description"
     t.string   "isolate_name"
@@ -92,6 +83,7 @@ ActiveRecord::Schema.define(:version => 20100708173841) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "proteins"
+    t.integer  "user_id"
   end
 
   create_table "sequences", :force => true do |t|

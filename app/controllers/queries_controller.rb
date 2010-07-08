@@ -1,19 +1,23 @@
 class QueriesController < ApplicationController
   before_filter :require_user
+  before_filter :editable, :only => [:edit, :destroy, :update]
+  before_filter :viewable, :only => [:show, :download_fasta, :download_metadata, :download_strain]
+
+  def index
+  	@queries = Query.paginate(:page => params[:page])
+  end
 
   # GET /queries/1
   # GET /queries/1.xml
   def show
     @query = Query.find(params[:id])
     @sequences = @query.sequences(params)
-    @project_id = @query.project_id
   end
 
   # GET /queries/new
   # GET /queries/new.xml
   def new
     @query = Query.new
-    @project_id = params[:id]
 	@form_values = Sequence.form_values
 	@selected_values = @query.new_values(nil)
   end
@@ -21,7 +25,6 @@ class QueriesController < ApplicationController
   # GET /queries/1/edit
   def edit
     @query = Query.find(params[:id])
-    @project_id = @query.project_id
 	@form_values = Sequence.form_values
 	@selected_values = @query.edit_values(nil)
   end
@@ -37,7 +40,6 @@ class QueriesController < ApplicationController
         format.html { redirect_to(@query) }
         format.xml  { render :xml => @query, :status => :created, :location => @query }
       else
-      	@project_id = @query.project_id
 		@form_values = Sequence.form_values
 		@selected_values = @query.new_values(params)
         format.html { render :action => "new" }
@@ -57,7 +59,6 @@ class QueriesController < ApplicationController
         format.html { redirect_to(@query) }
         format.xml  { head :ok }
       else
-      	@project_id = @query.project_id
 		@form_values = Sequence.form_values
 		@selected_values = @query.edit_values(params)
         format.html { render :action => "edit" }

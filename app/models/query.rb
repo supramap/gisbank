@@ -1,6 +1,6 @@
 class Query < ActiveRecord::Base
-  belongs_to  			:project
-  validates_presence_of :project_id, :name
+  belongs_to  			:user
+  validates_presence_of :user_id, :name
   serialize   			:locations, Array
   serialize   			:hosts, Array
   serialize				:proteins, Array
