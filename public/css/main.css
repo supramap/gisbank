@@ -80,11 +80,10 @@ body {
 
 #main {
 	float: left;
-	width: 530px;
+	width: 750px;
 	padding: 0px 0px 20px 0px;
 	margin: 0px 0px 0px 20px ;
 	display: inline;
-	background: url(box.jpg) no-repeat;
 }
 
 #footer {
@@ -143,28 +142,40 @@ a:hover { color: #9CC3DE;}
   list-style: square;
 }
 
+#login {
+	position: absolute;
+	bottom: 2px;
+	right: 24px;
+    font-size: 12px;
+}
+
+#login a{
+	color: #a2c7e1;
+	text-decoration: none;
+}
+
+table.sortable thead {
+    font-weight: bold;
+    cursor: default;
+}
+
 .list table {
-    border: 1px solid silver;
     border-collapse: collapse;
+    width: 100%;
+}
+
+.list th {
+    border-bottom: 1px solid black;
+    border-right: 1px solid silver;
+    padding: 0.5em;
+    background-color: #bfd9ea;
 }
 
 .list tr {
     border: 1px solid silver;
 }
 
-.list th, .list td{
-    border-right: 1px solid #CCCCCC;
-    padding: 0.5em;
-}
-
-#user-nav {
-    float: right;
-    font-size: 12px;
-    padding: 0px 10px 0px 0px;
-}
-
-#user-nav a:hover
-{
-    color: #FFF;
-    background-color: #333;
+.list td {
+	padding: 0.5em;
+	border-right: 1px solid #CCCCCC;
 }

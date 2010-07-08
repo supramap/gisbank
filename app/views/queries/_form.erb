@@ -1,41 +1,28 @@
-<% if flash[:errors] %>
-  <% flash[:errors].each do |error| %>
-    <p id="errorExplanation"><%=  error %> cannot be blank.</p>
-  <% end %>
-<% end %>
 <p>
   Search tip: multiple selections can be made in the selection boxes by holding ctrl.
 </p>
-<p>
-  <%= f.label :name, "Query Name (Required)" %><br />
-  <%= f.text_field :name %>
-</p>
-<p>
-  <%= f.label :description, "Query Description (Optional)" %><br />
-  <%= f.text_field :description %>
-</p>
-<p>
-  <%= f.label :virus_type, "Virus Subtype" %><br />
-  <%= select_tag 'query[virus_type]', options_for_select(@types, "-ALL-"), {:size => 3} %>
-</p>
-<p>
-  <%= f.label :h1n1_swine_set, "Pandemic/Seasonal H1N1" %><br />
-  <%= select_tag 'query[h1n1_swine_set]', options_for_select(@lineages, "-ALL-") %>
-</p>
-<p>
-  <%= f.label :location %><br />
-  <%= select_tag 'query[location]', options_for_select(@locations, "-ALL-"), {:size => 20, :multiple => true} %>
-</p>
-<p>
-  <%= f.label :host %><br/>
-  <%= select_tag 'query[host]', options_for_select(@hosts, "-ALL-"), {:size => 20, :multiple => true} %>
-</p>
-<p>
-  <%= f.label :protein, "Proteins" %><br />
-  <%= select_tag 'query[protein]', options_for_select(@proteins, "-ALL-"), {:size => 9, :multiple => true} %>
-</p>
-<p>
-  Date Range<br />
-  <%= f.date_select :min_collect_date, :order => [:month, :day, :year], :start_year => 2000, :end_year => Date.today.year, :include_blank => true, :default => nil %> to
-  <%= f.date_select :max_collect_date, :order => [:month, :day, :year], :start_year => 2000, :end_year => Date.today.year, :include_blank => true, :default => nil %>
-</p>
+<%= f.label :name, "Query Name (Required)" %><br />
+<%= f.text_field :name %><br/>
+<br/>
+<%= f.label :description, "Query Description (Optional)" %><br />
+<%= f.text_field :description %><br/>
+<br/>
+<%= f.label :virus_type, "Virus Subtype" %><br />
+<%= select_tag 'query[virus_type]', options_for_select(@types, "-ALL-"), {:size => 3} %><br />
+<br />
+<%= f.label :h1n1_swine_set, "Pandemic/Seasonal H1N1" %><br />
+<%= select_tag 'query[h1n1_swine_set]', options_for_select(@lineages, "-ALL-") %><br />
+<br />
+<%= f.label :location %><br />
+<%= select_tag 'query[location]', options_for_select(@locations, "-ALL-"), {:size => 20, :multiple => true} %><br />
+<br />
+<%= f.label :host %><br/>
+<%= select_tag 'query[host]', options_for_select(@hosts, "-ALL-"), {:size => 20, :multiple => true} %><br />
+<br />
+<%= f.label :protein, "Proteins" %><br />
+<%= select_tag 'query[protein]', options_for_select(@proteins, "-ALL-"), {:size => 9, :multiple => true} %><br />
+<br />
+Date Range<br />
+<%= f.date_select :min_collect_date, :order => [:month, :day, :year], :start_year => 2000, :end_year => Date.today.year, :include_blank => true, :default => nil %> to
+<%= f.date_select :max_collect_date, :order => [:month, :day, :year], :start_year => 2000, :end_year => Date.today.year, :include_blank => true, :default => nil %>
+<%= f.hidden_field(:project_id, :value => params[:id]) %>

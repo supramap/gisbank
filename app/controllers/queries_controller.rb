@@ -5,6 +5,7 @@ class QueriesController < ApplicationController
   # GET /queries/1.xml
   def show
     @query = Query.find(params[:id])
+    @sequences = @query.sequences(params)
   end
 
   # GET /queries/new
@@ -54,30 +55,32 @@ class QueriesController < ApplicationController
   # POST /queries.xml
   def create
     @query = Query.new(params[:query])
+    #@query.write_files
 
     respond_to do |format|
-      @seqs = @query.sequences
-      if (@seqs.empty?)
-        flash[:notice] = "No results found."
-        format.html { redirect_to :action => "new", :id => @query.project_id }
+      if @query.save
+        flash[:notice] = 'Query was successfully created.'
+        format.html { redirect_to(@query) }
+        format.xml  { render :xml => @query, :status => :created, :location => @query }
       else
-        if(@seqs.length > 100000)
-          flash[:notice] = "Query too large, please narrow search parameters as necessary"
-          format.html { redirect_to :action => "new", :id => @query.project_id }
-        else
-          if @query.save
-            @folder = Createfile.file_prep(session[:user_id],@query.project_id,@query.id)
-			Createfile.make_fasta(@folder,@seqs)
-			Createfile.make_csv(@folder,@seqs)
-			Createfile.make_strain(@folder,@seqs)
-            flash[:notice] = 'Query was successfully created.'
-            format.html { redirect_to(@query) }
-            format.xml  { render :xml => @query, :status => :created, :location => @query }
-          else
-            flash[:errors] = @query.errors
-            format.html { redirect_to :action => "new", :id => @query.project_id }
-          end
-        end
+		@types = ['-ALL-', 'A / H1N1', 'A / H5N1']
+
+		@lineages = {'-ALL-'=>'-ALL-', 'Pandemic'=>'Y', 'Seasonal'=>'N'}
+
+		@hosts = ['-ALL-']
+		Isolate.find(:all, :select => 'Distinct host', :order => "host").each { |it|
+		    @hosts << it.host if it.host != nil
+		}
+
+		@locations = ['-ALL-']
+		Isolate.find(:all, :select => 'Distinct location', :order => "location").each { |it|
+		    @locations << it.location if it.location != nil
+		}
+
+		@proteins = ['-ALL-','HA', 'NA', 'PB1', 'PB2', 'PA', 'NP', 'MP', 'NS']
+
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @query.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -86,20 +89,33 @@ class QueriesController < ApplicationController
   # PUT /queries/1.xml
   def update
     @query = Query.find(params[:id])
+    @query.update_attributes(params[:query])
+    #@query.write_files
 
     respond_to do |format|
-      if @query.update_attributes(params[:query])
-        @folder = Createfile.file_prep(session[:user_id],@query.project_id,@query.id)
-        @seqs = @query.sequences
-        Createfile.make_fasta(@folder,@seqs)
-        Createfile.make_csv(@folder,@seqs)
-        Createfile.make_strain(@folder,@seqs)
+      if @query.save
         flash[:notice] = 'Query was successfully updated.'
         format.html { redirect_to(@query) }
         format.xml  { head :ok }
       else
-        flash[:errors] = @query.errors
-        format.html { redirect_to(@query) }
+		@types = ['-ALL-', 'A / H1N1', 'A / H5N1']
+
+		@lineages = {'-ALL-'=>'-ALL-', 'Pandemic'=>'Y', 'Seasonal'=>'N'}
+
+		@hosts = ['-ALL-']
+		Isolate.find(:all, :select => 'Distinct host', :order => "host").each { |it|
+		    @hosts << it.host if it.host != nil
+		}
+
+		@locations = ['-ALL-']
+		Isolate.find(:all, :select => 'Distinct location', :order => "location").each { |it|
+		    @locations << it.location if it.location != nil
+		}
+
+		@proteins = ['-ALL-','HA', 'NA', 'PB1', 'PB2', 'PA', 'NP', 'MP', 'NS']
+
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @query.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -108,12 +124,26 @@ class QueriesController < ApplicationController
   # DELETE /queries/1.xml
   def destroy
     @query = Query.find(params[:id])
-    Createfile.file_prep(session[:user_id],@query.project_id,@query.id)
     @query.destroy
 
     respond_to do |format|
-      format.html { redirect_to :back }
+      format.html { redirect_to(project_url(@query.project_id)) }
       format.xml  { head :ok }
     end
+  end
+
+  def download_fasta
+  	@query = Query.find(params[:id])
+  	send_data @query.make_fasta, :filename => "#{@query.name}.fasta", :type => "chemical/seq-aa-fasta"
+  end
+
+  def download_metadata
+  	@query = Query.find(params[:id])
+  	send_data @query.make_metadata, :filename => "#{@query.name}.csv", :type => "chemical/seq-aa-fasta"
+  end
+
+  def download_strain
+  	@query = Query.find(params[:id])
+  	send_data @query.make_strain, :filename => "#{@query.name}-strain.csv", :type => "chemical/seq-aa-fasta"
   end
 end

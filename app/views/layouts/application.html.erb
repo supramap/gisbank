@@ -10,22 +10,15 @@
 </head>
 <body>
   <div id="wrapper">
-    <div id="header"></div>
+    <div id="header">
+      <%= render :partial => "menu/login" %>
+    </div>
     <div id="nav1">
     <ul id="menus">
       <li><a href="/projects">Projects</a></li>
       <li><a href="/menu/about">About</a></li>
       <li><a href="/menu/contact">Contact Us</a></li>
     </ul>
-        <div id="user-nav">
-            <% if !current_user %>
-              <%= link_to "Register", new_account_path %> |
-              <%= link_to "Log In", new_user_session_path %>
-            <% else %>
-              <%= link_to "My Account", account_path %> |
-              <%= link_to "Logout", user_session_path, :method => :delete, :confirm => "Are you sure you want to logout?" %>
-            <% end %>
-        </div>
     </div>
 
     <div id="content-wrapper">

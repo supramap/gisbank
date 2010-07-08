@@ -22,7 +22,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # Sample resource route with sub-resources:
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  
+
   # Sample resource route with more complex sub-resources
   #   map.resources :products do |products|
   #     products.resources :comments
@@ -36,17 +36,19 @@ ActionController::Routing::Routes.draw do |map|
   #   end
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
+  map.resource :user_session
   map.resource :account, :controller => "users"
   map.resources :users
-  map.resource :user_session
-  map.root :controller => "user_sessions", :action => "new"  
+  map.resources :projects
+  map.resources :queries
+  map.root :controller => "menu", :action => "index"
 
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing the them or commenting them out if you're using named routes and resources.
-  
+
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end

@@ -5,14 +5,17 @@
   <tr>
     <th>Name</th>
     <th>Description</th>
+    <th>Options</th>
   </tr>
   <% @projects.each do |project| %>
   <tr>
     <td><%=h project.name %></td>
     <td><%=h project.description %></td>
-    <td><%= link_to 'Show Queries', project %></td>
-    <td><%= link_to 'Edit', edit_project_path(project) %></td>
-    <td><%= link_to 'Delete', project, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td>
+      <%= link_to 'Show Queries', project %> |
+      <%= link_to 'Edit', edit_project_path(project) %> |
+      <%= link_to 'Delete', project, :confirm => 'Are you sure?', :method => :delete %>
+    </td>
   </tr>
 <% end %>
 </table>

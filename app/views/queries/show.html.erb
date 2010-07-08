@@ -11,10 +11,36 @@
 <%= link_to 'Back to Queries', project_path(@query.project_id) %> |
 <%= link_to 'Change Search Parameters', edit_query_path(@query) %>
 <br/>
-<%= link_to 'Download Nucleotides', '/files'+session[:user_id].to_s+'/'+@query.project_id.to_s+'/'+@query.id.to_s+'/seq.fas' %> |
-<%= link_to 'Download Georefs', '/files'+session[:user_id].to_s+'/'+@query.project_id.to_s+'/'+@query.id.to_s+'/georef.csv' %> |
-<%= link_to 'Download Metadata', '/files'+session[:user_id].to_s+'/'+@query.project_id.to_s+'/'+@query.id.to_s+'/metadata.csv' %>
+<%= link_to 'Download Nucleotides', "/queries/download_fasta/#{params[:id]}" %> |
+<%= link_to 'Download Georefs', "/queries/download_metadata/#{params[:id]}" %> |
+<%= link_to 'Download Metadata', "/queries/download_strain/#{params[:id]}" %>
 
-<p>
-  Results Found!
-</p>
+<h3>Listing Results:</h3>
+
+<%= will_paginate @sequences, :params => params %>
+
+<div class="list">
+<table class="sortable">
+  <tr>
+    <th>Isolate Name</th>
+    <th>Sequence Type</th>
+    <th>Genbank Accession ID</th>
+    <th>Swine Set</th>
+    <th>Collect Date</th>
+  </tr>
+
+<% @sequences.each do |sequence| %>
+  <tr>
+    <td><%=h sequence[:name] %></td>
+    <td><%=h sequence[:type] %></td>
+    <td>
+      <% if sequence[:genbank_acc_id] %>
+        <%= link_to sequence[:genbank_acc_id], "http://www.ncbi.nlm.nih.gov/nucleotide?term=#{sequence[:genbank_acc_id]}", :target => "_blank" %>
+      <% end %>
+    </td>
+    <td><%=h sequence[:h1n1_swine_set] %></td>
+    <td><%=h sequence[:collect_date] %></td>
+  </tr>
+<% end %>
+</table>
+</div>

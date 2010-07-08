@@ -8,9 +8,8 @@
   <%=h @project.description %>
 </p>
 
-<%= link_to 'Edit Project', edit_project_path(@project) %> |
-<%= link_to 'Back to Projects', :controller => 'projects', :action => 'index' %> | 
-<%= link_to 'New query', new_query_path(:id => @project.id) %>
+<%= link_to 'New query', new_query_path(:id => @project.id) %> |
+<%= link_to 'Edit Project', edit_project_path(@project) %>
 
 <p><b>Listing queries:</b><%= will_paginate @queries %>
 </p>
@@ -20,19 +19,18 @@
   <tr>
     <th>Name</th>
     <th>Description</th>
+    <th>Options</th>
   </tr>
   <% @queries.each do |query| %>
   <tr>
     <td><%=h query.name %></td>
     <td><%=h query.description %></td>
-    <td><%= link_to 'Show Results', query %></td>
-    <td><%= link_to 'Download Nucleotides', '/files/'+session[:user_id].to_s+'/'+@project.id.to_s+'/'+query.id.to_s+'/seq.fas' %></td>
-    <td><%= link_to 'Download Georefs', '/files/'+session[:user_id].to_s+'/'+@project.id.to_s+'/'+query.id.to_s+'/georef.csv' %></td>
-    <td><%= link_to 'Download Metadata', '/files/'+session[:user_id].to_s+'/'+@project.id.to_s+'/'+query.id.to_s+'/metadata.csv' %></td>
-    <td><%= link_to 'Edit', edit_query_path(query) %></td>
-    <td><%= link_to 'Delete', query, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td>
+      <%= link_to 'Show Results', query %> |
+      <%= link_to 'Edit', edit_query_path(query) %> |
+      <%= link_to 'Delete', query, :confirm => 'Are you sure?', :method => :delete %>
+    </td>
   </tr>
 <% end %>
 </table>
 </div>
-<br />
