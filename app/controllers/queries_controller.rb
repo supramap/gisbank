@@ -12,50 +12,21 @@ class QueriesController < ApplicationController
   # GET /queries/new.xml
   def new
     @query = Query.new
-
-    @types = ['-ALL-', 'A / H1N1', 'A / H5N1']
-
-    @lineages = {'-ALL-'=>'-ALL-', 'Pandemic'=>'Y', 'Seasonal'=>'N'}
-
-    @hosts = ['-ALL-']
-    Isolate.find(:all, :select => 'Distinct host', :order => "host").each { |it|
-        @hosts << it.host if it.host != nil
-    }
-
-    @locations = ['-ALL-']
-    Isolate.find(:all, :select => 'Distinct location', :order => "location").each { |it|
-        @locations << it.location if it.location != nil
-    }
-
-    @proteins = ['-ALL-','HA', 'NA', 'PB1', 'PB2', 'PA', 'NP', 'MP', 'NS']
+	@form_values = Sequence.form_values
+	@selected_values = @query.new_values(nil)
   end
 
   # GET /queries/1/edit
   def edit
     @query = Query.find(params[:id])
-
-    @types = ['-ALL-', 'A / H1N1', 'A / H5N1']
-
-    @lineages = {'-ALL-'=>'-ALL-', 'Pandemic'=>'Y', 'Seasonal'=>'N'}
-
-    @hosts = ['-ALL-']
-    Isolate.find(:all, :select => 'Distinct host', :order => "host").each { |it|
-        @hosts << it.host if it.host != nil
-    }
-
-    @locations = ['-ALL-']
-    Isolate.find(:all, :select => 'Distinct location', :order => "location").each { |it|
-        @locations << it.location if it.location != nil
-    }
-
-    @proteins = ['-ALL-','HA', 'NA', 'PB1', 'PB2', 'PA', 'NP', 'MP', 'NS']
+	@form_values = Sequence.form_values
+	@selected_values = @query.edit_values(nil)
   end
 
   # POST /queries
   # POST /queries.xml
   def create
     @query = Query.new(params[:query])
-    #@query.write_files
 
     respond_to do |format|
       if @query.save
@@ -63,22 +34,9 @@ class QueriesController < ApplicationController
         format.html { redirect_to(@query) }
         format.xml  { render :xml => @query, :status => :created, :location => @query }
       else
-		@types = ['-ALL-', 'A / H1N1', 'A / H5N1']
-
-		@lineages = {'-ALL-'=>'-ALL-', 'Pandemic'=>'Y', 'Seasonal'=>'N'}
-
-		@hosts = ['-ALL-']
-		Isolate.find(:all, :select => 'Distinct host', :order => "host").each { |it|
-		    @hosts << it.host if it.host != nil
-		}
-
-		@locations = ['-ALL-']
-		Isolate.find(:all, :select => 'Distinct location', :order => "location").each { |it|
-		    @locations << it.location if it.location != nil
-		}
-
-		@proteins = ['-ALL-','HA', 'NA', 'PB1', 'PB2', 'PA', 'NP', 'MP', 'NS']
-
+      	params[:id] = @query.project_id
+		@form_values = Sequence.form_values
+		@selected_values = @query.new_values(params)
         format.html { render :action => "new" }
         format.xml  { render :xml => @query.errors, :status => :unprocessable_entity }
       end
@@ -89,31 +47,16 @@ class QueriesController < ApplicationController
   # PUT /queries/1.xml
   def update
     @query = Query.find(params[:id])
-    @query.update_attributes(params[:query])
-    #@query.write_files
 
     respond_to do |format|
-      if @query.save
+      if @query.update_attributes(params[:query])
         flash[:notice] = 'Query was successfully updated.'
         format.html { redirect_to(@query) }
         format.xml  { head :ok }
       else
-		@types = ['-ALL-', 'A / H1N1', 'A / H5N1']
-
-		@lineages = {'-ALL-'=>'-ALL-', 'Pandemic'=>'Y', 'Seasonal'=>'N'}
-
-		@hosts = ['-ALL-']
-		Isolate.find(:all, :select => 'Distinct host', :order => "host").each { |it|
-		    @hosts << it.host if it.host != nil
-		}
-
-		@locations = ['-ALL-']
-		Isolate.find(:all, :select => 'Distinct location', :order => "location").each { |it|
-		    @locations << it.location if it.location != nil
-		}
-
-		@proteins = ['-ALL-','HA', 'NA', 'PB1', 'PB2', 'PA', 'NP', 'MP', 'NS']
-
+      	params[:id] = @query.project_id
+		@form_values = Sequence.form_values
+		@selected_values = @query.edit_values(params)
         format.html { render :action => "edit" }
         format.xml  { render :xml => @query.errors, :status => :unprocessable_entity }
       end

@@ -9,13 +9,14 @@
 </p>
 
 <%= link_to 'Back to Queries', project_path(@query.project_id) %> |
-<%= link_to 'Change Search Parameters', edit_query_path(@query) %>
+<%= link_to 'Change Search Parameters', edit_query_path(@query) %> |
+<%= link_to 'Delete Query', query_path(@query), :confirm => 'Are you sure?', :method => "delete" %>
 <br/>
 <%= link_to 'Download Nucleotides', "/queries/download_fasta/#{params[:id]}" %> |
 <%= link_to 'Download Georefs', "/queries/download_metadata/#{params[:id]}" %> |
 <%= link_to 'Download Metadata', "/queries/download_strain/#{params[:id]}" %>
 
-<h3>Listing Results:</h3>
+<h3>Listing <%= @sequences.total_entries %> Results:</h3>
 
 <%= will_paginate @sequences, :params => params %>
 
@@ -36,6 +37,8 @@
     <td>
       <% if sequence[:genbank_acc_id] %>
         <%= link_to sequence[:genbank_acc_id], "http://www.ncbi.nlm.nih.gov/nucleotide?term=#{sequence[:genbank_acc_id]}", :target => "_blank" %>
+      <% else %>
+      Gisaid
       <% end %>
     </td>
     <td><%=h sequence[:h1n1_swine_set] %></td>

@@ -5,6 +5,26 @@ class Query < ActiveRecord::Base
   serialize   			:host, Array
   serialize				:protein, Array
 
+  def new_values(params)
+  	selected_hash = {}
+    selected_hash[:types] = params ? params[:query][:type] : "-ALL-"
+    selected_hash[:lineages] = params ? params[:query][:lineage] : "-ALL-"
+    selected_hash[:hosts] = params ? params[:query][:host] : "-ALL-"
+    selected_hash[:locations] = params ? params[:query][:location] : "-ALL-"
+    selected_hash[:proteins] = params ? params[:query][:protein] : "-ALL-"
+    return selected_hash
+  end
+
+  def edit_values(params)
+  	selected_hash = {}
+    selected_hash[:types] = params ? params[:query][:type] : self.virus_type
+    selected_hash[:lineages] = params ? params[:query][:lineage] : self.h1n1_swine_set
+    selected_hash[:hosts] = params ? params[:query][:host] : self.host
+    selected_hash[:locations] = params ? params[:query][:location] : self.location
+    selected_hash[:proteins] = params ? params[:query][:protein] : self.protein
+    return selected_hash
+  end
+
   def sequences(params)
     @sequences ||= find_sequences(params)
   end
@@ -26,10 +46,10 @@ class Query < ActiveRecord::Base
     metadata = ""
     sequences(nil).each do |seq|
       if seq[:sequence_id] and seq[:latitude] and seq[:longitude] and seq[:collect_date]
-        csv << "#{seq[:sequence_id]},#{seq[:latitude]},#{seq[:longitude]},#{format_date(seq[:collect_date].to_s)}\n"
+        metadata << "#{seq[:sequence_id]},#{seq[:latitude]},#{seq[:longitude]},#{format_date(seq[:collect_date].to_s)}\n"
       end
 	  if seq[:genbank_acc_id] and seq[:latitude] and seq[:longitude] and seq[:collect_date]
-        csv << "#{seq[:genbank_acc_id]},#{seq[:latitude]},#{seq[:longitude]},#{format_date(seq[:collect_date].to_s)}\n"
+        metadata << "#{seq[:genbank_acc_id]},#{seq[:latitude]},#{seq[:longitude]},#{format_date(seq[:collect_date].to_s)}\n"
       end
     end
     return metadata
@@ -52,12 +72,12 @@ class Query < ActiveRecord::Base
 
   def find_sequences(params)
     if params
-      return Sequence.paginate(:page => params[:page], :order => "isolates.name DESC",
+      return Sequence.paginate(:page => params[:page], :order => "isolates.name ASC",
     	:joins => :isolate,
     	:select => "sequences.sequence_id, sequences.genbank_acc_id, sequences.data, isolates.latitude, isolates.longitude, isolates.collect_date, sequences.sequence_type, isolates.name, isolates.host, isolates.location, isolates.h1n1_swine_set",
     	:conditions => conditions)
     else
-      return Sequence.find(:all,:order => "isolates.name DESC",
+      return Sequence.find(:all,:order => "isolates.name ASC",
     	:joins => :isolate,
     	:select => "sequences.sequence_id, sequences.genbank_acc_id, sequences.data, isolates.latitude, isolates.longitude, isolates.collect_date, sequences.sequence_type, isolates.name, isolates.host, isolates.location, isolates.h1n1_swine_set",
     	:conditions => conditions)
