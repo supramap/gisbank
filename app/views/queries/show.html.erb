@@ -32,7 +32,7 @@
 <% @sequences.each do |sequence| %>
   <tr>
     <td><%=h sequence[:name] %></td>
-    <td><%=h sequence[:type] %></td>
+    <td><%=h sequence[:sequence_type] %></td>
     <td>
       <% if sequence[:genbank_acc_id] %>
         <%= link_to sequence[:genbank_acc_id], "http://www.ncbi.nlm.nih.gov/nucleotide?term=#{sequence[:genbank_acc_id]}", :target => "_blank" %>
