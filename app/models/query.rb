@@ -11,6 +11,30 @@ class Query < ActiveRecord::Base
   	end
   end
 
+  def self.form_values
+    form_hash = {}
+
+    form_hash[:types] = ['-ALL-', 'A / H1N1', 'A / H5N1']
+
+    form_hash[:lineages] = {'-ALL-'=>'-ALL-', 'Pandemic'=>'Y', 'Seasonal'=>'N'}
+
+    host_list = ['-ALL-']
+	Isolate.find(:all, :select => 'Distinct host', :order => "host").each do |iso|
+	    host_list << iso.host unless iso.host.blank?
+	end
+	form_hash[:hosts] = host_list
+
+    loc_list = ['-ALL-']
+	Isolate.find(:all, :select => 'Distinct location', :order => "location").each do |iso|
+	  loc_list << iso.location unless iso.location.blank?
+	end
+	form_hash[:locations] = loc_list
+
+    form_hash[:proteins] = ['-ALL-','HA', 'NA', 'PB1', 'PB2', 'PA', 'NP', 'MP', 'NS']
+
+    return form_hash
+  end
+
   def new_values(params)
   	selected_hash = {}
     selected_hash[:types] = params ? params[:query][:virus_type] : "-ALL-"

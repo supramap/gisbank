@@ -18,14 +18,14 @@ class QueriesController < ApplicationController
   # GET /queries/new.xml
   def new
     @query = Query.new
-	@form_values = Sequence.form_values
+	@form_values = Query.form_values
 	@selected_values = @query.new_values(nil)
   end
 
   # GET /queries/1/edit
   def edit
     @query = Query.find(params[:id])
-	@form_values = Sequence.form_values
+	@form_values = Query.form_values
 	@selected_values = @query.edit_values(nil)
   end
 
@@ -40,7 +40,7 @@ class QueriesController < ApplicationController
         format.html { redirect_to(@query) }
         format.xml  { render :xml => @query, :status => :created, :location => @query }
       else
-		@form_values = Sequence.form_values
+		@form_values = Query.form_values
 		@selected_values = @query.new_values(params)
         format.html { render :action => "new" }
         format.xml  { render :xml => @query.errors, :status => :unprocessable_entity }
@@ -59,7 +59,7 @@ class QueriesController < ApplicationController
         format.html { redirect_to(@query) }
         format.xml  { head :ok }
       else
-		@form_values = Sequence.form_values
+		@form_values = Query.form_values
 		@selected_values = @query.edit_values(params)
         format.html { render :action => "edit" }
         format.xml  { render :xml => @query.errors, :status => :unprocessable_entity }
