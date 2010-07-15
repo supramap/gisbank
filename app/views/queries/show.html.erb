@@ -21,19 +21,20 @@
 <%= will_paginate @sequences, :params => params %>
 
 <div class="list">
-<table class="sortable">
+<table>
   <tr>
     <th>Isolate Name</th>
-    <th>Sequence Type</th>
     <th>Genbank Accession ID</th>
-    <th>Swine Set</th>
+    <th>Sequence Type</th>
+    <th>Location</th>
+    <th>Host</th>
     <th>Collect Date</th>
+    <th>Swine Set</th>
   </tr>
 
 <% @sequences.each do |sequence| %>
   <tr>
     <td><%=h sequence[:name] %></td>
-    <td><%=h sequence[:sequence_type] %></td>
     <td>
       <% if sequence[:genbank_acc_id] %>
         <%= link_to sequence[:genbank_acc_id], "http://www.ncbi.nlm.nih.gov/nucleotide?term=#{sequence[:genbank_acc_id]}", :target => "_blank" %>
@@ -41,8 +42,11 @@
       Gisaid
       <% end %>
     </td>
-    <td><%=h sequence[:h1n1_swine_set] %></td>
-    <td><%=h sequence[:collect_date] %></td>
+    <td><%= sequence[:sequence_type] %></td>
+    <td><%= sequence[:location] %></td>
+    <td><%= sequence[:host] %></td>
+    <td><%= sequence[:collect_date] %></td>
+    <td><%= sequence[:h1n1_swine_set] %></td>
   </tr>
 <% end %>
 </table>

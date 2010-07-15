@@ -40,8 +40,7 @@ class Query < ActiveRecord::Base
     sequences(nil).each do |seq|
    	  if seq[:sequence_id] and seq[:data]
     	fasta << ">#{seq[:sequence_id]}\n#{seq[:data]}\n"
-      end
-      if seq[:genbank_acc_id] and seq[:data]
+      elsif seq[:genbank_acc_id] and seq[:data]
     	fasta << ">#{seq[:genbank_acc_id]}\n#{seq[:data]}\n"
       end
     end
@@ -53,8 +52,7 @@ class Query < ActiveRecord::Base
     sequences(nil).each do |seq|
       if seq[:sequence_id] and seq[:latitude] and seq[:longitude] and seq[:collect_date]
         metadata << "#{seq[:sequence_id]},#{seq[:latitude]},#{seq[:longitude]},#{format_date(seq[:collect_date].to_s)}\n"
-      end
-	  if seq[:genbank_acc_id] and seq[:latitude] and seq[:longitude] and seq[:collect_date]
+      elsif seq[:genbank_acc_id] and seq[:latitude] and seq[:longitude] and seq[:collect_date]
         metadata << "#{seq[:genbank_acc_id]},#{seq[:latitude]},#{seq[:longitude]},#{format_date(seq[:collect_date].to_s)}\n"
       end
     end
@@ -66,8 +64,7 @@ class Query < ActiveRecord::Base
     sequences(nil).each do |seq|
       if seq[:sequence_id] and seq[:sequence_type] and seq[:name] and seq[:host] and seq[:location] and seq[:h1n1_swine_set]
         strain << "#{seq[:sequence_id]},#{seq[:sequence_type]},#{seq[:name]},#{seq[:host]},#{seq[:location]},#{seq[:h1n1_swine_set]}\n"
-      end
-      if seq[:genbank_acc_id] and seq[:sequence_type] and seq[:name] and seq[:host] and seq[:location] and seq[:h1n1_swine_set]
+      elsif seq[:genbank_acc_id] and seq[:sequence_type] and seq[:name] and seq[:host] and seq[:location] and seq[:h1n1_swine_set]
         strain << "#{seq[:genbank_acc_id]},#{seq[:sequence_type]},#{seq[:name]},#{seq[:host]},#{seq[:location]},#{seq[:h1n1_swine_set]}\n"
       end
     end
@@ -80,10 +77,10 @@ class Query < ActiveRecord::Base
     if params
       return Sequence.paginate(:page => params[:page], :order => "isolates.name ASC",
     	:joins => :isolate,
-    	:select => "sequences.sequence_id, sequences.genbank_acc_id, sequences.data, isolates.latitude, isolates.longitude, isolates.collect_date, sequences.sequence_type, isolates.name, isolates.host, isolates.location, isolates.h1n1_swine_set",
+    	:select => "sequences.genbank_acc_id, isolates.collect_date, sequences.sequence_type, isolates.name, isolates.host, isolates.location, isolates.h1n1_swine_set",
     	:conditions => conditions)
     else
-      return Sequence.find(:all,:order => "isolates.name ASC",
+      return Sequence.find(:all, :order => "isolates.name ASC",
     	:joins => :isolate,
     	:select => "sequences.sequence_id, sequences.genbank_acc_id, sequences.data, isolates.latitude, isolates.longitude, isolates.collect_date, sequences.sequence_type, isolates.name, isolates.host, isolates.location, isolates.h1n1_swine_set",
     	:conditions => conditions)
