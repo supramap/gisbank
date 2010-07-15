@@ -18,17 +18,17 @@ class Query < ActiveRecord::Base
 
     form_hash[:lineages] = {'-ALL-'=>'-ALL-', 'Pandemic'=>'Y', 'Seasonal'=>'N'}
 
-    host_list = ['-ALL-']
+    arr = ['-ALL-']
 	Isolate.find(:all, :select => 'Distinct host', :order => "host").each do |iso|
-	    host_list << iso[:host] unless iso[:host].blank?
+	    arr << iso[:host] unless iso[:host].blank?
 	end
-	form_hash[:hosts] = host_list
+	form_hash[:hosts] = arr
 
-    loc_list = ['-ALL-']
+    arr = ['-ALL-']
 	Isolate.find(:all, :select => 'Distinct location', :order => "location").each do |iso|
-	  loc_list << iso[:location] unless iso[:location].blank?
+	  arr << iso[:location] unless iso[:location].blank?
 	end
-	form_hash[:locations] = loc_list
+	form_hash[:locations] = arr
 
     form_hash[:proteins] = ['-ALL-','HA', 'NA', 'PB1', 'PB2', 'PA', 'NP', 'MP', 'NS']
 
