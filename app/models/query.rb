@@ -20,13 +20,13 @@ class Query < ActiveRecord::Base
 
     host_list = ['-ALL-']
 	Isolate.find(:all, :select => 'Distinct host', :order => "host").each do |iso|
-	    host_list << iso.host unless iso.host.blank?
+	    host_list << iso[:host] unless iso[:host].blank?
 	end
 	form_hash[:hosts] = host_list
 
     loc_list = ['-ALL-']
 	Isolate.find(:all, :select => 'Distinct location', :order => "location").each do |iso|
-	  loc_list << iso.location unless iso.location.blank?
+	  loc_list << iso[:location] unless iso[:location].blank?
 	end
 	form_hash[:locations] = loc_list
 
