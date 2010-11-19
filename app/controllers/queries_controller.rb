@@ -12,6 +12,28 @@ class QueriesController < ApplicationController
   def show
     @query = Query.find(params[:id])
     @sequences = @query.sequences(params)
+
+    #if(@query.kml_status ==1 &&  Poy_service.is_done_yet(@query.job_id))
+    #   @query.kml_status =2
+    #   @query.save
+    #end
+  end
+
+  def start_poy
+    @job_id = Poy_service.init
+    @query = Query.find(params[:id])
+    
+    #Poy_service.add_file(job_id,file_name,file_data)
+    Poy_service.add_text_file(@job_id,"#{@query.name}.fasta", @query.make_fasta)
+    Poy_service.add_text_file(@job_id,"#{@query.name}.csv", @query.make_strain)
+    Poy_service.add_poy_file(@job_id,"#{@query.name}")
+    Poy_service.submit_poy(@job_id);
+
+    @query.kml_status =1
+    @query.job_id = @job_id
+    @query.save
+    #@sequences = @query.sequences(params)
+    redirect_to :action => "show", :id => params[:id]
   end
 
   # GET /queries/new
@@ -92,5 +114,14 @@ class QueriesController < ApplicationController
   def download_strain
   	@query = Query.find(params[:id])
   	send_data @query.make_strain, :filename => "#{@query.name}-strain.csv", :type => "chemical/seq-aa-fasta"
+  end
+
+  def download_supramap_kml
+    #@poy = Poy_service.new;
+    @query = Query.find(params[:id])
+    #1432664450
+    send_data Poy_service.get_file(@query.job_id,"results.kml") , :filename => "results.kml"
+  	#@query = Query.find(params[:id])
+  	#send_data @query.make_strain, :filename => "#{@query.name}-strain.csv", :type => "chemical/seq-aa-fasta"
   end
 end

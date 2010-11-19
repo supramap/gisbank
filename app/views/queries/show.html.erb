@@ -15,6 +15,24 @@
 <%= link_to 'Download Nucleotides', "/queries/download_fasta/#{params[:id]}" %> |
 <%= link_to 'Download Georefs', "/queries/download_metadata/#{params[:id]}" %> |
 <%= link_to 'Download Metadata', "/queries/download_strain/#{params[:id]}" %>
+<br/><br/>
+
+<br/><br/>
+
+
+<%  if(@query.kml_status == 0) %>
+
+<%= form_tag "start_poy/#{params[:id]}" %>
+<%= submit_tag("Create a supra map kml file") %> 
+<%  end %>
+<%  if @query.kml_status ==1 %>
+<%=  label_tag('Your kml file for supra map is currently being generated please come back again soon.') %>
+<%  end %>
+<%  if @query.kml_status ==2 %>
+<%=  link_to 'Download supramap KML', "/queries/download_supramap_kml/#{params[:id]}" %>
+<%  end %>
+<br/><br/>
+
 
 <h3>Listing <%= @sequences.total_entries %> Results:</h3>
 
