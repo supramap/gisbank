@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
+        <file>file:/home/jacob/gisbank/db/schema.rb</file>
+        <file>file:/home/jacob/gisbank/db/migrate/20100518195358_change_type_to_protein.rb</file>
+        <file>file:/home/jacob/gisbank/db/migrate/20090716152226_add_protein_to_query.rb</file>
+        <file>file:/home/jacob/gisbank/db/migrate/20090707190829_create_queries.rb</file>
+        <file>file:/home/jacob/gisbank/db/migrate/20090708161738_create_sessions.rb</file>
+        <file>file:/home/jacob/gisbank/db/migrate/20100630180014_add_indices.rb</file>
+        <file>file:/home/jacob/gisbank/db/migrate/20100708173841_pluralize_query_fields.rb</file>
+        <file>file:/home/jacob/gisbank/app/models/poy_service.rb</file>
+        <file>file:/home/jacob/gisbank/app/controllers/queries_controller.rb</file>
+        <file>file:/home/jacob/gisbank/app/models/query.rb</file>
+        <file>file:/home/jacob/gisbank/app/models/isolate.rb</file>
+        <file>file:/home/jacob/gisbank/app/models/project.rb</file>
+        <file>file:/home/jacob/gisbank/config/environment.rb</file>
+        <file>file:/home/jacob/gisbank/app/views/queries/show.html.erb</file>
+        <file>file:/home/jacob/gisbank/app/controllers/menu_controller.rb</file>
+        <file>file:/home/jacob/gisbank/app/controllers/application_controller.rb</file>
+    </open-files>
+</project-private>
