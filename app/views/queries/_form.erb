@@ -10,6 +10,9 @@
 <%= f.label :h1n1_swine_set, "Pandemic/Seasonal H1N1" %><br />
 <%= select_tag 'query[h1n1_swine_set]', options_for_select(@form_values[:lineages], @selected_values[:lineages]) %><br />
 <br />
+<%#= f.label :pathogen, "Pathogen" %><br />
+<%#= select_tag 'query[pathogen]', options_for_select(@form_values[:pathogen], @selected_values[:pathogen]), {:size => 20, :multiple => true} %><br />
+<%#*<br />%>
 <%= f.label :location %><br />
 <%= select_tag 'query[locations]', options_for_select(@form_values[:locations], @selected_values[:locations]), {:size => 20, :multiple => true} %><br />
 <br />

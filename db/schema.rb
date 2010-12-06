@@ -1,4 +1,4 @@
-# This file is auto-generated from the current state of the database. Instead of editing this file,
+# This file is auto-generated from the current state of the database. Instead of editing this file, 
 # please use the migrations feature of Active Record to incrementally modify your database, and
 # then regenerate this schema definition.
 #
@@ -62,13 +62,27 @@ ActiveRecord::Schema.define(:version => 20100708173841) do
     t.integer  "latitude",                  :limit => 10, :precision => 10, :scale => 0
     t.integer  "longitude",                 :limit => 10, :precision => 10, :scale => 0
     t.datetime "created_at"
+    t.string   "pathogen",                  :limit => 20
   end
 
-  add_index "isolates", ["collect_date"], :name => "index_isolates_on_collect_date"
-  add_index "isolates", ["h1n1_swine_set"], :name => "index_isolates_on_h1n1_swine_set"
-  add_index "isolates", ["host"], :name => "index_isolates_on_host"
-  add_index "isolates", ["location"], :name => "index_isolates_on_location"
-  add_index "isolates", ["virus_type"], :name => "index_isolates_on_virus_type"
+  add_index "isolates", ["host"], :name => "host"
+  add_index "isolates", ["id"], :name => "id"
+  add_index "isolates", ["isolate_id"], :name => "isolate_id"
+  add_index "isolates", ["location"], :name => "location"
+  add_index "isolates", ["name", "host", "location"], :name => "name_host_location"
+  add_index "isolates", ["name"], :name => "name"
+  add_index "isolates", ["tax_id", "isolate_id", "name"], :name => "tax_id_iso_id_name"
+  add_index "isolates", ["tax_id", "isolate_id"], :name => "tax_iso"
+  add_index "isolates", ["tax_id", "isolate_id"], :name => "unique_isolates_u1", :unique => true
+  add_index "isolates", ["tax_id"], :name => "tax_id"
+
+  create_table "projects", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "queries", :force => true do |t|
     t.string   "name"
@@ -84,6 +98,8 @@ ActiveRecord::Schema.define(:version => 20100708173841) do
     t.datetime "updated_at"
     t.string   "proteins"
     t.integer  "user_id"
+    t.integer  "job_id",           :default => 0
+    t.integer  "kml_status",       :default => 0
   end
 
   create_table "sequences", :force => true do |t|
@@ -95,8 +111,12 @@ ActiveRecord::Schema.define(:version => 20100708173841) do
     t.string   "sequence_type",  :limit => 50
   end
 
-  add_index "sequences", ["isolate_id"], :name => "index_sequences_on_isolate_id"
-  add_index "sequences", ["sequence_type"], :name => "index_sequences_on_sequence_type"
+  add_index "sequences", ["genbank_acc_id"], :name => "genbank_acc_id"
+  add_index "sequences", ["genbank_acc_id"], :name => "unique_sequences_genbank_acc_id", :unique => true
+  add_index "sequences", ["isolate_id", "sequence_type"], :name => "isolate_id"
+  add_index "sequences", ["isolate_id", "sequence_type"], :name => "unique_sequences_u2", :unique => true
+  add_index "sequences", ["sequence_id"], :name => "sequence_id"
+  add_index "sequences", ["sequence_id"], :name => "unique_sequences_sequence_id", :unique => true
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id",                       :null => false
@@ -107,6 +127,14 @@ ActiveRecord::Schema.define(:version => 20100708173841) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "sql_queries", :primary_key => "sql_queries_id", :force => true do |t|
+    t.integer   "users_id",                                       :null => false
+    t.string    "query_string", :limit => 100,                    :null => false
+    t.boolean   "is_public",                   :default => false, :null => false
+    t.timestamp "created_at",                                     :null => false
+    t.timestamp "updated_at",                                     :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "login",                              :null => false

@@ -16,7 +16,14 @@ class Query < ActiveRecord::Base
 
     form_hash[:types] = ['-ALL-', 'A / H1N1', 'A / H5N1']
 
-    form_hash[:lineages] = {'-ALL-'=>'-ALL-', 'Pandemic'=>'Y', 'Seasonal'=>'N'}
+    #form_hash[:lineages] = {'-ALL-'=>'-ALL-', 'Pandemic'=>'Y', 'Seasonal'=>'N'}
+    form_hash[:lineages] = {'-ALL-'=>'-ALL-', 'Pandemic'=>'Pandemic', 'Seasonal'=>'Seasonal'}
+    arr = []
+    Isolate.find(:all, :select  => 'Distinct pathogen').each do |iso|
+       arr << iso[:pathogen]
+    end
+    form_hash[:pathogen] = arr
+
 
     arr = ['-ALL-']
 	Isolate.find(:all, :select => 'Distinct host', :order => "host").each do |iso|
@@ -42,6 +49,7 @@ class Query < ActiveRecord::Base
     selected_hash[:hosts] = params ? params[:query][:hosts] : "-ALL-"
     selected_hash[:locations] = params ? params[:query][:locations] : "-ALL-"
     selected_hash[:proteins] = params ? params[:query][:proteins] : "-ALL-"
+    selected_hash[:pathogen] = params ? params[:query][:pathogen] : "-ALL-"
     return selected_hash
   end
 
@@ -72,7 +80,7 @@ class Query < ActiveRecord::Base
   end
 
   def make_metadata
-    metadata = ""
+    metadata = "strain_name,latitude,longitude,date\n"
     sequences(nil).each do |seq|
       if seq[:sequence_id] and seq[:latitude] and seq[:longitude] and seq[:collect_date]
         metadata << "#{seq[:sequence_id]},#{seq[:latitude]},#{seq[:longitude]},#{format_date(seq[:collect_date].to_s)}\n"
@@ -101,7 +109,7 @@ class Query < ActiveRecord::Base
     if params
       return Sequence.paginate(:page => params[:page], :order => "isolates.name ASC",
     	:joins => :isolate,
-    	:select => "sequences.genbank_acc_id, isolates.collect_date, sequences.sequence_type, isolates.name, isolates.host, isolates.location, isolates.h1n1_swine_set",
+    	:select => "isolates.pathogen, sequences.genbank_acc_id, isolates.collect_date, sequences.sequence_type, isolates.name, isolates.host, isolates.location, isolates.h1n1_swine_set",
     	:conditions => conditions)
     else
       return Sequence.find(:all, :order => "isolates.name ASC",

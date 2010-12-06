@@ -19,17 +19,23 @@
 
 <br/><br/>
 
+<% if @sequences.total_entries >499  %>
+  <%=  label_tag('You need less then 500 sequence to make a supra map kml and a single sequence type to make a kml file') %>
 
-<%  if(@query.kml_status == 0) %>
+<%  else %>
+  <%  if(@query.kml_status == 0) %>
 
-<%= form_tag "start_poy/#{params[:id]}" %>
-<%= submit_tag("Create a supra map kml file") %> 
-<%  end %>
-<%  if @query.kml_status ==1 %>
-<%=  label_tag('Your kml file for supra map is currently being generated please come back again soon.') %>
-<%  end %>
-<%  if @query.kml_status ==2 %>
-<%=  link_to 'Download supramap KML', "/queries/download_supramap_kml/#{params[:id]}" %>
+  <%= form_tag "start_poy/#{params[:id]}" %>
+  <%= submit_tag("Create a supra map kml file") %>
+  <%  end %>
+  <%  if @query.kml_status ==1 %>
+  <%=  label_tag('Your kml file for supra map is currently being generated please come back again soon.') %>
+  <%  end %>
+  <%  if @query.kml_status ==2 %>
+  <%=  link_to 'Download Supramap KML', "/queries/download_supramap_kml/#{params[:id]}" %> |
+  <%=  link_to 'Download Aligned Fasta Sequences', "/queries/download_aligned_fasta/#{params[:id]}" %> |
+  <%=  link_to 'Download Poy Supermap Output', "/queries/download_supramap_output/#{params[:id]}" %>
+  <%  end %>
 <%  end %>
 <br/><br/>
 
@@ -42,17 +48,19 @@
 <table>
   <tr>
     <th>Isolate Name</th>
+    <th>Pathogen</th>
     <th>Genbank Accession ID</th>
     <th>Sequence Type</th>
     <th>Location</th>
     <th>Host</th>
     <th>Collect Date</th>
-    <th>Swine Set</th>
+   
   </tr>
 
 <% @sequences.each do |sequence| %>
   <tr>
     <td><%=h sequence[:name] %></td>
+    <td><%=sequence[:pathogen] %></td>
     <td>
       <% if sequence[:genbank_acc_id] %>
         <%= link_to sequence[:genbank_acc_id], "http://www.ncbi.nlm.nih.gov/nucleotide?term=#{sequence[:genbank_acc_id]}", :target => "_blank" %>
@@ -64,7 +72,7 @@
     <td><%= sequence[:location] %></td>
     <td><%= sequence[:host] %></td>
     <td><%= sequence[:collect_date] %></td>
-    <td><%= sequence[:h1n1_swine_set] %></td>
+   
   </tr>
 <% end %>
 </table>

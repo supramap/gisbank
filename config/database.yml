@@ -1,23 +1,26 @@
 development:
   adapter: mysql
   encoding: utf8
+  host: 140.254.80.125
   database: gisbank
   pool: 5
-  username: gisbank
-  password: gisbank
+  username: gisman
+  password: gisman$
 
 test:
   adapter: mysql
   encoding: utf8
+  host: 140.254.80.125:3306
   database: gisbank
   pool: 5
-  username: gisbank
-  password: gisbank
+  username: gisman
+  password: gisman$
 
 production:
   adapter: mysql
   encoding: utf8
+  host: 140.254.80.125:3306
   database: gisbank
   pool: 5
-  username: gisbank
-  password: gisbank
+  username: gisman
+  password: gisman$

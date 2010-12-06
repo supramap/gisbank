@@ -1,0 +1,115 @@
+
+<h1>New query</h1>
+
+
+<% form_tag 'create' do %>
+
+<h4>Name</h4>
+<%= text_field_tag :name %><br/>
+<br/>
+<h4>Query Description (Optional)"</h4>
+<%= text_area_tag :description %><br/>
+
+
+<h4>Do you whant to make your query public and let other gisbank users see your query</h4>
+<%= radio_button_tag(:public, "1") %>yes<br/>
+
+<%= radio_button_tag(:public, "0") %>no<br/>
+
+<h4>Pathogens </h4>
+<div style='width:300px; height:100px;  border-style: ridge;  overflow:auto' >
+   <%  @form_values[:pathogen].each { |p|  %>
+
+    <%= check_box_tag "pathogen[]", :value =>p %>
+    <%= p %><br/>
+  <%  } %>
+    </div>
+<h4>Hosts </h4>
+
+<div style='width:300px; height:100px;  border-style: ridge;  overflow:auto' >
+  <%  @form_values[:hosts].each { |h|  %>
+
+    <%= check_box_tag("hosts[]", :value => h) %>
+    <%= h %><br/>
+  <%  } %>
+ </div>
+  <h4>Locations </h4>
+  <div style='width:300px; height:100px;  border-style: ridge;  overflow:auto' >
+  <%  @form_values[:locations].each { |l|  %>
+    <%= check_box_tag("locations[]", :value =>l) %>
+    <%= l %><br/>
+  <%  } %>
+    </div>
+  <br/><br/>
+    <%= submit_tag("Submit") %>
+<% end %>
+
+<%#  form_for :sql_query, @sql_query, :url => { :action => "create" } do |f|  %>
+
+
+<%#*<h4>Hosts </h4>%>
+<%#= select_tag 'sql_query[hosts]', options_for_select(@form_values[:hosts], @selected_values[:hosts]), {:size => 20, :multiple => true} %><br />
+
+<%#*<h4>Pathogens </h4>%>
+   <%#  @form_values[:pathogen].each { |p|  %>
+
+    <%#= f.check_box :pathogen %>
+    <%#= p %><br/>
+  <%#  } %>
+<%#*<h4>Hosts </h4>%>
+
+
+  <%#  @form_values[:hosts].each { |h|  %>
+   
+    <%#= f.check_box(h) %>
+    <%#= h %><br/>
+  <%#  } %>
+
+  <%#*<h4>Locations </h4>%>
+  <%#  @form_values[:locations].each { |l|  %>
+    <%#= check_box_tag(l) %>
+    <%#= l %><br/>
+  <%#  } %>
+
+    <%#= submit_tag("Submit") %>
+<%# end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%# form_for(@query) do |f| %>
+  <%#*<p>%>
+	<%#*Search tip: multiple selections can be made in the selection boxes by holding ctrl.%>
+  <%#*</p>%>
+
+  <%#*<br />%>
+
+ <%#= f.label :host %><br/>
+<%#= select_tag 'query[hosts]', options_for_select(@form_values[:hosts], @selected_values[:hosts]), {:size => 20, :multiple => true} %><br />
+<%#*<br />%>
+
+<%#= f.label :location %><br />
+<%#= select_tag 'query[locations]', options_for_select(@form_values[:locations], @selected_values[:locations]), {:size => 20, :multiple => true} %><br />
+<%#*<br />%>
+
+  <%#= f.error_messages %>
+
+  <%#= f.submit 'Submit' %>
+<%# end %>

@@ -13,26 +13,30 @@ class QueriesController < ApplicationController
     @query = Query.find(params[:id])
     @sequences = @query.sequences(params)
 
-    #if(@query.kml_status ==1 &&  Poy_service.is_done_yet(@query.job_id))
-    #   @query.kml_status =2
-    #   @query.save
-    #end
+
+    if(@query.kml_status ==1 &&  Poy_service.is_done_yet(@query.job_id))
+       @query.kml_status =2
+       @query.save
+    end
   end
 
   def start_poy
     @job_id = Poy_service.init
     @query = Query.find(params[:id])
-    
-    #Poy_service.add_file(job_id,file_name,file_data)
+
+    @total_minutes = ((@query.total_sequences * @query.total_sequences)/1000).ceil+3
+    @search_minutes= ((@query.total_sequences * @query.total_sequences)/3000).ceil+1
+
     Poy_service.add_text_file(@job_id,"#{@query.name}.fasta", @query.make_fasta)
-    Poy_service.add_text_file(@job_id,"#{@query.name}.csv", @query.make_strain)
-    Poy_service.add_poy_file(@job_id,"#{@query.name}")
-    Poy_service.submit_poy(@job_id);
+  
+    Poy_service.add_text_file(@job_id,"#{@query.name}.csv", @query.make_metadata)
+    Poy_service.add_poy_file(@job_id,"#{@query.name}",@search_minutes)
+    Poy_service.submit_poy(@job_id,@total_minutes );
 
     @query.kml_status =1
     @query.job_id = @job_id
     @query.save
-    #@sequences = @query.sequences(params)
+
     redirect_to :action => "show", :id => params[:id]
   end
 
@@ -56,6 +60,8 @@ class QueriesController < ApplicationController
   def create
     @query = Query.new(params[:query])
 
+    @query.total_sequences = @query.sequences(params).total_entries
+
     respond_to do |format|
       if @query.save
         flash[:notice] = 'Query was successfully created.'
@@ -74,6 +80,8 @@ class QueriesController < ApplicationController
   # PUT /queries/1.xml
   def update
     @query = Query.find(params[:id])
+
+    @query.total_sequences = @query.sequences(params).total_entries
 
     respond_to do |format|
       if @query.update_attributes(params[:query])
@@ -117,11 +125,27 @@ class QueriesController < ApplicationController
   end
 
   def download_supramap_kml
-    #@poy = Poy_service.new;
+   
     @query = Query.find(params[:id])
-    #1432664450
-    send_data Poy_service.get_file(@query.job_id,"results.kml") , :filename => "results.kml"
-  	#@query = Query.find(params[:id])
-  	#send_data @query.make_strain, :filename => "#{@query.name}-strain.csv", :type => "chemical/seq-aa-fasta"
-  end
+    @fileString = Poy_service.get_file(@query.job_id,"results.kml")
+    send_data @fileString, :filename => "results.kml"
+
+    end
+
+    def download_supramap_output
+
+    @query = Query.find(params[:id])
+    @fileString = Poy_service.get_file(@query.job_id,"results.kml")
+    send_data @fileString, :filename => "results.kml"
+
+    end
+
+   def download_aligned_fasta
+
+    @query = Query.find(params[:id])
+    @fileString = Poy_service.get_file(@query.job_id,"results.kml")
+    send_data @fileString, :filename => "results.kml"
+
+    end
+
 end
