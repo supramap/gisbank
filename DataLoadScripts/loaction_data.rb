@@ -6,8 +6,6 @@ require 'geonames'
 
 # To change this template, choose Tools | Templates
 # and open the template in the editor.
-
-puts "Hello World"
 @connection = Mysql.real_connect("140.254.80.125", "gisman", "gisman$", "gisbank")
 
 res = @connection.query("SELECT * FROM gisbank.locations")
