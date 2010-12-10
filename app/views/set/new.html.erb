@@ -1,6 +1,4 @@
-
 <h1>New query</h1>
-
 
 <% form_tag 'create' do %>
 
@@ -42,74 +40,10 @@
     </div>
   <br/><br/>
     <%= submit_tag("Submit") %>
+
+
+<%= form_for :sql_query, @sql_query, :url => { :action => "create" } do |f| %>
+  <%= f.text_field :name %>
+  <%= f.text_area :description, :size => "60x12" %>
+  <%= submit_tag "Create" %>
 <% end %>
-
-<%#  form_for :sql_query, @sql_query, :url => { :action => "create" } do |f|  %>
-
-
-<%#*<h4>Hosts </h4>%>
-<%#= select_tag 'sql_query[hosts]', options_for_select(@form_values[:hosts], @selected_values[:hosts]), {:size => 20, :multiple => true} %><br />
-
-<%#*<h4>Pathogens </h4>%>
-   <%#  @form_values[:pathogen].each { |p|  %>
-
-    <%#= f.check_box :pathogen %>
-    <%#= p %><br/>
-  <%#  } %>
-<%#*<h4>Hosts </h4>%>
-
-
-  <%#  @form_values[:hosts].each { |h|  %>
-   
-    <%#= f.check_box(h) %>
-    <%#= h %><br/>
-  <%#  } %>
-
-  <%#*<h4>Locations </h4>%>
-  <%#  @form_values[:locations].each { |l|  %>
-    <%#= check_box_tag(l) %>
-    <%#= l %><br/>
-  <%#  } %>
-
-    <%#= submit_tag("Submit") %>
-<%# end %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<%# form_for(@query) do |f| %>
-  <%#*<p>%>
-	<%#*Search tip: multiple selections can be made in the selection boxes by holding ctrl.%>
-  <%#*</p>%>
-
-  <%#*<br />%>
-
- <%#= f.label :host %><br/>
-<%#= select_tag 'query[hosts]', options_for_select(@form_values[:hosts], @selected_values[:hosts]), {:size => 20, :multiple => true} %><br />
-<%#*<br />%>
-
-<%#= f.label :location %><br />
-<%#= select_tag 'query[locations]', options_for_select(@form_values[:locations], @selected_values[:locations]), {:size => 20, :multiple => true} %><br />
-<%#*<br />%>
-
-  <%#= f.error_messages %>
-
-  <%#= f.submit 'Submit' %>
-<%# end %>

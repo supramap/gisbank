@@ -1,5 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
 
+  map.connect 'queries/public', :controller => "queries", :action => "public"
+  map.connect 'queries/private', :controller => "queries", :action => "private"
+
   map.resources :queries
   map.resources :users
   map.resources :projects

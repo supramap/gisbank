@@ -36,7 +36,7 @@ class Poy_service
 #             "exit () \n";
 
      file_data = "read (\"#{job_name}.fasta\")
-                search(max_time:#{@hours}:#{@minutes}:00, memory:gb:8)
+                search(max_time:00:#{@hours}:#{@minutes}, memory:gb:8)
                 select(best:1)
                 transform (static_approx)
                 report (\"results.kml\", kml:(supramap, \"#{job_name}.csv\"))
@@ -73,7 +73,7 @@ class Poy_service
   end
 
   def self.is_done_yet(job_id)
-    get("/IsDoneYet?jobId=#{job_id}")["q1:boolean"] == 'true'
+    return (get("/IsDoneYet?jobId=#{job_id}")["q1:boolean"] == 'true' )||(  get("/IsDoneYet?jobId=#{job_id}")["boolean"] == 'true')
   end
 
   def self.get_file(job_id,file_name)

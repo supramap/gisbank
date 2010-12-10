@@ -7,6 +7,20 @@ class QueriesController < ApplicationController
   	@queries = Query.paginate(:page => params[:page])
   end
 
+   # GET /queries/public
+  # GET /queries/public.xml
+   def public
+
+  	#@queries = Query.where("is_public = 1")
+    @queries = Query.find_by_sql("select * from queries where is_public = 1")
+
+  end
+
+  def private
+  	 @queries = Query.find_by_sql("select * from queries where user_id = #{current_user.id}")
+
+  end
+
   # GET /queries/1
   # GET /queries/1.xml
   def show
@@ -24,9 +38,10 @@ class QueriesController < ApplicationController
     @job_id = Poy_service.init
     @query = Query.find(params[:id])
 
-    @total_minutes = ((@query.total_sequences * @query.total_sequences)/1000).ceil+3
-    @search_minutes= ((@query.total_sequences * @query.total_sequences)/3000).ceil+1
-
+    #@total_minutes = ((@query.total_sequences * @query.total_sequences)/2 ).ceil+3
+    #@search_minutes= ((@query.total_sequences * @query.total_sequences)/6).ceil+1
+    @total_minutes = ((@query.total_sequences * @query.total_sequences)/500 ).ceil+3
+    @search_minutes= ((@query.total_sequences * @query.total_sequences)/1500).ceil+1
     Poy_service.add_text_file(@job_id,"#{@query.name}.fasta", @query.make_fasta)
   
     Poy_service.add_text_file(@job_id,"#{@query.name}.csv", @query.make_metadata)
@@ -80,7 +95,7 @@ class QueriesController < ApplicationController
   # PUT /queries/1.xml
   def update
     @query = Query.find(params[:id])
-
+    #@query
     @query.total_sequences = @query.sequences(params).total_entries
 
     respond_to do |format|
@@ -135,16 +150,16 @@ class QueriesController < ApplicationController
     def download_supramap_output
 
     @query = Query.find(params[:id])
-    @fileString = Poy_service.get_file(@query.job_id,"results.kml")
-    send_data @fileString, :filename => "results.kml"
+    @fileString = Poy_service.get_file(@query.job_id,"output.txt")
+    send_data @fileString, :filename => "output.txt"
 
     end
 
    def download_aligned_fasta
 
     @query = Query.find(params[:id])
-    @fileString = Poy_service.get_file(@query.job_id,"results.kml")
-    send_data @fileString, :filename => "results.kml"
+    @fileString = Poy_service.get_file(@query.job_id,"alignment.fas")
+    send_data @fileString, :filename => "alignment.fas"
 
     end
 

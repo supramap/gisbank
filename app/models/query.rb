@@ -43,6 +43,8 @@ class Query < ActiveRecord::Base
   end
 
   def new_values(params)
+
+
   	selected_hash = {}
     selected_hash[:types] = params ? params[:query][:virus_type] : "-ALL-"
     selected_hash[:lineages] = params ? params[:query][:h1n1_swine_set] : "-ALL-"
@@ -50,6 +52,9 @@ class Query < ActiveRecord::Base
     selected_hash[:locations] = params ? params[:query][:locations] : "-ALL-"
     selected_hash[:proteins] = params ? params[:query][:proteins] : "-ALL-"
     selected_hash[:pathogen] = params ? params[:query][:pathogen] : "-ALL-"
+
+    selected_hash[:is_public] =  params ? params[:query][:is_public] : 0
+
     return selected_hash
   end
 

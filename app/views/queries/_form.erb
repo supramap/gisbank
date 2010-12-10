@@ -4,6 +4,11 @@
 <%= f.label :description, "Query Description (Optional)" %><br />
 <%= f.text_field :description %><br/>
 <br/>
+<%= f.label :description, "Do you whant to make your query public and let other gisbank users see your query" %><br />
+<%= f.radio_button(:is_public, "1") %>yes<br/>
+
+<%= f.radio_button(:is_public, "0", :selected => true) %>no<br/>
+<br/>
 <%= f.label :virus_type, "Virus Subtype" %><br />
 <%= select_tag 'query[virus_type]', options_for_select(@form_values[:types], @selected_values[:types]) %><br />
 <br />

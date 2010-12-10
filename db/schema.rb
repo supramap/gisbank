@@ -76,6 +76,36 @@ ActiveRecord::Schema.define(:version => 20100708173841) do
   add_index "isolates", ["tax_id", "isolate_id"], :name => "unique_isolates_u1", :unique => true
   add_index "isolates", ["tax_id"], :name => "tax_id"
 
+  create_table "locations", :primary_key => "location_id", :force => true do |t|
+    t.string "country",        :limit => 30, :null => false
+    t.string "gen_bank_label", :limit => 30, :null => false
+    t.float  "latitude"
+    t.float  "longitude"
+  end
+
+  create_table "ncbi_isolate", :primary_key => "ncbi_isolate_id", :force => true do |t|
+    t.string   "ncbi_id",    :limit => 100, :null => false
+    t.string   "host",       :limit => 30,  :null => false
+    t.string   "subtype",    :limit => 4,   :null => false
+    t.string   "country",    :limit => 30,  :null => false
+    t.datetime "date",                      :null => false
+    t.string   "virus_name", :limit => 100, :null => false
+    t.string   "mutation",   :limit => 30,  :null => false
+    t.string   "age",        :limit => 10,  :null => false
+    t.string   "gender",     :limit => 10,  :null => false
+  end
+
+  create_table "ncbi_sequences", :primary_key => "ncbi_sequences_id", :force => true do |t|
+    t.integer "ncbi_isolate_id",                  :null => false
+    t.string  "name",            :limit => 30,    :null => false
+    t.string  "protein",         :limit => 5,     :null => false
+    t.string  "data",            :limit => 10000, :null => false
+  end
+
+  create_table "pathogens", :primary_key => "pathogens_id", :force => true do |t|
+    t.string "name", :limit => 4, :null => false
+  end
+
   create_table "projects", :force => true do |t|
     t.integer  "user_id"
     t.string   "name"
@@ -98,8 +128,11 @@ ActiveRecord::Schema.define(:version => 20100708173841) do
     t.datetime "updated_at"
     t.string   "proteins"
     t.integer  "user_id"
-    t.integer  "job_id",           :default => 0
-    t.integer  "kml_status",       :default => 0
+    t.integer  "job_id",                         :default => 0
+    t.integer  "kml_status",                     :default => 0
+    t.string   "pathogen",         :limit => 20
+    t.integer  "total_sequences",                :default => 0
+    t.boolean  "is_public",                      :default => false, :null => false
   end
 
   create_table "sequences", :force => true do |t|
@@ -130,10 +163,18 @@ ActiveRecord::Schema.define(:version => 20100708173841) do
 
   create_table "sql_queries", :primary_key => "sql_queries_id", :force => true do |t|
     t.integer   "users_id",                                       :null => false
-    t.string    "query_string", :limit => 100,                    :null => false
-    t.boolean   "is_public",                   :default => false, :null => false
+    t.string    "query_string",                                   :null => false
+    t.integer   "is_public",       :limit => 1,   :default => 0,  :null => false
     t.timestamp "created_at",                                     :null => false
     t.timestamp "updated_at",                                     :null => false
+    t.string    "name",                           :default => "", :null => false
+    t.string    "description"
+    t.integer   "job_id"
+    t.integer   "kml_status",      :limit => 1,   :default => 0
+    t.integer   "total_sequences",                :default => 0
+    t.string    "hosts",           :limit => 200,                 :null => false
+    t.string    "pathogens",       :limit => 200,                 :null => false
+    t.string    "locations",       :limit => 200,                 :null => false
   end
 
   create_table "users", :force => true do |t|

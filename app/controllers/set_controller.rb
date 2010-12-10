@@ -3,7 +3,7 @@ class SetController < ApplicationController
   def new
     #@form_values = Query.form_values
    # @query = Query.new
-    #@sql_query = SqlQuery.new
+    @sql_query = SqlQuery.new
 	  @form_values = Query.form_values
 	 # @selected_values = @query.new_values(nil)
   end
@@ -14,8 +14,8 @@ class SetController < ApplicationController
        @items = params
       @set =  SqlQuery.create(id, @items)
       @set.save
-       #redirect_to :action => "show", :id => @set.sql_queries_id
-       redirect_to @set
+       redirect_to :action => "show", :id => @set.sql_queries_id
+       #redirect_to @set
   end
 
   def show
