@@ -7,7 +7,7 @@ class QueriesController < ApplicationController
   	@queries = Query.paginate(:page => params[:page])
   end
 
-   # GET /queries/public
+  # GET /queries/public
   # GET /queries/public.xml
    def public
 
@@ -40,17 +40,21 @@ class QueriesController < ApplicationController
 
     #@total_minutes = ((@query.total_sequences * @query.total_sequences)/2 ).ceil+3
     #@search_minutes= ((@query.total_sequences * @query.total_sequences)/6).ceil+1
-    @total_minutes = ((@query.total_sequences * @query.total_sequences)/500 ).ceil+3
-    @search_minutes= ((@query.total_sequences * @query.total_sequences)/1500).ceil+1
+    @total_minutes = ((@query.total_sequences * @query.total_sequences)/100 ).ceil+3
+    @search_minutes= ((@query.total_sequences * @query.total_sequences)/300).ceil+1
     Poy_service.add_text_file(@job_id,"#{@query.name}.fasta", @query.make_fasta)
   
     Poy_service.add_text_file(@job_id,"#{@query.name}.csv", @query.make_metadata)
     Poy_service.add_poy_file(@job_id,"#{@query.name}",@search_minutes)
-    Poy_service.submit_poy(@job_id,@total_minutes );
+    Poy_service.submit_poy(@job_id,@total_minutes )
+#    if(Poy_service.submit_poy(@job_id,@total_minutes ))
+#      @query.kml_status =1
+#      @query.job_id = @job_id
+#      @query.save
+#    else
+#       flash[:notice] = 'Failed to Submit to the Poy Service'
+#    end
 
-    @query.kml_status =1
-    @query.job_id = @job_id
-    @query.save
 
     redirect_to :action => "show", :id => params[:id]
   end
@@ -58,6 +62,12 @@ class QueriesController < ApplicationController
   # GET /queries/new
   # GET /queries/new.xml
   def new
+    @locations =Location.all
+
+    #@locations = []
+   # Location.all.each do |loc|
+   #     @locations << loc[:country]
+   # end
     @query = Query.new
 	@form_values = Query.form_values
 	@selected_values = @query.new_values(nil)
@@ -75,7 +85,7 @@ class QueriesController < ApplicationController
   def create
     @query = Query.new(params[:query])
 
-    @query.total_sequences = @query.sequences(params).total_entries
+    #@query.total_sequences = @query.sequences(params).total_entries
 
     respond_to do |format|
       if @query.save

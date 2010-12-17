@@ -11,7 +11,32 @@
 
 ActiveRecord::Schema.define(:version => 20100708173841) do
 
-  create_table "isolates", :force => true do |t|
+  create_table "hosts", :force => true do |t|
+    t.string "name", :limit => 50, :null => false
+  end
+
+  create_table "isolates", :id => false, :force => true do |t|
+    t.integer  "id",                             :default => 0, :null => false
+    t.integer  "ncbi_isolate_id",                :default => 0, :null => false
+    t.string   "ncbi_id",         :limit => 100,                :null => false
+    t.string   "host",            :limit => 30,                 :null => false
+    t.string   "subtype",         :limit => 4,                  :null => false
+    t.string   "country",         :limit => 30,                 :null => false
+    t.datetime "date",                                          :null => false
+    t.string   "virus_name",      :limit => 100,                :null => false
+    t.string   "mutation",        :limit => 30,                 :null => false
+    t.string   "age",             :limit => 10,                 :null => false
+    t.string   "gender",          :limit => 10,                 :null => false
+    t.integer  "location_id"
+    t.string   "ncbi_name",       :limit => 50,                 :null => false
+    t.integer  "pathogen_id"
+    t.integer  "host_id"
+    t.string   "location_name",   :limit => 100
+    t.float    "longitude"
+    t.float    "latitude"
+  end
+
+  create_table "isolates_old", :force => true do |t|
     t.string   "tax_id",                    :limit => 50
     t.string   "isolate_id",                :limit => 50
     t.string   "sequence_ids"
@@ -65,53 +90,57 @@ ActiveRecord::Schema.define(:version => 20100708173841) do
     t.string   "pathogen",                  :limit => 20
   end
 
-  add_index "isolates", ["host"], :name => "host"
-  add_index "isolates", ["id"], :name => "id"
-  add_index "isolates", ["isolate_id"], :name => "isolate_id"
-  add_index "isolates", ["location"], :name => "location"
-  add_index "isolates", ["name", "host", "location"], :name => "name_host_location"
-  add_index "isolates", ["name"], :name => "name"
-  add_index "isolates", ["tax_id", "isolate_id", "name"], :name => "tax_id_iso_id_name"
-  add_index "isolates", ["tax_id", "isolate_id"], :name => "tax_iso"
-  add_index "isolates", ["tax_id", "isolate_id"], :name => "unique_isolates_u1", :unique => true
-  add_index "isolates", ["tax_id"], :name => "tax_id"
+  add_index "isolates_old", ["host"], :name => "host"
+  add_index "isolates_old", ["id"], :name => "id"
+  add_index "isolates_old", ["isolate_id"], :name => "isolate_id"
+  add_index "isolates_old", ["location"], :name => "location"
+  add_index "isolates_old", ["name", "host", "location"], :name => "name_host_location"
+  add_index "isolates_old", ["name"], :name => "name"
+  add_index "isolates_old", ["tax_id", "isolate_id", "name"], :name => "tax_id_iso_id_name"
+  add_index "isolates_old", ["tax_id", "isolate_id"], :name => "tax_iso"
+  add_index "isolates_old", ["tax_id", "isolate_id"], :name => "unique_isolates_u1", :unique => true
+  add_index "isolates_old", ["tax_id"], :name => "tax_id"
 
-  create_table "locations", :primary_key => "location_id", :force => true do |t|
-    t.string "country",        :limit => 30, :null => false
-    t.string "gen_bank_label", :limit => 30, :null => false
+  create_table "locations", :force => true do |t|
+    t.string "country",        :limit => 30,  :null => false
+    t.string "gen_bank_label", :limit => 30,  :null => false
     t.float  "latitude"
     t.float  "longitude"
+    t.string "name",           :limit => 100
+    t.string "local",          :limit => 30
   end
 
   create_table "ncbi_isolate", :primary_key => "ncbi_isolate_id", :force => true do |t|
-    t.string   "ncbi_id",    :limit => 100, :null => false
-    t.string   "host",       :limit => 30,  :null => false
-    t.string   "subtype",    :limit => 4,   :null => false
-    t.string   "country",    :limit => 30,  :null => false
-    t.datetime "date",                      :null => false
-    t.string   "virus_name", :limit => 100, :null => false
-    t.string   "mutation",   :limit => 30,  :null => false
-    t.string   "age",        :limit => 10,  :null => false
-    t.string   "gender",     :limit => 10,  :null => false
+    t.string   "ncbi_id",     :limit => 100, :null => false
+    t.string   "host",        :limit => 30,  :null => false
+    t.string   "subtype",     :limit => 4,   :null => false
+    t.string   "country",     :limit => 30,  :null => false
+    t.datetime "date",                       :null => false
+    t.string   "virus_name",  :limit => 100, :null => false
+    t.string   "mutation",    :limit => 30,  :null => false
+    t.string   "age",         :limit => 10,  :null => false
+    t.string   "gender",      :limit => 10,  :null => false
+    t.integer  "location_id"
+    t.string   "ncbi_name",   :limit => 50,  :null => false
+    t.integer  "pathogen_id"
+    t.integer  "host_id"
   end
 
   create_table "ncbi_sequences", :primary_key => "ncbi_sequences_id", :force => true do |t|
-    t.integer "ncbi_isolate_id",                  :null => false
+    t.integer "ncbi_isolate_id"
     t.string  "name",            :limit => 30,    :null => false
     t.string  "protein",         :limit => 5,     :null => false
     t.string  "data",            :limit => 10000, :null => false
+    t.string  "accession",       :limit => 30
+    t.integer "protein_id"
   end
 
-  create_table "pathogens", :primary_key => "pathogens_id", :force => true do |t|
+  create_table "pathogens", :force => true do |t|
     t.string "name", :limit => 4, :null => false
   end
 
-  create_table "projects", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "name"
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "proteins", :force => true do |t|
+    t.string "name", :limit => 10, :null => false
   end
 
   create_table "queries", :force => true do |t|
@@ -128,14 +157,27 @@ ActiveRecord::Schema.define(:version => 20100708173841) do
     t.datetime "updated_at"
     t.string   "proteins"
     t.integer  "user_id"
-    t.integer  "job_id",                         :default => 0
-    t.integer  "kml_status",                     :default => 0
+    t.integer  "job_id",                          :default => 0
+    t.integer  "kml_status",                      :default => 0
     t.string   "pathogen",         :limit => 20
-    t.integer  "total_sequences",                :default => 0
-    t.boolean  "is_public",                      :default => false, :null => false
+    t.integer  "total_sequences",                 :default => 0
+    t.boolean  "is_public",                       :default => false, :null => false
+    t.string   "sql",              :limit => 300
   end
 
-  create_table "sequences", :force => true do |t|
+  create_table "sequences", :id => false, :force => true do |t|
+    t.integer "id",                                 :default => 0, :null => false
+    t.integer "isolate_id"
+    t.integer "ncbi_sequences_id",                  :default => 0, :null => false
+    t.integer "ncbi_isolate_id"
+    t.string  "name",              :limit => 30,                   :null => false
+    t.string  "protein",           :limit => 5,                    :null => false
+    t.string  "data",              :limit => 10000,                :null => false
+    t.string  "accession",         :limit => 30
+    t.integer "protein_id"
+  end
+
+  create_table "sequences_old", :force => true do |t|
     t.string   "genbank_acc_id", :limit => 50
     t.string   "sequence_id",    :limit => 50
     t.string   "isolate_id",     :limit => 50
@@ -144,12 +186,12 @@ ActiveRecord::Schema.define(:version => 20100708173841) do
     t.string   "sequence_type",  :limit => 50
   end
 
-  add_index "sequences", ["genbank_acc_id"], :name => "genbank_acc_id"
-  add_index "sequences", ["genbank_acc_id"], :name => "unique_sequences_genbank_acc_id", :unique => true
-  add_index "sequences", ["isolate_id", "sequence_type"], :name => "isolate_id"
-  add_index "sequences", ["isolate_id", "sequence_type"], :name => "unique_sequences_u2", :unique => true
-  add_index "sequences", ["sequence_id"], :name => "sequence_id"
-  add_index "sequences", ["sequence_id"], :name => "unique_sequences_sequence_id", :unique => true
+  add_index "sequences_old", ["genbank_acc_id"], :name => "genbank_acc_id"
+  add_index "sequences_old", ["genbank_acc_id"], :name => "unique_sequences_genbank_acc_id", :unique => true
+  add_index "sequences_old", ["isolate_id", "sequence_type"], :name => "isolate_id"
+  add_index "sequences_old", ["isolate_id", "sequence_type"], :name => "unique_sequences_u2", :unique => true
+  add_index "sequences_old", ["sequence_id"], :name => "sequence_id"
+  add_index "sequences_old", ["sequence_id"], :name => "unique_sequences_sequence_id", :unique => true
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id",                       :null => false
@@ -161,20 +203,23 @@ ActiveRecord::Schema.define(:version => 20100708173841) do
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
-  create_table "sql_queries", :primary_key => "sql_queries_id", :force => true do |t|
-    t.integer   "users_id",                                       :null => false
-    t.string    "query_string",                                   :null => false
-    t.integer   "is_public",       :limit => 1,   :default => 0,  :null => false
-    t.timestamp "created_at",                                     :null => false
-    t.timestamp "updated_at",                                     :null => false
-    t.string    "name",                           :default => "", :null => false
-    t.string    "description"
-    t.integer   "job_id"
-    t.integer   "kml_status",      :limit => 1,   :default => 0
-    t.integer   "total_sequences",                :default => 0
-    t.string    "hosts",           :limit => 200,                 :null => false
-    t.string    "pathogens",       :limit => 200,                 :null => false
-    t.string    "locations",       :limit => 200,                 :null => false
+  create_table "studies", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "description"
+    t.string   "pathogens"
+    t.string   "hosts"
+    t.string   "locations"
+    t.string   "proteins"
+    t.datetime "max_collect_date"
+    t.datetime "min_collect_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "job_id",                          :default => 0
+    t.integer  "kml_status",                      :default => 0
+    t.integer  "total_sequences",                 :default => 0
+    t.boolean  "is_public",                       :default => false
+    t.string   "sql",              :limit => 300
   end
 
   create_table "users", :force => true do |t|

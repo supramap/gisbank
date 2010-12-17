@@ -56,8 +56,8 @@
   <tr>
     <th>Isolate Name</th>
     <th>Pathogen</th>
-    <th>Genbank Accession ID</th>
-    <th>Sequence Type</th>
+    <%#*<th>Genbank Accession ID</th>%>
+    <th>Segment</th>
     <th>Location</th>
     <th>Host</th>
     <th>Collect Date</th>
@@ -66,19 +66,19 @@
 
 <% @sequences.each do |sequence| %>
   <tr>
-    <td><%=h sequence[:name] %></td>
-    <td><%=sequence[:pathogen] %></td>
-    <td>
-      <% if sequence[:genbank_acc_id] %>
-        <%= link_to sequence[:genbank_acc_id], "http://www.ncbi.nlm.nih.gov/nucleotide?term=#{sequence[:genbank_acc_id]}", :target => "_blank" %>
-      <% else %>
-      Gisaid
-      <% end %>
-    </td>
-    <td><%= sequence[:sequence_type] %></td>
-    <td><%= sequence[:location] %></td>
+    <td><%=h sequence[:virus_name] %></td>
+    <td><%=sequence[:subtype] %></td>
+    <%#*<td>%>
+      <%# if sequence[:genbank_acc_id] %>
+        <%#= link_to sequence[:genbank_acc_id], "http://www.ncbi.nlm.nih.gov/nucleotide?term=#{sequence[:genbank_acc_id]}", :target => "_blank" %>
+      <%# else %>
+      <%#*Gisaid%>
+      <%# end %>
+    <%#*</td>%>
+    <td><%= sequence[:protein] %></td>
+    <td><%= sequence[:country] %></td>
     <td><%= sequence[:host] %></td>
-    <td><%= sequence[:collect_date] %></td>
+    <td><%= sequence[:date] %></td>
    
   </tr>
 <% end %>

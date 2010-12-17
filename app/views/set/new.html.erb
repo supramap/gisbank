@@ -1,49 +1,94 @@
 <h1>New query</h1>
-
 <% form_tag 'create' do %>
 
 <h4>Name</h4>
-<%= text_field_tag :name %><br/>
-<br/>
+<%= text_field_tag :name  %><br/><br/>
+
 <h4>Query Description (Optional)"</h4>
 <%= text_area_tag :description %><br/>
+
+<h4>Data Source</h4>
+<%= check_box_tag "GenBank", :value =>"GenBank" %>unique GenBank Data Set<br/>
+<%= check_box_tag "both", :value =>"both" %>Shared GenBank Gisaid Data Set<br/>
+<%#= radio_button_tag(, "1") %>
+<%#= radio_button_tag(:public, "0") %>
+ <%= check_box_tag "Gisaid" %>unique Gisaid Data Set<br/>
 
 
 <h4>Do you whant to make your query public and let other gisbank users see your query</h4>
 <%= radio_button_tag(:public, "1") %>yes<br/>
-
 <%= radio_button_tag(:public, "0") %>no<br/>
 
 <h4>Pathogens </h4>
 <div style='width:300px; height:100px;  border-style: ridge;  overflow:auto' >
-   <%  @form_values[:pathogen].each { |p|  %>
+   <%  Pathogen.all.each { |p|  %>
 
-    <%= check_box_tag "pathogen[]", :value =>p %>
-    <%= p %><br/>
+    <%= check_box_tag "pathogen[]", p.id %>
+    <%= p.name %><br/>
   <%  } %>
     </div>
 <h4>Hosts </h4>
 
 <div style='width:300px; height:100px;  border-style: ridge;  overflow:auto' >
-  <%  @form_values[:hosts].each { |h|  %>
+  <%  Host.all.each { |h|  %>
 
-    <%= check_box_tag("hosts[]", :value => h) %>
-    <%= h %><br/>
+    <%= check_box_tag("hosts[]", h.id) %>
+    <%= h.name %><br/>
   <%  } %>
  </div>
-  <h4>Locations </h4>
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.3/jquery-ui.min.js"></script>
+ <script type="text/javascript" src="/javascripts/jquery.checkboxtree.min.js"></script>
+ <script type="text/javascript">
+         $(document).ready(function() {
+     
+                $('#tree1').checkboxTree({
+                initializeChecked: 'collapsed', initializeUnchecked: 'collapsed' 
+                });
+
+            });
+
+
+ 
+ </script>
+ <h4>Locations </h4>
   <div style='width:300px; height:100px;  border-style: ridge;  overflow:auto' >
-  <%  @form_values[:locations].each { |l|  %>
-    <%= check_box_tag("locations[]", :value =>l) %>
-    <%= l %><br/>
+  <ul id="tree1">
+  <%  Location.find(:all, :select => 'Distinct country',:order => "country").each { |c|  %>
+     <li><input type="checkbox"/><%= c.country %><br/>
+                            <ul>
+                            
+                              <%  Location.find(:all, :conditions => "country='#{c.country}'",:order => "local").each { |l|  %>
+                                <li> <%= check_box_tag("locations[]",  l.id) %><%= l.local %></li>
+                                  <%  } %>
+                            </ul>
+     </li>
+
   <%  } %>
-    </div>
+  </ul>
+  </div>
+
+     <h4>Segments </h4>
+     <div style='width:300px; height:100px;  border-style: ridge;  overflow:auto' >
+    <%  Protein.all.each { |p|  %>
+
+    <%= check_box_tag("protein[]",  p.id) %>
+    <%= p.name %><br/>
+  <%  } %>
+</div>
+    <h4>Date Range</h4>
+    <%= select_date Date.today<<(120) , :prefix => :start_date %> to
+    <%= select_date Date.today, :prefix => :end_date %>
+<%#= select_date :min_collect_date, :order => [:month, :day, :year], :start_year => 2000, :end_year => Date.today.year, :include_blank => true, :default => nil %> 
+<%#= select_date :max_collect_date, :order => [:month, :day, :year], :start_year => 2000, :end_year => Date.today.year, :include_blank => true, :default => nil %>
+
+
+<%#= select_date :min_collect_date, :order => [:month, :day, :year], :start_year => 2000, :end_year => Date.today.year, :include_blank => true, :default => nil %> 
+<%#= select_date :max_collect_date, :order => [:month, :day, :year], :start_year => 2000, :end_year => Date.today.year, :include_blank => true, :default => nil %>
   <br/><br/>
     <%= submit_tag("Submit") %>
-
-
-<%= form_for :sql_query, @sql_query, :url => { :action => "create" } do |f| %>
-  <%= f.text_field :name %>
-  <%= f.text_area :description, :size => "60x12" %>
-  <%= submit_tag "Create" %>
 <% end %>
+
+
+

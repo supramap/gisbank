@@ -14,12 +14,12 @@ class Query < ActiveRecord::Base
   def self.form_values
     form_hash = {}
 
-    form_hash[:types] = ['-ALL-', 'A / H1N1', 'A / H5N1']
-
-    #form_hash[:lineages] = {'-ALL-'=>'-ALL-', 'Pandemic'=>'Y', 'Seasonal'=>'N'}
-    form_hash[:lineages] = {'-ALL-'=>'-ALL-', 'Pandemic'=>'Pandemic', 'Seasonal'=>'Seasonal'}
+    #form_hash[:types] = ['-ALL-', 'A / H1N1', 'A / H5N1']
+    form_hash[:types] = ['-ALL-', 'H1N1', 'H5N1', 'H7N1']
+   # #form_hash[:lineages] = {'-ALL-'=>'-ALL-', 'Pandemic'=>'Y', 'Seasonal'=>'N'}
+   # form_hash[:lineages] = {'-ALL-'=>'-ALL-', 'Pandemic'=>'Pandemic', 'Seasonal'=>'Seasonal'}
     arr = []
-    Isolate.find(:all, :select  => 'Distinct pathogen').each do |iso|
+    Isolate.find(:all, :select  => 'Distinct subtype').each do |iso|
        arr << iso[:pathogen]
     end
     form_hash[:pathogen] = arr
@@ -32,8 +32,8 @@ class Query < ActiveRecord::Base
 	form_hash[:hosts] = arr
 
     arr = ['-ALL-']
-	Isolate.find(:all, :select => 'Distinct location', :order => "location").each do |iso|
-	  arr << iso[:location] unless iso[:location].blank?
+	Isolate.find(:all, :select => 'Distinct location_name', :order => "location_name").each do |iso|
+	  arr << iso[:location_name] unless iso[:location_name].blank?
 	end
 	form_hash[:locations] = arr
 
@@ -43,7 +43,10 @@ class Query < ActiveRecord::Base
   end
 
   def new_values(params)
-
+    if(params)
+      self.locations =params[:query][:locations]
+      #@locations = params[:query][:locations]
+    end
 
   	selected_hash = {}
     selected_hash[:types] = params ? params[:query][:virus_type] : "-ALL-"
@@ -52,7 +55,6 @@ class Query < ActiveRecord::Base
     selected_hash[:locations] = params ? params[:query][:locations] : "-ALL-"
     selected_hash[:proteins] = params ? params[:query][:proteins] : "-ALL-"
     selected_hash[:pathogen] = params ? params[:query][:pathogen] : "-ALL-"
-
     selected_hash[:is_public] =  params ? params[:query][:is_public] : 0
 
     return selected_hash
@@ -64,6 +66,7 @@ class Query < ActiveRecord::Base
     selected_hash[:lineages] = params ? params[:query][:h1n1_swine_set] : self.h1n1_swine_set
     selected_hash[:hosts] = params ? params[:query][:hosts] : self.hosts
     selected_hash[:locations] = params ? params[:query][:locations] : self.locations
+    #selected_hash[:locations] = params ? params[:query][:locations] : self.country
     selected_hash[:proteins] = params ? params[:query][:proteins] : self.proteins
     return selected_hash
   end
@@ -112,26 +115,34 @@ class Query < ActiveRecord::Base
 
   def find_sequences(params)
     if params
-      return Sequence.paginate(:page => params[:page], :order => "isolates.name ASC",
+      return Sequence.paginate(:page => params[:page], :order => "isolates.virus_name ASC",
     	:joins => :isolate,
-    	:select => "isolates.pathogen, sequences.genbank_acc_id, isolates.collect_date, sequences.sequence_type, isolates.name, isolates.host, isolates.location, isolates.h1n1_swine_set",
-    	:conditions => conditions)
+    	#:select => "isolates.pathogen, sequences.genbank_acc_id, isolates.collect_date, sequences.sequence_type, isolates.name, isolates.host, isolates.location, isolates.h1n1_swine_set",
+      :select => "isolates.subtype,  isolates.date, sequences.protein, isolates.virus_name, isolates.host, isolates.location_name",
+
+        :conditions => conditions)
     else
-      return Sequence.find(:all, :order => "isolates.name ASC",
+      return Sequence.find(:all, :order => "isolates.virus_name ASC",
     	:joins => :isolate,
-    	:select => "sequences.sequence_id, sequences.genbank_acc_id, sequences.data, isolates.latitude, isolates.longitude, isolates.collect_date, sequences.sequence_type, isolates.name, isolates.host, isolates.location, isolates.h1n1_swine_set",
+    	#:select => "sequences.sequence_id, sequences.genbank_acc_id, sequences.data, isolates.latitude, isolates.longitude, isolates.collect_date, sequences.sequence_type, isolates.name, isolates.host, isolates.location, isolates.h1n1_swine_set",
+     :select => "isolates.subtype,  isolates.date, sequences.protein, isolates.virus_name, isolates.host, isolates.location_name",
+
     	:conditions => conditions)
     end
   end
 
   def conditions
   	cond_hash = {}
-  	cond_hash["isolates.virus_type"] = virus_type if virus_type != '-ALL-'
-  	cond_hash["isolates.h1n1_swine_set"] = h1n1_swine_set if h1n1_swine_set != '-ALL-'
-  	cond_hash["isolates.location"] = locations if locations != ['-ALL-']
-  	cond_hash["isolates.host"] = hosts if hosts != ['-ALL-']
-  	cond_hash["sequences.sequence_type"] = proteins if proteins != ['-ALL-']
-  	cond_hash["isolates.collect_date"] = min_collect_date..max_collect_date unless min_collect_date.blank? or max_collect_date.blank?
+  	#cond_hash["isolates.virus_type"] = virus_type if virus_type != '-ALL-'
+    cond_hash["isolates.subtype"] = virus_type if virus_type != '-ALL-'
+  	#cond_hash["isolates.h1n1_swine_set"] = h1n1_swine_set if h1n1_swine_set != '-ALL-'
+  	#cond_hash["isolates.location"] = locations if locations != ['-ALL-']
+  	cond_hash["isolates.location_name"] = locations if locations != ['-ALL-']
+    cond_hash["isolates.host"] = hosts if hosts != ['-ALL-']
+  	cond_hash["sequences.protein"] = proteins if proteins != ['-ALL-']
+  	cond_hash["isolates.date"] = min_collect_date..max_collect_date unless min_collect_date.blank? or max_collect_date.blank?
+    #cond_hash["sequences.sequence_type"] = proteins if proteins != ['-ALL-']
+  	#cond_hash["isolates.collect_date"] = min_collect_date..max_collect_date unless min_collect_date.blank? or max_collect_date.blank?
   	return cond_hash
   end
 
