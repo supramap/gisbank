@@ -3,6 +3,11 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'queries/public', :controller => "queries", :action => "public"
   map.connect 'queries/private', :controller => "queries", :action => "private"
 
+  map.connect 'set/public_queries', :controller => "set", :action => "public_queries"
+  map.connect 'set/private_queries', :controller => "set", :action => "private_queries"
+
+  map.purchase 'set/:id/update', :controller => 'set', :action => 'update'
+
   map.resources :queries
   map.resources :users
   map.resources :projects

@@ -1,0 +1,84 @@
+<h1>New query</h1>
+ <h1> Editing Query:
+  <%=h @query.name %>
+  </h1>
+<% form_tag 'update' do %>
+
+
+<h4>Query Description (Optional)"</h4>
+<%= text_area_tag :description, @query.description %><br/>
+
+<%#*<h4>Data Source</h4>%>
+<%#= check_box_tag "GenBank", :value =>"GenBank" %>unique GenBank Data Set<br/>
+<%#= check_box_tag "both", :value =>"both" %>Shared GenBank Gisaid Data Set<br/>
+<%#= radio_button_tag(, "1") %>
+<%#= radio_button_tag(:public, "0") %>
+ <%#= check_box_tag "Gisaid" %>unique Gisaid Data Set<br/>
+
+
+<h4>Do you whant to make your query public and let other gisbank users see your query</h4>
+<%= radio_button_tag(:public, "1",@query.is_public) %>yes<br/>
+<%= radio_button_tag(:public, "0",!@query.is_public) %>no<br/>
+
+<h4>Pathogens </h4>
+<div style='width:300px; height:100px;  border-style: ridge;  overflow:auto' >
+ 
+  <%  Pathogen.all.each { |p|  %>
+
+    <%= check_box_tag "pathogen[]", p.id ,@query.has_pathogen(p.id) %>
+    <%= p.name %><br/>
+  <%  } %>
+    </div>
+<h4>Hosts </h4>
+
+<div style='width:300px; height:300px;  border-style: ridge;  overflow:auto' >
+  <%  Host.all.each { |h|  %>
+
+    <%= check_box_tag("hosts[]", h.id, @query.has_hosts(h.id)) %>
+    <%= h.name %><br/>
+  <%  } %>
+ </div>
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.3/jquery-ui.min.js"></script>
+ <script type="text/javascript" src="/javascripts/jquery.checkboxtree.min.js"></script>
+ <script type="text/javascript">
+         $(document).ready(function() {
+                $('#tree1').checkboxTree({
+                initializeChecked: 'collapsed', initializeUnchecked: 'collapsed'
+                });
+            });
+
+ </script>
+ <h4>Locations </h4>
+  <div style='width:300px; height:300px;  border-style: ridge;  overflow:auto' >
+  <ul id="tree1">
+  <%  Location.find(:all, :select => 'Distinct country',:order => "country").each { |c|  %>
+     <li><input type="checkbox"/><%= c.country %><br/>
+                            <ul>
+
+                              <%  Location.find(:all, :conditions => "country='#{c.country}'",:order => "local").each { |l|  %>
+                                <li> <%= check_box_tag("locations[]",  l.id,@query.has_locations(l.id)) %><%= l.local %></li>
+                                  <%  } %>
+                            </ul>
+     </li>
+
+  <%  } %>
+  </ul>
+  </div>
+
+     <h4>Segments </h4>
+     <div style='width:300px; height:300px;  border-style: ridge;  overflow:auto' >
+    <%  Protein.all.each { |p|  %>
+
+    <%= check_box_tag("protein[]",  p.id, @query.has_proteins(p.id)) %>
+    <%= p.name %><br/>
+  <%  } %>
+</div>
+    <h4>Date Range</h4>
+    <%= select_date  @query.min_collect_date, :prefix => :start_date %>
+    
+    <%= select_date @query.max_collect_date, :prefix => :end_date %>
+  <br/><br/>
+    <%= submit_tag("Submit") %>
+<% end %>

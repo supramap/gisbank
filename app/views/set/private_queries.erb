@@ -1,0 +1,24 @@
+<h1>Listing My Queries</h1>
+
+<p>
+</p>
+<div class="list">
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Options</th>
+  </tr>
+  <% @queries.each do |query| %>
+  <tr>
+    <td><%=h query.name %></td>
+    <td><%=h query.description %></td>
+    <td>
+      <%= link_to 'Show Results',  :controller => 'set', :action => 'show', :id=> query.id  %> |
+      <%= link_to 'Edit', :controller => 'set', :action => 'edit', :id=> query.id %> |
+      <%= link_to 'Delete', :controller => 'set', :action => 'delete', :id=> query.id %>
+    </td>
+  </tr>
+<% end %>
+</table>
+</div>

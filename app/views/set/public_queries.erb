@@ -1,0 +1,25 @@
+<h1>Listing Public Queries</h1>
+
+<p>
+
+</p>
+
+<div class="list">
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Options</th>
+  </tr>
+  <% @queries.each do |query| %>
+  <tr>
+    <td><%=h query.name %></td>
+    <td><%=h query.description %></td>
+    <td>
+      <%= link_to 'Show Results',  :controller => 'set', :action => 'show', :id=> query.id  %>
+
+    </td>
+  </tr>
+<% end %>
+</table>
+</div>

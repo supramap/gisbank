@@ -47,13 +47,11 @@ class QueriesController < ApplicationController
     Poy_service.add_text_file(@job_id,"#{@query.name}.csv", @query.make_metadata)
     Poy_service.add_poy_file(@job_id,"#{@query.name}",@search_minutes)
     Poy_service.submit_poy(@job_id,@total_minutes )
-#    if(Poy_service.submit_poy(@job_id,@total_minutes ))
-#      @query.kml_status =1
-#      @query.job_id = @job_id
-#      @query.save
-#    else
-#       flash[:notice] = 'Failed to Submit to the Poy Service'
-#    end
+
+     @query.kml_status =1
+      @query.job_id = @job_id
+     @query.save
+
 
 
     redirect_to :action => "show", :id => params[:id]
@@ -172,5 +170,4 @@ class QueriesController < ApplicationController
     send_data @fileString, :filename => "alignment.fas"
 
     end
-
 end

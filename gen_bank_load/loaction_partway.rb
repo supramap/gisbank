@@ -47,46 +47,17 @@ end
 
 @connection = Mysql.real_connect("140.254.80.125", "gisman", "gisman$", "gisbank")
 
-@connection.query("truncate table gisbank.locations")
 
-@connection.query("insert into gisbank.locations(country, gen_bank_label,name,local )
-select country, CONCAT(country,'/Other') as gen_bank_label ,CONCAT(country,'/Other') as name,\"Other\" from gisbank.ncbi_isolate group by country")
 
-@connection.query("
-UPDATE ncbi_isolate, locations 
-SET ncbi_isolate.location_id= locations.id
-WHERE ncbi_isolate.country= locations.country")
-
-res = @connection.query("SELECT * FROM gisbank.locations")
-sql = ''
-while row = res.fetch_row do
-  if(row[1]=='')
-    next
-  end
-  #puts  row[1].chomp.strip
-  sc = Geonames::ToponymSearchCriteria.new
-  sc.q = row[1].chomp.strip
-  sc.max_rows = "1"
-  sleep(3)
-  rs = Geonames::WebService.search(sc).toponyms
-  rs.each do |gn|
-    #if gn.country_name == row[1].chomp.strip
-      sql = "UPDATE gisbank.locations l SET latitude = #{gn.latitude} , longitude  =#{gn.longitude}, country='#{gn.country_name}', name='#{gn.country_name}/Other' where country = '#{row[1]}'"
-      @connection.query(sql)
-      puts "added #{row[1]+'/Other'} at #{gn.latitude},#{gn.longitude} "
-      #break
-    #end
-  end
-end
-
-res = @connection.query("SELECT * FROM gisbank.ncbi_isolate")
+res = @connection.query("SELECT * FROM gisbank.ncbi_isolate where ncbi_isolate_id > 923")
 while row = res.fetch_row do
 
   begin
-    if(row[3]=="Human")
-    	find_by_string(row[0], row[7].split('/')[1],  row[5])
+   
+    if(row[2]=="Human")
+    	find_by_string(row[0], row[6].split('/')[1],  row[4])
      else
-       find_by_string(row[0], row[7].split('/')[2],  row[5])
+       find_by_string(row[0], row[6].split('/')[2],  row[4])
     end
   rescue => err
     puts "error at #{row[6]},#{row[4]},#{row[0]}"

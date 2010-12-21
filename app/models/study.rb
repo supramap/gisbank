@@ -2,38 +2,116 @@ class Study < ActiveRecord::Base
   # validates_presence_of :user_id, :name
 
   def bind(params)
-    self.name=params["name"]
+    #self.name=params["name"]
     self.description=params["description"]
     self.is_public=params["public"]
+    self.min_collect_date=DateTime.parse( params["start_date"]['month']+"/"+params["start_date"]['day']+"/"+params["start_date"]['year'])
+    self.max_collect_date=DateTime.parse(params["end_date"]['month']+"/"+params["end_date"]['day']+"/"+params["end_date"]['year'])
+   
     self.pathogens =serilize_array( params[:pathogen])
     self.hosts =serilize_array( params[:hosts])
     self.locations =serilize_array( params[:locations])
     self.proteins =serilize_array( params[:protein])
   end
 
+
+  def has_pathogen(id)
+    if(!self.pathogens)
+      return false
+    end
+    return self.pathogens.split(',').include?(id.to_s)
+  end
+
+  def has_hosts(id)
+    if(!self.hosts)
+      return false
+    end
+    return self.hosts.split(',').include?(id.to_s)
+  end
+
+  def has_locations(id)
+    if(!self.locations)
+      return false
+    end
+    return self.locations.split(',').include?(id.to_s)
+  end
+
+  def has_proteins(id)
+    if(!self.proteins)
+      return false
+    end
+    return self.proteins.split(',').include?(id.to_s)
+  end
+
+  def has_pathogen(id)
+    if(!self.pathogens)
+      return false
+    end
+    return self.pathogens.split(',').include?(id.to_s)
+  end
+
+
   def get_sql
-    sql="SELECT * FROM gisbank.sequences n, gisbank.ncbi_isolate ni
-WHERE ni.ncbi_isolate_id=n.ncbi_isolate_id "
+    sql="SELECT sequences.*,
+pathogen_id,
+host_id,
+location_id,
+host,
+subtype,
+country,
+date,
+virus_name,
+location_name,
+longitude,
+latitude
+FROM sequences, isolates
+WHERE isolate_id=isolates.id
+and date > '#{min_collect_date}'
+and date < '#{max_collect_date}'"
     if(pathogens)
-      sql<< "and pathogen_id in(#{pathogens})"
+      sql<< " and pathogen_id in(#{pathogens})"
     end
     if(hosts)
-      sql<< "and host_id in(#{hosts})"
+      sql<< " and host_id in(#{hosts})"
     end
     if(locations)
-      sql<< "and location_id in(#{locations})"
+      sql<< " and location_id in(#{locations})"
     end
     if(proteins)
-      sql<< "and protein_id in(#{proteins})"
+      sql<< " and protein_id in(#{proteins})"
     end
-
     return sql
   end
 
   def get_sequence
+    #Sequence.
     return Sequence.find_by_sql(get_sql)
   end
 
+ def make_fasta
+  	fasta = ""
+    get_sequence.each do |seq|
+    	fasta << "{seq[:name]}\n#{seq[:data]}\n"
+    end
+    return fasta
+  end
+
+def make_geo
+  geodata = "strain_name,latitude,longitude,date\n"
+  get_sequence.each do |seq|
+
+         geodata << "#{seq[:sequence_id]},#{seq[:latitude]},#{seq[:longitude]},#{format_date(seq[:collect_date].to_s)}\n"
+  end
+  return geodata
+end
+
+def make_metadata
+    meta_data = ""
+    get_sequence.each do |seq|
+        meta_data << "#{seq[:name]},#{seq[:subtype]},#{seq[:host]},#{seq[:location]},#{seq[:date]}\n"
+    end
+    return meta_data
+end
 
   private
   def serilize_array(arr)
@@ -45,5 +123,11 @@ WHERE ni.ncbi_isolate_id=n.ncbi_isolate_id "
       return output[0,output.length-1]
     else return nil
     end
+  end
+
+  def format_date(dt)
+    values = Time.parse(dt)
+    d = Time.local(*values)
+    return d.strftime("%Y-%m-%d")
   end
 end
