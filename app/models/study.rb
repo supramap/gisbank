@@ -91,7 +91,7 @@ and date < '#{max_collect_date}'"
  def make_fasta
   	fasta = ""
     get_sequence.each do |seq|
-    	fasta << "{seq[:name]}\n#{seq[:data]}\n"
+    	fasta << ">#{seq[:accession]}\n#{seq[:data]}\n"
     end
     return fasta
   end
@@ -100,15 +100,15 @@ def make_geo
   geodata = "strain_name,latitude,longitude,date\n"
   get_sequence.each do |seq|
 
-         geodata << "#{seq[:sequence_id]},#{seq[:latitude]},#{seq[:longitude]},#{format_date(seq[:collect_date].to_s)}\n"
+         geodata << "#{seq[:accession]},#{seq[:latitude]},#{seq[:longitude]},#{format_date(seq[:collect_date].to_s)}\n"
   end
   return geodata
 end
 
 def make_metadata
-    meta_data = ""
+    meta_data = "strain_name,virus type,host,location,date\n"
     get_sequence.each do |seq|
-        meta_data << "#{seq[:name]},#{seq[:subtype]},#{seq[:host]},#{seq[:location]},#{seq[:date]}\n"
+        meta_data << "#{seq[:accession]},#{seq[:subtype]},#{seq[:host]},#{seq[:country]},#{seq[:date]}\n"
     end
     return meta_data
 end

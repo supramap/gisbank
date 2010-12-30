@@ -36,7 +36,8 @@ class Poy_service
                 transform (static_approx)
                 report (\"results.kml\", kml:(supramap, \"#{job_name.gsub(" ","")}.csv\"))
                 report (\"A2alignment.fas\", ia)
-                exit ()"
+                exit ()
+    "
 
 
     add_text_file(job_id,"run.poy", file_data)

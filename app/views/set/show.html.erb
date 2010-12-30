@@ -39,7 +39,7 @@
   <%  if @query.kml_status ==2 %>
       <%=  link_to 'Download Supramap KML', "/set/download_supramap_kml/#{params[:id]}" %> |
       <%=  link_to 'Download Aligned Fasta Sequences', "/set/download_aligned_fasta/#{params[:id]}" %> |
-      <%=  link_to 'Download Poy Supermap Output', "/set/download_supramap_output/#{params[:id]}" %> |
+      <%=  link_to 'Download Poy Supermap Output', "/set/download_supramap_output/#{params[:id]}" %>
        <%  if(@query.user_id == current_user.id) %>
       <%= form_tag "start_poy/#{params[:id]}" %>
       <%= submit_tag("Re-Run Supra Map", :confirm =>'Are you sure? You only want to do this if changed your query parameters or ran supermap a while ago with now out of date data' ) %>

@@ -49,7 +49,7 @@ end
 
 
 
-res = @connection.query("SELECT * FROM gisbank.ncbi_isolate where ncbi_isolate_id > 923")
+res = @connection.query("SELECT * FROM gisbank.ncbi_isolate where ncbi_isolate_id > 13933")
 while row = res.fetch_row do
 
   begin
