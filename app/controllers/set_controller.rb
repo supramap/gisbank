@@ -37,14 +37,12 @@ class SetController < ApplicationController
   def show
     @query = Study.find(params[:id])
     @seq = Sequence.paginate_by_sql(@query.get_sql,:page => params[:page], :order => 'id DESC')
+    @poyjob = PoyJob.first(:conditions => ["query_id = ?",params[:id]])
 
-
-    #@seq = @query.get_sequence
-
-    if(@query.kml_status ==1 &&  Poy_service.is_done_yet(@query.job_id))
-      @query.kml_status =2
-      @query.save
+    if(@poyjob && @poyjob.status==1)
+      @poyjob.isdone
     end
+
   end
 
   def delete
@@ -80,8 +78,8 @@ class SetController < ApplicationController
     # if 300 limit the total / 20 times will max at 75 hours
     # if 500 limit the total / 50 times will max at 83 hours
     total =  @query.get_sequence.length;
-    @total_minutes = ((total * total )/20 ).ceil+3
-    @search_minutes= ((total * total )/60).ceil+1
+    @total_minutes = ((total * total )/100 ).ceil+100
+    @search_minutes= ((total * total )/1000).ceil+10
     Poy_service.add_text_file(@job_id,"#{@query.name}.fasta", @query.make_fasta)
 
     Poy_service.add_text_file(@job_id,"#{@query.name}.csv", @query.make_geo)
@@ -103,7 +101,6 @@ class SetController < ApplicationController
 
 
   def download_supramap_kml
-
     @query = Study.find(params[:id])
     @fileString = Poy_service.get_file(@query.job_id,"results.kml")
     if(!(@fileString.kind_of? String))

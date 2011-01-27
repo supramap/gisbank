@@ -10,7 +10,7 @@ development:
 test:
   adapter: mysql
   encoding: utf8
-  host: 140.254.80.125:3306
+  host: 140.254.80.125
   database: gisbank
   pool: 5
   username: gisman
@@ -19,7 +19,7 @@ test:
 production:
   adapter: mysql
   encoding: utf8
-  host: 140.254.80.125:3306
+  host: 140.254.80.125
   database: gisbank
   pool: 5
   username: gisman

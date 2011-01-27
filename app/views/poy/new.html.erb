@@ -1,0 +1,12 @@
+<h1>Submit a New Poy Job to the Super Computer</h1>
+
+
+<% form_for(@job, :url => '/poy/create/'+"#{@query.id}") do |f| %>
+  Outgroup :  <select id="outgroup" name="outgroup">
+    <%  @query.get_sequence.each { |sequence| %>
+      <%="<option value='#{sequence[:id]}'>#{sequence.name}</option>"%>
+    <% } %></select><br/>
+  <br/>
+  <%= f.submit 'Submit' %>
+
+<% end %>

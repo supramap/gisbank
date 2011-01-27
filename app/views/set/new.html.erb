@@ -5,16 +5,16 @@
 <h4>Name</h4>
 <%= text_field_tag :name  %><br/><br/>
 
-<h4>Query Description (Optional)"</h4>
+<h4>Query Description (Optional)</h4>
 <%= text_area_tag :description %><br/>
 
 
 <h4>Do you whant to make your query public and let other gisbank users see your query</h4>
-<%= radio_button_tag(:public, "1") %>yes<br/>
-<%= radio_button_tag(:public, "0") %>no<br/>
+<%= radio_button_tag(:public, "1",false) %>yes<br/>
+<%= radio_button_tag(:public, "0", true) %>no<br/>
 
 <h4>Pathogens </h4>
-<div style='width:300px; height:100px;  border-style: ridge;  overflow:auto' >
+<div style='width:400px; height:300px;  border-style: ridge;  overflow:auto' >
    <%  Pathogen.all.each { |p|  %>
 
     <%= check_box_tag "pathogen[]", p.id %>
@@ -23,7 +23,7 @@
     </div>
 <h4>Hosts </h4>
 
-<div style='width:300px; height:100px;  border-style: ridge;  overflow:auto' >
+<div style='width:400px; height:300px;  border-style: ridge;  overflow:auto' >
   <%  Host.all.each { |h|  %>
 
     <%= check_box_tag("hosts[]", h.id) %>
@@ -47,7 +47,7 @@
  
  </script>
  <h4>Locations </h4>
-  <div style='width:300px; height:100px;  border-style: ridge;  overflow:auto' >
+  <div style='width:400px; height:300px;  border-style: ridge;  overflow:auto' >
   <ul id="tree1">
   <%  Location.find(:all, :select => 'Distinct country',:order => "country").each { |c|  %>
      <li><input type="checkbox"/><%= c.country %><br/>
@@ -64,16 +64,14 @@
   </div>
 
      <h4>Segments </h4>
-     <div style='width:300px; height:100px;  border-style: ridge;  overflow:auto' >
+     <div style='width:400px; height:300px;  border-style: ridge;  overflow:auto' >
     <%  Protein.all.each { |p|  %>
-
-    <%= check_box_tag("protein[]",  p.id) %>
-    <%= p.name %><br/>
+    <%= radio_button_tag("protein[]",  p.id, p.id==1?true:false ) %><%= p.name %><br/>
   <%  } %>
 </div>
     <h4>Date Range</h4>
-    <%= select_date Date.today<<(120) , :prefix => :start_date %> to
-    <%= select_date Date.today, :prefix => :end_date %>
+    <%= select_date Date.today<<(120) ,:start_year=>1900, :end_year=>2015, :prefix => :start_date %> to
+    <%= select_date Date.today, :start_year=>1900, :end_year=>2015,:prefix => :end_date %>
 <%#= select_date :min_collect_date, :order => [:month, :day, :year], :start_year => 2000, :end_year => Date.today.year, :include_blank => true, :default => nil %> 
 <%#= select_date :max_collect_date, :order => [:month, :day, :year], :start_year => 2000, :end_year => Date.today.year, :include_blank => true, :default => nil %>
 

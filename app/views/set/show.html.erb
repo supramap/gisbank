@@ -1,7 +1,6 @@
-
-  <h1> Query:
+<h1> Query:
   <%=h @query.name %>
-  </h1>
+</h1>
 
 <p>
   <b>Description:</b>
@@ -13,41 +12,30 @@
 <%= link_to 'Delete Query', :controller => 'set', :action => 'delete', :id=> @query.id %>
 <%  end %>
 
-
 <br/>
 <%= link_to 'Download Nucleotides', "/set/download_fasta/#{@query.id}" %> |
 <%= link_to 'Download Georefs', "/set/download_meta_geo_refs/#{@query.id}" %> |
 <%= link_to 'Download Metadata', "/set/download_metadata/#{@query.id}" %>
 <br/><br/>
 
-<br/><br/>
-
-<% if @seq.total_entries >299  %>
-  <%=  label_tag('You need less then 300 sequence to make a supra map kml and a single sequence type to make a kml file') %>
-
-<%  else %>
-  <%  if(@query.kml_status == 0) %>
-
-   <%  if(@query.user_id == current_user.id) %>
-    <%= form_tag "start_poy/#{params[:id]}" %>
+<% if(@poyjob ==nil || @poyjob.status==0)  %>
+  <%= form_tag "/poy/new/#{params[:id]}" %>
     <%= submit_tag("Create a supra map kml file") %>
-   <%  end %>
-  <%  end %>
-  <%  if @query.kml_status ==1 %>
-    <%=  label_tag('Your kml file for supra map is currently being generated please come back again soon.') %>
-  <%  end %>
-  <%  if @query.kml_status ==2 %>
-      <%=  link_to 'Download Supramap KML', "/set/download_supramap_kml/#{params[:id]}" %> |
-      <%=  link_to 'Download Aligned Fasta Sequences', "/set/download_aligned_fasta/#{params[:id]}" %> |
-      <%=  link_to 'Download Poy Supermap Output', "/set/download_supramap_output/#{params[:id]}" %>
-       <%  if(@query.user_id == current_user.id) %>
-      <%= form_tag "start_poy/#{params[:id]}" %>
-      <%= submit_tag("Re-Run Supra Map", :confirm =>'Are you sure? You only want to do this if changed your query parameters or ran supermap a while ago with now out of date data' ) %>
-         <%  end %>
-    <%  end %>
-<%  end %>
-<%#*<br/><br/>%>
+<%  elsif @poyjob.status==1%>
+  <%=  label_tag('Your kml file for supra map is currently being generated please come back again soon.') %>
+<%  elsif @poyjob.status==2%>
+      <%=  link_to 'Download Supramap KML', "/poy/download_supramap_kml/#{params[:id]}" %> |
+      <%=  link_to 'Download Aligned Fasta Sequences', "/poy/download_aligned_fasta/#{params[:id]}" %> |
+       <%=  link_to 'Download Poy Tree File', "/poy/download_tree/#{params[:id]}" %> |
+      <%=  link_to 'Download Poy Supermap Output', "/poy/download_output/#{params[:id]}" %>
+      <%  if(@query.user_id == current_user.id) %>
+        <%= form_tag "start_poy/#{params[:id]}" %>
+        <%= submit_tag("Re-Run Supra Map", :confirm =>'Are you sure? You only want to do this if changed your query parameters or ran supermap a while ago with now out of date data' ) %>
+      <%  end %>
+ <%  end %>
 
+
+<br/><br/>
 <h3>Listing <%= @seq.total_entries %> Results:</h3>
 
 <%= will_paginate @seq %>

@@ -52,20 +52,21 @@ class Study < ActiveRecord::Base
 
 
   def get_sql
-    sql="SELECT sequences.*,
+    self.sql="SELECT sequences.*,
 pathogen_id,
 host_id,
 location_id,
-host,
-subtype,
+hosts.name as host,
+proteins.name as protein,
+pathogens.name as subtype,
 country,
 date,
 virus_name,
-location_name,
+locations.name as location_name,
 longitude,
 latitude
-FROM sequences, isolates
-WHERE isolate_id=isolates.id
+FROM sequences, isolates,locations,hosts,pathogens,proteins
+WHERE isolate_id=isolates.id and location_id =locations.id and host_id=hosts.id and pathogen_id = pathogens.id and  protein_id = proteins.id
 and date > '#{min_collect_date}'
 and date < '#{max_collect_date}'"
     if(pathogens)
@@ -80,7 +81,8 @@ and date < '#{max_collect_date}'"
     if(proteins)
       sql<< " and protein_id in(#{proteins})"
     end
-    return sql
+    self.save;
+    return self.sql
   end
 
   def get_sequence
