@@ -1,0 +1,12 @@
+
+<% form_for @job, :url =>'/phen_gen/create',  :html => {:multipart => true} do |f|%>
+Name:<%= f.text_field :name %><br/><br/>
+
+    Select file fasta file(.fasta):
+    <%= f.file_field "fasta_file", :size => 20 %><br/><br/>
+
+    Select file tree file(.tre):
+    <%= f.file_field "tree_file", :size => 20 %><br/><br/>
+
+  <%= submit_tag("Submit") %>(this could take while if the files you are uploading are big or if your connenection is slow)
+<% end %>

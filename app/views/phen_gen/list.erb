@@ -1,0 +1,22 @@
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Pid</th>
+
+    <th>Status</th>
+    <th>Files</th>
+  </tr>
+<%  @jobs.each { |job| %>
+  <tr>
+    <td><%=job[:name] %></td>
+    <td><%=job[:pid] %></td>
+    <td><%=job[:status] %></td>
+    <td><ul>
+      <% InputFile.where("job_id = #{job.id}").each { |f| %>
+       <li><%= link_to f.name, "/phen_gen/get_file/#{f.id}" %></li>
+      <% }  %>
+      </ul></td>
+  </tr>
+  <% }  %>
+</table>

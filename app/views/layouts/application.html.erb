@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PhenGen</title>
+   <link rel="stylesheet" type="text/css" href="/css/main.css" />
+  <%= stylesheet_link_tag :all %>
+  
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+
+<div id="wrapper">
+    <div id="header"><div id="login">
+      [
+      <% if current_user %>
+      <%= "Signed in as #{current_user.email}." %>
+      <%= link_to "Sign out", logout_path %>
+       <% else %>
+          <%= link_to "Sign in", login_path %> &nbsp;|
+          <%= link_to "Register", '/user_sessions/new_user' %>
+       <% end %>
+          ]
+      </div>
+    </div>
+    <div id="nav1">
+    <ul id="menus">
+      <li><a href="/phen_gen/home">Home</a></li>
+      <li><a href="/phen_gen/list">My Jobs</a></li>
+      <li><a href="/phen_gen/new">New Job</a></li>
+      <li><a href="/phen_gen/about">About</a></li>
+      <li><a href="/phen_gen/contact">Contact Us</a></li>
+
+    </ul>
+    </div>
+
+    <div id="content-wrapper">
+      <div id="main">
+      <p style="color: green"><%= flash[:notice] %></p>
+      <%= yield %>
+      </div>
+    </div>
+    <div id="footer"></div>
+  </div>
+
+</body>
+</html>

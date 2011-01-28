@@ -1,0 +1,181 @@
+body {
+	background-color:#C6C3C6;
+	margin:0;
+	padding:0;
+	text-align:center;
+	color:#525152;
+	font-family:Trebuchet MS, Arial, Tahoma, sans-serif;
+        font-size:9pt;
+}
+
+#wrapper {
+	width:820px;
+        background:#C6C3C6 url(bg.jpg?z=42787) repeat-y center top;
+        margin:0 auto;
+        text-align:left;
+}
+
+#content-wrapper {
+	width: 780px;
+	margin: 0px auto;
+	padding: 0;
+}
+
+
+#header {
+	position: relative;
+        height:151px;
+	background: #caced1 url(header.jpg?z=42787) no-repeat center top;
+	padding: 0;
+	color: #fff;
+	margin-left:auto;
+        margin-right:auto;
+	width:820px;
+}
+
+
+ #nav1 {
+	clear: both;
+	margin: 0 auto;
+	padding: 0;
+	background: #9CC3DE url(menu.jpg?z=42787) repeat-x;
+	font: bold 16px/40px "Trebuchet MS", Arial, Tahoma, Sans-serif;
+	height: 40px;
+	width: 780px;
+	border-top :0px solid #FFFFFF ;
+	border-bottom : 0px solid #FFFFFF ;
+}
+
+#nav1 ul {
+	float: left;
+	list-style: none;
+	margin:0;
+	padding: 0 ;
+}
+
+#nav1 ul li {
+	display: inline;
+}
+
+#nav1 ul li a {
+	display: block;
+	float: left;
+	padding: 0 14px;
+	color: #FFFFFF;
+	text-decoration: none;
+	text-align:center;
+	border-right: 1px solid #bae1fc ;
+}
+
+#nav1 ul li a:hover {
+	background: #222222 url( selectedMenu.jpg?z=42787 ) repeat-x;
+	color: #FFFFFF;
+}
+
+
+#nav1 ul li a.current {
+	background-color:#9CC3DE;
+	color: #FFFFFF;
+}
+
+#main {
+	float: left;
+	width: 750px;
+	padding: 0px 0px 20px 0px;
+	margin: 0px 0px 0px 20px ;
+	display: inline;
+}
+
+#footer {
+	color: #FFFFFF;
+	background: #C6C3C6 url(footer.jpg?z=42787) no-repeat center top;
+	clear: both;
+	width:820px;
+	height: 80px;
+	text-align: center;
+	font-size: 8pt;
+}
+
+/*End styles.css stuff*/
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a { color: #000; }
+a:hover { color: #9CC3DE;}
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+#login {
+	position: absolute;
+	bottom: 2px;
+	right: 24px;
+    font-size: 12px;
+}
+
+#login a{
+	color: #a2c7e1;
+	text-decoration: none;
+}
+
+table.sortable thead {
+    font-weight: bold;
+    cursor: default;
+}
+
+.list table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.list th {
+    border-bottom: 1px solid black;
+    border-right: 1px solid silver;
+    padding: 0.5em;
+    background-color: #bfd9ea;
+}
+
+.list tr {
+    border: 1px solid silver;
+}
+
+.list td {
+	padding: 0.5em;
+	border-right: 1px solid #CCCCCC;
+}

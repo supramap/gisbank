@@ -1,0 +1,22 @@
+
+<h1>Register New User</h1>
+
+<%#= form_for @user_session, :url => {:action => "create"} do |f| %>
+<%= form_for @user, :as => :user, :url => { :action => "create_user" } do |form| %>
+
+  <%= form.error_messages %>
+
+   <%= form.label :login %><br />
+<%= form.text_field :login %><br />
+<br />
+<%= form.label :email %><br />
+<%= form.text_field :email %><br />
+<br />
+<%= form.label :password %><br />
+<%= form.password_field :password %><br />
+<br />
+<%= form.label :password_confirmation %><br />
+<%= form.password_field :password_confirmation %><br />
+
+    <%= form.submit "Register"%><br/>
+<% end %>
