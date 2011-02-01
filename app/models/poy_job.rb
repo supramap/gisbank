@@ -21,13 +21,13 @@ search(max_time:00:#{@hours}:#{@minutes}, memory:gb:2)
 search(max_time:00:#{@hours}:#{@minutes}, memory:gb:2)
 search(max_time:00:#{@hours}:#{@minutes}, memory:gb:2)
 select(best:1)
-transform (static_approx)
 report (\"#{job_name.gsub(" ","")}.kml\", kml:(supramap, \"#{job_name.gsub(" ","")}.csv\"))
 report (\"#{job_name.gsub(" ","")}.ia\", ia)
 report (\"#{job_name.gsub(" ","")}_stats.txt\", searchstats)
 report (\"#{job_name.gsub(" ","")}.tre\", trees)
 exit ()
 "
+#transform (static_approx)
 #report (\"#{job_name.gsub(" ","")}.ia\", ia) returns blank
 #report (\"#{job_name.gsub(" ","")}.ia\", ia:\"#{job_name.gsub(" ","")}.fasta\") error:[identifiers] expected after ":" (in [report_argument])
  end

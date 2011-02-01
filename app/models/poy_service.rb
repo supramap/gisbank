@@ -6,13 +6,13 @@ require 'savon'
 require 'rubygems'
 require 'httparty'
 
-require 'base64'
+#require 'base64'
 
-require 'net/http'
-require 'uri'
+#require 'net/http'
+#require 'uri'
 
-require 'soap/wsdlDriver'
-require 'cgi'
+#require 'soap/wsdlDriver'
+#require 'cgi'
 
 class Poy_service
   include HTTParty
@@ -28,35 +28,37 @@ class Poy_service
     get("/Init?passPhase=JDWKWHDFMCMAHHMCJVHVPJDIRJNGNTINIMQRBPNUSGBYLYESGT")["int"]
   end
 
-  def self.add_poy_file(job_id,job_name,minutes)
-
-      @hours = minutes.div(60);
-      @minutes = minutes.modulo(60);
-
-     file_data = "read (\"#{job_name.gsub(" ","")}.fasta\")
-                search(max_time:00:#{@hours}:#{@minutes}, memory:gb:2)
-                select(best:1)
-                transform (static_approx)
-                report (\"results.kml\", kml:(supramap, \"#{job_name.gsub(" ","")}.csv\"))
-                report (\"A2alignment.fas\", ia)
-                exit ()
-    "
-
-
-    add_text_file(job_id,"run.poy", file_data)
-
-  end
+#  def self.add_poy_file(job_id,job_name,minutes)
+#
+#      @hours = minutes.div(60);
+#      @minutes = minutes.modulo(60);
+#
+#     file_data = "read (\"#{job_name.gsub(" ","")}.fasta\")
+#                search(max_time:00:#{@hours}:#{@minutes}, memory:gb:2)
+#                select(best:1)
+#                transform (static_approx)
+#                report (\"results.kml\", kml:(supramap, \"#{job_name.gsub(" ","")}.csv\"))
+#                report (\"A2alignment.fas\", ia)
+#                exit ()
+#    #"
+#
+#
+#    add_text_file(job_id,"run.poy", file_data)
+#
+#  end
 
   def self.add_text_file(job_id,file_name,file_data)
-    soap = SOAP::WSDLDriverFactory.new("http://glenn-webservice.bmi.ohio-state.edu/PoyService.asmx?wsdl").create_rpc_driver()
-    opt2 = soap.AddFile(:jobId => job_id,:fileData => file_data,:fileName => file_name.gsub(" ",""))
+    #soap = SOAP::WSDLDriverFactory.new("http://glenn-webservice.bmi.ohio-state.edu/PoyService.asmx?wsdl").create_rpc_driver()
+    #opt2 = soap.AddFile(:jobId => job_id,:fileData => file_data,:fileName => file_name.gsub(" ",""))
+    post("/AddTextFile",{:body => "jobId=#{job_id}&fileData=#{file_data}&fileName=#{file_name}"})
+
   end
 
-  def self.add_file(job_id,file_name,file_data)
-    encoded_file_data = Base64.encode64(file_data)
-    soap = SOAP::WSDLDriverFactory.new("http://glenn-webservice.bmi.ohio-state.edu/PoyService.asmx?wsdl").create_rpc_driver()
-    opt2 = soap.AddFile(:jobId => job_id,:fileData => encoded_file_data,:fileName => file_name.gsub(" ",""))
-  end
+  #def self.add_file(job_id,file_name,file_data)
+  #  encoded_file_data = Base64.encode64(file_data)
+  #  soap = SOAP::WSDLDriverFactory.new("http://glenn-webservice.bmi.ohio-state.edu/PoyService.asmx?wsdl").create_rpc_driver()
+  #  opt2 = soap.AddFile(:jobId => job_id,:fileData => encoded_file_data,:fileName => file_name.gsub(" ",""))
+  #end
   
   def self.submit_poy(job_id,minutes)
 
