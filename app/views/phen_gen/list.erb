@@ -1,9 +1,12 @@
 
+<h1> My Jobs </h1>
+<div class="list">
+
 <table>
   <tr>
     <th>Name</th>
     <th>Pid</th>
-
+    <th>Date</th>
     <th>Status</th>
     <th>Files</th>
   </tr>
@@ -11,6 +14,7 @@
   <tr>
     <td><%=job[:name] %></td>
     <td><%=job[:pid] %></td>
+    <td><%=job[:created_at] %></td>
     <td><%=job[:status] %></td>
     <td><ul>
       <% InputFile.where("job_id = #{job.id}").each { |f| %>
@@ -20,3 +24,4 @@
   </tr>
   <% }  %>
 </table>
+  </div>

@@ -1,4 +1,4 @@
-#!/home/shandelman/ruby/bin/ruby
+#!/usr/local/bin/ruby
 require 'hpricot'
 
 xml_file = File.new(ARGV[0], "r")

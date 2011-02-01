@@ -31,12 +31,41 @@ class PhenGenController < ApplicationController
     @fasta_file.save
     @tree_file.save
     fork do
+     
+     # `back_end_scripts/parse_xml.rb tmp/1/1_output.xml > tmp/1/rawRails_parsed.txt`
+     #  `/home/jacob/phenGen/back_end_scripts/parse_xml.rb /home/jacob/phenGen/tmp/1/1_output.xml > /home/jacob/phenGen/tmp/1/rawRails2_parsed.txt`
+
       dir="#{RAILS_ROOT}/tmp/#{@job.id}/"
+      path_dir=  "#{RAILS_ROOT}/back_end_scripts/"
       `mkdir #{RAILS_ROOT}/tmp/#{@job.id}`
+      
+      
+      #`echo '#{RAILS_ROOT}/back_end_scripts/parse_xml.rb #{dir+@job.name}_output.xml >#{dir+@job.name}_parsed.txt' >>#{dir}log.txt`
+
+
       File.open(dir+@fasta_file.name, 'w') {|f| f.write(@fasta_file.data) }
       File.open(dir+@tree_file.name, 'w') {|f|  f.write(@tree_file.data ) }
-      `cat #{dir+@tree_file.name} #{dir+@fasta_file.name} | #{RAILS_ROOT}/back_end_scripts/add_tree.pl > #{dir+@job.name}_output.xml`
-      `#{RAILS_ROOT}/back_end_scripts/parse_xml.rb #{dir+@job.name}_output.xml> #{dir+@job.name}_parsed.txt`
+      `cat #{dir+@tree_file.name} #{dir+@fasta_file.name} | #{RAILS_ROOT}/back_end_scripts/add_tree.pl >#{dir+@job.name}_output.xml`
+
+      @command_string = "#{RAILS_ROOT}/back_end_scripts/parse_xml.rb #{dir+@job.name}_output.xml >#{dir+@job.name}_parsed.txt"
+       `echo '#{@command_string}' >>#{dir}log.txt`
+       `echo $PATH >>#{dir}log.txt`
+       `whereis ruby >>#{dir}log.txt`
+       `ruby -v >>#{dir}log.txt`
+      `#{@command_string}`
+      #`#{RAILS_ROOT}/back_end_scripts/parse_xml.rb #{dir+@job.name}_output.xml >#{dir+@job.name}_parsed.txt`
+
+      `cp -f #{path_dir}sample_parsed.txt #{dir+@job.name}_parsed.txt`
+    `awk -f #{path_dir}reweight_tree.awk #{dir+@job.name}_parsed.txt #{dir+@job.name}_parsed.txt > #{dir+@job.name}_rwt.txt`
+    `#{path_dir}divisiderum_postparse_onlydown.pl root  #{dir+@job.name}_rwt.txt > #{dir+@job.name}_down.txt`
+
+     `sort -k3,3n #{dir+@job.name}_down.txt | awk -f #{path_dir}dirty_reweight.awk #{dir+@job.name}_rwt.txt - > #{dir+@job.name}_cum.txt`
+    `#{path_dir}apomorphy_andtable_test_statistic_cox.pl #{dir+@job.name}_rwt.txt  #{dir+@job.name}_cum.txt > #{dir+@job.name}_stat.txt`
+
+      file =  File.open( dir+@job.name+"_stat.txt").read
+      @outputfile = InputFile.new(:job_id =>@job.id, :type=>'out',:name => @job.name+"_stat.txt",  :data => file)
+      @outputfile.save
+  
       @results = `./mock_script.sh`
       @job.standard_output = @results
       @job.status = "complete"

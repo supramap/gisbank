@@ -4,7 +4,7 @@ class CreateInputFiles < ActiveRecord::Migration
       t.integer :job_id
       t.string :name
       t.binary :data
-
+      t.string :type
       t.timestamps
     end
   end
