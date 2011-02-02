@@ -8,7 +8,7 @@ gem 'authlogic'
 gem 'dynamic_form'
 
 #gem 'spawn'
-#gem 'mongrel'
+gem 'mongrel'
 
 # Use unicorn as the web server
 # gem 'unicorn'
