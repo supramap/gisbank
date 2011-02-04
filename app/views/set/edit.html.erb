@@ -41,7 +41,7 @@
  <h4>Locations </h4>
   <div style='width:400px; height:300px;  border-style: ridge;  overflow:auto' >
   <ul id="tree1">
-    <% loc = Location.find(@query.locations.split(',') )   %>
+    <%  @query.locations ? loc = Location.find(@query.locations.split(',')) : loc = []    %>
   <%  Location.find(:all, :select => 'Distinct country',:order => "country").each { |c|  %>
      <li><input type="checkbox" <%= loc.find{ |a|a.country==c.country}?'checked="checked"':"" %>   /><%= c.country %><br/>
                             <ul>

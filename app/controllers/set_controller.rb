@@ -57,84 +57,23 @@ class SetController < ApplicationController
 
   def download_fasta
     @query = Study.find(params[:id])
-  	send_data @query.make_fasta, :filename => "#{@query.name}.fasta", :type => "chemical/seq-aa-fasta"
+    send_data @query.make_fasta, :filename => "#{@query.name}.fasta", :type => "chemical/seq-aa-fasta", :disposition => 'attachment'
+    
+    #send_file @query.make_fasta, :filename => "#{@query.name}.fasta", :type => "chemical/seq-aa-fasta"
+
+  	#org
+  	#send_data @query.make_fasta, :filename => "#{@query.name}.fasta", :type => "chemical/seq-aa-fasta"
   end
 
   def download_meta_geo_refs
     @query = Study.find(params[:id])
-  	send_data @query.make_geo, :filename => "#{@query.name}.csv", :type => "csv"
+  	send_data @query.make_geo, :filename => "#{@query.name}_geo.csv", :type => "csv", :disposition => 'attachment'
   end
 
   def download_metadata
     @query = Study.find(params[:id])
-  	send_data @query.make_metadata, :filename => "#{@query.name}_meta_data.csv", :type => "csv"
-  end
-
-  def start_poy
-    @job_id = Poy_service.init
-    @query = Study.find(params[:id])\
-
-      # if 100 limit the total / 2 times will max at 83 hours
-    # if 300 limit the total / 20 times will max at 75 hours
-    # if 500 limit the total / 50 times will max at 83 hours
-    total =  @query.get_sequence.length;
-    @total_minutes = ((total * total )/100 ).ceil+100
-    @search_minutes= ((total * total )/1000).ceil+10
-    Poy_service.add_text_file(@job_id,"#{@query.name}.fasta", @query.make_fasta)
-
-    Poy_service.add_text_file(@job_id,"#{@query.name}.csv", @query.make_geo)
-    Poy_service.add_poy_file(@job_id,"#{@query.name}",@search_minutes)
-
-    results = Poy_service.submit_poy(@job_id,@total_minutes )
-
-    if(results=="Success")
-
-      @query.kml_status =1
-      @query.job_id = @job_id
-      @query.save
-    else
-      flash[:notice] = "Failed to submit poy:#{results}"
-    end
-
-    redirect_to :action => "show", :id => params[:id]
+  	send_data @query.make_metadata, :filename => "#{@query.name}_meta_data.csv", :type => "csv", :disposition => 'attachment'
   end
 
 
-  def download_supramap_kml
-    @query = Study.find(params[:id])
-    @fileString = Poy_service.get_file(@query.job_id,"results.kml")
-    if(!(@fileString.kind_of? String))
-      flash[:notice] = "Failed to get poy file"
-      redirect_to :action => "show", :id => params[:id]
-    else
-
-      send_data @fileString, :filename => "results.kml", :type => "kml"
-    end
-  end
-
-  def download_supramap_output
-
-    @query = Study.find(params[:id])
-    @fileString = Poy_service.get_file(@query.job_id,"output.txt")
-    if(!(@fileString.kind_of? String))
-      flash[:notice] = "Failed to get poy file"
-      redirect_to :action => "show", :id => params[:id]
-    else
-      send_data @fileString, :filename => "output.txt" , :type => "txt"
-    end
-  end
-
-  def download_aligned_fasta
-
-    @query = Study.find(params[:id])
-    @fileString = Poy_service.get_file(@query.job_id,"A2alignment.fas")
-
-    if(!(@fileString.kind_of? String))
-      flash[:notice] = "Failed to get poy file"
-      redirect_to :action => "show", :id => params[:id]
-    else
-
-      send_data @fileString, :filename => "alignment.fas", :type => "csv"
-    end
-  end
 end

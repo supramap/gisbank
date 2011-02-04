@@ -102,7 +102,7 @@ def make_geo
   geodata = "strain_name,latitude,longitude,date\n"
   get_sequence.each do |seq|
 
-         geodata << "#{seq[:accession]},#{seq[:latitude]},#{seq[:longitude]},#{format_date(seq[:collect_date].to_s)}\n"
+         geodata << "#{seq[:accession]},#{seq[:latitude]},#{seq[:longitude]},#{seq[:date]}\n"
   end
   return geodata
 end
