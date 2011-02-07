@@ -53,7 +53,7 @@
   <%  } %>
   </ul>
   </div>
-     <h4>Segments </h4>
+     <h4>Nucleotide Locus </h4>
      <div style='width:400px; height:300px;  border-style: ridge;  overflow:auto' >
     <%  Protein.all.each { |p|  %>
     <%= radio_button_tag("protein[]",  p.id, @query.has_proteins(p.id)) %>

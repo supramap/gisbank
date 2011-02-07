@@ -9,7 +9,7 @@
 
  <%  if(@query.user_id == current_user.id) %>
 <%= link_to 'Change Search Parameters', :controller => 'set', :action => 'edit', :id=> @query.id %> |
-<%= link_to 'Delete Query', :controller => 'set', :action => 'delete', :id=> @query.id %>
+<%= link_to( 'Delete Query', {:controller => 'set', :action => 'delete', :id=> @query.id},{:confirm => 'Are you sure?'}) %>
 <%  end %>
 
 <br/>
@@ -25,9 +25,9 @@
   <%=  label_tag('Your kml file for supra map is currently being generated please come back again soon.') %>
 <%  elsif @poyjob.status==2%>
       <%=  link_to 'Download Supramap KML', "/poy/download_supramap_kml/#{params[:id]}" %> |
-      <%=  link_to 'Download Aligned Fasta Sequences', "/poy/download_aligned_fasta/#{params[:id]}" %> |
-       <%=  link_to 'Download Poy Tree File', "/poy/download_tree/#{params[:id]}" %> |
-      <%=  link_to 'Download Poy Supermap Output', "/poy/download_output/#{params[:id]}" %>
+      <%=  link_to 'Download Implied Alignment', "/poy/download_aligned_fasta/#{params[:id]}" %> |
+       <%=  link_to 'Download Tree', "/poy/download_tree/#{params[:id]}" %> |
+      <%=  link_to 'Download Stats', "/poy/download_output/#{params[:id]}" %>
       <%  if(@query.user_id == current_user.id) %>
         <%= form_tag "start_poy/#{params[:id]}" %>
         <%= submit_tag("Re-Run Supra Map", :confirm =>'Are you sure? You only want to do this if changed your query parameters or ran supermap a while ago with now out of date data' ) %>

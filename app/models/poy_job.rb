@@ -38,7 +38,7 @@ exit ()
  Poy_service.add_text_file(self.service_job,"#{name}.fasta", self.fasta)
  Poy_service.add_text_file(self.service_job,"#{name}.csv", self.geo)
  Poy_service.add_text_file(self.service_job,"run.poy", self.poy)
- results = Poy_service.submit_poy(self.service_job,self.search_time*10 )
+ results = Poy_service.submit_poy(self.service_job,self.search_time*30 )
  output =(results=="Success")
  if(output)
    self.status = 1

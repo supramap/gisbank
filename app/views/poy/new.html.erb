@@ -7,6 +7,15 @@
       <%="<option value='#{sequence[:id]}'>#{sequence.name}</option>"%>
     <% } %></select><br/>
   <br/>
+    <%
+       search_time = ((@query.get_sequence.length * @query.get_sequence.length )/3000).ceil+2
+    if(search_time>60)
+       search_time=60;
+     end
+        %>
+
+Your job will have a search time of <%=search_time*3 %> minutes and a max run time of <%=search_time*30 %> minutes + any time spent in the queue.
+ <br/> <br/>
   <%= f.submit 'Submit' %>
 
 <% end %>

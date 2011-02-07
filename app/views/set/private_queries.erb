@@ -16,7 +16,8 @@
     <td>
       <%= link_to 'Show Results',  :controller => 'set', :action => 'show', :id=> query.id  %> |
       <%= link_to 'Edit', :controller => 'set', :action => 'edit', :id=> query.id %> |
-      <%= link_to 'Delete', :controller => 'set', :action => 'delete', :id=> query.id %>
+   
+      <%= link_to( 'Delete Query', {:controller => 'set', :action => 'delete', :id=> query.id},{:confirm => 'Are you sure?'}) %>
     </td>
   </tr>
 <% end %>
