@@ -102,7 +102,7 @@ def make_geo
   geodata = "strain_name,latitude,longitude,date\n"
   get_sequence.each do |seq|
 
-         geodata << "#{seq[:accession]},#{seq[:latitude]},#{seq[:longitude]},#{seq[:date]}\n"
+         geodata << "#{seq[:accession]},#{seq[:latitude]},#{seq[:longitude]},#{format_date(seq[:date])}\n"
   end
   return geodata
 end
@@ -110,7 +110,7 @@ end
 def make_metadata
     meta_data = "strain_name,virus type,host,location,date\n"
     get_sequence.each do |seq|
-        meta_data << "#{seq[:accession]},#{seq[:subtype]},#{seq[:host]},#{seq[:country]},#{seq[:date]}\n"
+        meta_data << "#{seq[:accession]},#{seq[:subtype]},#{seq[:host]},#{seq[:country]},#{format_date(seq[:date])}\n"
     end
     return meta_data
 end
@@ -128,8 +128,18 @@ end
   end
 
   def format_date(dt)
-    values = Time.parse(dt)
-    d = Time.local(*values)
-    return d.strftime("%Y-%m-%d")
+    year=dt[0,4]
+    month=dt[5,2]=="00" ? "06" : dt[5,2]
+    day=dt[8,2] =="00" ? "01" : dt[8,2]
+
+    return "#{year}-#{month}-#{day}"
+#    values = Time.parse(dt)
+#    d = Time.local(*values)
+#    if(d.strftime("%d") =='00' || d.strftime("%m") =='00' )
+#      return d.strftime("%Y-06-01")
+#    else
+#      return d.strftime("%Y-%m-%d")
+#    end
+
   end
 end

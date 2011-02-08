@@ -29,7 +29,7 @@
        <%=  link_to 'Download Tree', "/poy/download_tree/#{params[:id]}" %> |
       <%=  link_to 'Download Stats', "/poy/download_output/#{params[:id]}" %>
       <%  if(@query.user_id == current_user.id) %>
-        <%= form_tag "start_poy/#{params[:id]}" %>
+        <%= form_tag "/poy/new/#{params[:id]}" %>
         <%= submit_tag("Re-Run Supra Map", :confirm =>'Are you sure? You only want to do this if changed your query parameters or ran supermap a while ago with now out of date data' ) %>
       <%  end %>
  <%  end %>
