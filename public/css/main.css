@@ -8,6 +8,12 @@ body {
         font-size:9pt;
 }
 
+
+div.sub_input{
+    padding-left:40px;padding-top:0px;padding-bottem:20px;
+}
+
+
 #wrapper {
 	width:820px;
         background:#C6C3C6 url(bg.jpg?z=42787) repeat-y center top;

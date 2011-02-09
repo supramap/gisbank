@@ -1,12 +1,55 @@
+<script type="text/javascript">
+$(document).ready(function(){
+   
+
+   $("#NoTree").change(function(){
+     $("#tree_upload").hide('slow');
+   })
+
+   $("#YesTree").change(function(){
+      $("#tree_upload").show('fast');
+   })
+
+
+ });
+</script>
+<h1> Creating a new GenPhen Job.</h1>
 
 <% form_for @job, :url =>'/phen_gen/create',  :html => {:multipart => true} do |f|%>
-Name:<%= f.text_field :name %><br/><br/>
 
-    Select file fasta file(.fasta):
-    <%= f.file_field "fasta_file", :size => 20 %><br/><br/>
+    <h4>Describe your job.</h4>
+    <div  class="sub_input">
+    Job's name:<%= f.text_field :name %><br/>
+    </div>
 
-    Select file tree file(.tre):
-    <%= f.file_field "tree_file", :size => 20 %><br/><br/>
+    <h4>Upload your sequence data.</h4>
+    <div  class="sub_input">
+    Select fasta file(.fasta):
+    <%= f.file_field "fasta_file", :size => 20 %><br/>
+    </div>
 
-  <%= submit_tag("Submit") %>(this could take while if the files you are uploading are big or if your connenection is slow)
+    <h4>Is Your Fast file already Pre-aligned?</h4>
+    <div  class="sub_input">
+    <input  name="is_prealigned"  type="radio" value="1" checked="true"/>Yes, my Fasta file is already pre-aligned. <br/>
+    <input  name="is_prealigned" type="radio" value="0" checked="false" />No, have poy do the alignment for me.<br/>
+    </div>
+
+    <h4>What is the fasta files outgroups name?</h4>
+    <div  class="sub_input">
+    Outgroup:<%= f.text_field :outgroup  %><br/>
+    </div>
+
+    <h4> Create a tree file. </h4>
+     <div  class="sub_input">
+    <input id="NoTree"  name="use_tree" type="radio" value="0" checked="false"/>Have Poy automatically create my tree file.<br/>
+    <input id="YesTree" name="use_tree" type="radio" value="1" checked="true" />Upload my own tree file.<br/>
+
+    <div  id="tree_upload" style="padding-left:40px;padding-top:20px;padding-bottem:20px;">
+    Select tree file(.tre):
+    <%= f.file_field "tree_file", :size => 20 %>
+    </div>
+       </div>
+
+    <br/><br/><br/>
+  <%= submit_tag("Submit") %>(This could take while if the files you are uploading are big or if your connenection is slow.)
 <% end %>

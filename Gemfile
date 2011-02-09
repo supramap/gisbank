@@ -3,13 +3,18 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.3'
 gem 'mysql'
 
+gem 'jquery-rails', '>= 0.2.6'
+
+
 #gem 'rails3-generators'
 gem 'authlogic'
 gem 'dynamic_form'
+gem 'httparty'
 
+#gem 'spawn' , '=0.1.0'
 #gem 'spawn'
 gem 'mongrel'
-
+gem 'hpricot'
 # Use unicorn as the web server
 # gem 'unicorn'
 

@@ -10,11 +10,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110113185502) do
+ActiveRecord::Schema.define(:version => 20110204203539) do
 
-  create_table "input_files", :force => true do |t|
+  create_table "job_files", :force => true do |t|
     t.integer  "job_id"
     t.string   "name"
+    t.string   "file_type"
     t.binary   "data"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -25,8 +26,11 @@ ActiveRecord::Schema.define(:version => 20110113185502) do
     t.integer  "pid"
     t.string   "status"
     t.string   "name"
+    t.string   "outgroup"
     t.text     "standard_output"
     t.text     "error_output"
+    t.boolean  "supplied_tree"
+    t.boolean  "prealigned_fasta"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

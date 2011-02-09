@@ -9,6 +9,7 @@
     <th>Date</th>
     <th>Status</th>
     <th>Files</th>
+    <th>Actions</th>
   </tr>
 <%  @jobs.each { |job| %>
   <tr>
@@ -17,10 +18,16 @@
     <td><%=job[:created_at] %></td>
     <td><%=job[:status] %></td>
     <td><ul>
-      <% InputFile.where("job_id = #{job.id}").each { |f| %>
+      <% JobFile.where("job_id = #{job.id}").each { |f| %>
        <li><%= link_to f.name, "/phen_gen/get_file/#{f.id}" %></li>
       <% }  %>
       </ul></td>
+      <td><ul>
+        <li><%= link_to( 'Debug Poy', {:controller => 'phen_gen', :action => 'debug_poy', :id=> job.id}) %> </li>
+        <li><%= link_to( 'Debug Job', {:controller => 'phen_gen', :action => 'debug', :id=> job.id}) %> </li>
+        <br/><li><%= link_to( 'Delete Job', {:controller => 'phen_gen', :action => 'delete', :id=> job.id},{:confirm => 'Are you sure?'}) %> </li>
+      </ul></td>
+
   </tr>
   <% }  %>
 </table>
