@@ -84,9 +84,9 @@
     <orderEntry type="library" scope="PROVIDED" name="[gem] daemons (v1.0.10, /usr/local/lib/ruby/gems/1.9.1/gems/daemons-1.0.10)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] crack (v0.1.8, /usr/local/lib/ruby/gems/1.9.1/gems/crack-0.1.8)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] httparty (v0.7.3, /usr/local/lib/ruby/gems/1.9.1/gems/httparty-0.7.3)" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="[gem] spawn (v0.1.0, /usr/local/lib/ruby/gems/1.9.1/gems/spawn-0.1.0)" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="[gem] i18n (v0.5.0, /usr/local/lib/ruby/gems/1.9.1/gems/i18n-0.5.0)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] hpricot (v0.8.3, /usr/local/lib/ruby/gems/1.9.1/gems/hpricot-0.8.3)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] tzinfo (v0.3.24, /usr/local/lib/ruby/gems/1.9.1/gems/tzinfo-0.3.24)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] i18n (v0.5.0, /usr/local/lib/ruby/gems/1.9.1/gems/i18n-0.5.0)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] polyglot (v0.3.1, /usr/local/lib/ruby/gems/1.9.1/gems/polyglot-0.3.1)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] erubis (v2.6.6, /usr/local/lib/ruby/gems/1.9.1/gems/erubis-2.6.6)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] rack (v1.2.1, /usr/local/lib/ruby/gems/1.9.1/gems/rack-1.2.1)" level="application" />

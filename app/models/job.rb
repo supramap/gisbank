@@ -27,6 +27,7 @@ class Job < ActiveRecord::Base
 
      `#{ path_dir}parse_xml.rb #{@dir+self.name}_output.xml >#{@dir+self.name}_parsed.txt`
 
+     `echo "awk -f #{path_dir}reweight_tree.awk #{@dir+self.name}_parsed.txt #{@dir+self.name}_parsed.txt > #{@dir+self.name}_rwt.txt" >#{@dir}log.txt `
      `awk -f #{path_dir}reweight_tree.awk #{@dir+self.name}_parsed.txt #{@dir+self.name}_parsed.txt > #{@dir+self.name}_rwt.txt`
 
      `#{path_dir}divisiderum_postparse_onlydown.pl root  #{@dir+self.name}_rwt.txt > #{@dir+self.name}_down.txt`
@@ -36,11 +37,11 @@ class Job < ActiveRecord::Base
      `#{path_dir}apomorphy_andtable_test_statistic_cox.pl #{@dir+self.name}_rwt.txt  #{@dir+self.name}_cum.txt > #{@dir+self.name}_stat.txt`
       save_file self.name+"_stat.txt"
 
-       `awk '($1 != $2 && $5 > 1 && $3 > $5 5 && ($3-$5)*($3-$5)/$5 >=6){print;}' #{@dir+self.name}_stat.txt > #{@dir+self.name}_stat_p<0.05.txt"}`
-       save_file self.name+"_stat_p<0.05.txt"
+       `awk '($1 != $2 && $5 > 1 && $3 > $5 5 && ($3-$5)*($3-$5)/$5 >=6){print;}' #{@dir+self.name}_stat.txt > #{@dir+self.name}_stat_p0.05.txt"}`
+       save_file self.name+"_stat_p0.05.txt"
 
-       `awk '($1 != $2 && $5 > 1 && $3 > $5 && ($3-$5)*($3-$5)/$5 >=19){print;}' #{@dir+self.name}_stat.txt > #{@dir+self.name}_stat_p<0.0001.txt"}`
-       save_file self.name+"_stat_p<0.0001.txt"
+       `awk '($1 != $2 && $5 > 1 && $3 > $5 && ($3-$5)*($3-$5)/$5 >=19){print;}' #{@dir+self.name}_stat.txt > #{@dir+self.name}_stat_p0.0001.txt"}`
+       save_file self.name+"_stat_p0.0001.txt"
 
       #self.standard_output = @results
       self.status = "complete"

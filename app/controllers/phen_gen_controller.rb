@@ -10,29 +10,64 @@ class PhenGenController < ApplicationController
 
   def new
     @job = Job.new
+    @job.save
   end
   
   def create
-    @job = Job.new(:name => params[:job][:name],:outgroup => params[:job][:outgroup], :prealigned_fasta => params[:is_prealigned],  :supplied_tree=> params[:use_tree],:user_id => current_user.id , :status => "queued" )
-    @job.save
 
-    file =  File.open(params[:job][:fasta_file].tempfile.path).read
-    @fasta_file = JobFile.new(:job_id =>@job.id, :file_type=>'fas', :name => params[:job][:fasta_file].original_filename,  :data => file)
-    @fasta_file.save
+     @job =Job.find(params[:id])
+    #@job = Job.new(:name => params[:job][:name],:outgroup => params[:job][:outgroup], :prealigned_fasta => params[:is_prealigned],  :supplied_tree=> params[:use_tree],:user_id => current_user.id , :status => "queued" )
 
+     @job.name = params[:job][:name]
+     @job.user_id = current_user.id
+     @job.status = "queued"
+      @job.save
+
+     @job.prealigned_fasta = params[:is_prealigned]
+
+    if(params[:SelectOutGroup]=="0")
+      @job.outgroup = params[:outgroup]
+    else
+      @job.outgroup = params[:job][:outgroup]
+    end
+
+
+
+   @job.supplied_tree = params[:use_tree]
     if(params[:use_tree]=="1")
         file =  File.open(params[:job][:tree_file].tempfile.path).read
         @tree_file = JobFile.new(:job_id =>@job.id, :file_type=>'tre',:name => params[:job][:tree_file].original_filename,  :data => file)
         @tree_file.save
-      #else
     end
+     @job.save
     #@poy = Poy.new(@job)
     spawn(:method => :thread,:argv => 'phengen_job') do
       @poy = Poy.new(@job)
       @job.start
     end
+
     redirect_to "/phen_gen/list"
     
+  end
+
+  def fasta_upload
+
+    if(JobFile.where("file_type = 'fas' and job_id=#{params[:id]}").length>1)
+      render :text => "{success:false}"
+    end
+    
+    file_data =request.raw_post
+    @fasta_file = JobFile.new(:job_id =>params[:id], :file_type=>'fas', :name => params[:qqfile] ,  :data =>  file_data)
+    @fasta_file.save
+
+    render :text => "{success:true}"
+
+  end
+
+  def outgroup_options
+
+     render :json  => JobFile.where("file_type = 'fas' and job_id=#{params[:id]}")[0].data.split("\n").select{|a| a[0]=='>'}.map{|a| a[1,9999].strip}
+        # >.*$
   end
 
   def debug

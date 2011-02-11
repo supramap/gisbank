@@ -1,21 +1,56 @@
-<script type="text/javascript">
+
+<% content_for :head do %>
+ <%= javascript_include_tag "fileuploader.js" %>
+<%= stylesheet_link_tag "/css/fileuploader.css" %>
+    <script type="text/javascript">
 $(document).ready(function(){
-   
+   $("#tree_upload").hide();
+   $("#SelectOutDiv").hide();
+   $("#TypeOutDiv").hide();
+   /*$("#NoTree").checked =true*/
+
+    function outgroup_switch()
+    {
+        //alert($("#SelectOutGroup").i .checked);
+        if($('input:radio[name=SelectOutGroup]:checked').val()==0 )
+        {
+            $("#SelectOutDiv").show('slow');
+            $("#TypeOutDiv").hide('slow');
+        }
+        else
+        {
+            $("#SelectOutDiv").hide('slow');
+            $("#TypeOutDiv").show('slow');
+        }
+    }
+
+   $("#SelectOutGroup").change(function(){
+       outgroup_switch()
+   })
+
+   $("#TypeOutGroup").change(function(){
+       outgroup_switch()
+   })
 
    $("#NoTree").change(function(){
      $("#tree_upload").hide('slow');
-   })
+   });
 
    $("#YesTree").change(function(){
-      $("#tree_upload").show('fast');
+      $("#tree_upload").show('slow');
    })
 
 
- });
-</script>
+
+     });
+   </script>
+<% end %>
+
+
+
 <h1> Creating a new GenPhen Job.</h1>
 
-<% form_for @job, :url =>'/phen_gen/create',  :html => {:multipart => true} do |f|%>
+<% form_for @job, :url =>"/phen_gen/create/#{@job.id}",  :html => {:multipart => true} do |f|%>
 
     <h4>Describe your job.</h4>
     <div  class="sub_input">
@@ -24,25 +59,58 @@ $(document).ready(function(){
 
     <h4>Upload your sequence data.</h4>
     <div  class="sub_input">
-    Select fasta file(.fasta):
-    <%= f.file_field "fasta_file", :size => 20 %><br/>
+    <%#Select fasta file(.fasta):%>
+
+      <script>
+       jQuery(function(){
+           var uploader = new qq.FileUploader({
+                element: document.getElementById('fasta-file-uploader'),
+                action: 'fasta_upload/<%= @job.id %>',
+                onComplete: function(id, fileName, responseJSON){
+                    $.ajax({
+                        url: 'outgroup_options/<%= @job.id %>',
+                        context: document.body,
+                        success: function(data){
+                            $.each(data, function(item) {
+                                $('#outgroup').append(
+                                    $('<option></option>').val(data[item]).html(data[item])
+                                );
+                            });
+                        }
+                    });
+                }
+           });
+       });
+
+    </script>
+      <div id="fasta-file-uploader"></div>
+    <%#= f.file_field "fasta_file", :size => 20 %><br/>
     </div>
 
     <h4>Is Your Fast file already Pre-aligned?</h4>
     <div  class="sub_input">
-    <input  name="is_prealigned"  type="radio" value="1" checked="true"/>Yes, my Fasta file is already pre-aligned. <br/>
-    <input  name="is_prealigned" type="radio" value="0" checked="false" />No, have poy do the alignment for me.<br/>
+    <input  name="is_prealigned"  type="radio"  />Yes, my Fasta file is already pre-aligned. <br/>
+    <input  name="is_prealigned" type="radio"   />No, have poy do the alignment for me.<br/>
     </div>
 
     <h4>What is the fasta files outgroups name?</h4>
     <div  class="sub_input">
-    Outgroup:<%= f.text_field :outgroup  %><br/>
+      <input id="SelectOutGroup"  name="SelectOutGroup" type="radio" value="0" />select outgroup from available options.<br/>
+       <div  id="SelectOutDiv" style="padding-left:40px;padding-top:20px;padding-bottem:20px;">
+            <select id="outgroup" name="outgroup"></select><br/><br/>
+       </div>
+      <input id="TypeOutGroup" name="SelectOutGroup" type="radio" value="1"  />manually type in outgroup<br/>
+      <div  id="TypeOutDiv" style="padding-left:40px;padding-top:20px;padding-bottem:20px;">
+        OutGroup:<%= f.text_field :outgroup  %><br/>
+       </div>
+
+
     </div>
 
     <h4> Create a tree file. </h4>
      <div  class="sub_input">
-    <input id="NoTree"  name="use_tree" type="radio" value="0" checked="false"/>Have Poy automatically create my tree file.<br/>
-    <input id="YesTree" name="use_tree" type="radio" value="1" checked="true" />Upload my own tree file.<br/>
+    <input id="NoTree"  name="use_tree" type="radio" value="0" />Have Poy automatically create my tree file.<br/>
+    <input id="YesTree" name="use_tree" type="radio" value="1"  />Upload my own tree file.<br/>
 
     <div  id="tree_upload" style="padding-left:40px;padding-top:20px;padding-bottem:20px;">
     Select tree file(.tre):
@@ -51,5 +119,5 @@ $(document).ready(function(){
        </div>
 
     <br/><br/><br/>
-  <%= submit_tag("Submit") %>(This could take while if the files you are uploading are big or if your connenection is slow.)
+  <%= submit_tag("Submit") %>
 <% end %>
