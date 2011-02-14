@@ -13,7 +13,7 @@ class PoyJob < ActiveRecord::Base
 
       @hours = self.search_time.div(60);
       @minutes = self.search_time.modulo(60);
-#name = Study.find(self.query_id).name.gsub(" ","")
+#name = Query.find(self.query_id).name.gsub(" ","")
      self.poy =
 "read (\"#{job_name.gsub(" ","")}.fasta\")
 set(root:\"#{Sequence.find(self.outgroup).accession}\")
@@ -32,7 +32,7 @@ exit ()
 
  def submit
  self.service_job = Poy_service.init
- name = Study.find(self.query_id).name.gsub(" ","")
+ name = Query.find(self.query_id).name.gsub(" ","")
  Poy_service.add_text_file(self.service_job,"#{name}.fasta", self.fasta)
  Poy_service.add_text_file(self.service_job,"#{name}.csv", self.geo)
  Poy_service.add_text_file(self.service_job,"run.poy", self.poy)
@@ -61,7 +61,7 @@ exit ()
  def isdone
     output =  Poy_service.is_done_yet(self.service_job)
     if(output)
-      name = Study.find(self.query_id).name.gsub(" ","")
+      name = Query.find(self.query_id).name.gsub(" ","")
      self.aligned_fasta = Poy_service.get_file(self.service_job,"#{name}.ia")
      self.kml = Poy_service.get_file(self.service_job,"#{name}.kml")
      self.output = Poy_service.get_file(self.service_job,"#{name}_stats.txt")

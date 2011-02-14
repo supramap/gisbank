@@ -2,22 +2,22 @@ class SetController < ApplicationController
   before_filter :require_user
 
   def public_queries
-    @queries = Study.find_by_sql("select * from studies where is_public = 1")
+    @queries = Query.find_by_sql("select * from queries where is_public = 1")
   end
 
   def private_queries
-    @queries = Study.find_by_sql("select * from studies where user_id = #{current_user.id}")
+    @queries = Query.find_by_sql("select * from queries where user_id = #{current_user.id}")
   end
 
   def new
   end
 
   def edit
-    @query = Study.find(params[:id])
+    @query = Query.find(params[:id])
   end
 
   def create
-    @study = Study.new
+    @study = Query.new
     @study.user_id=current_user.id
     @study.name=params["name"]
     @study.bind(params)
@@ -27,7 +27,7 @@ class SetController < ApplicationController
   end
 
   def update
-    @study = Study.find(params[:id])
+    @study = Query.find(params[:id])
     @study.bind(params)
 
     @study.save
@@ -35,7 +35,7 @@ class SetController < ApplicationController
   end
 
   def show
-    @query = Study.find(params[:id])
+    @query = Query.find(params[:id])
     @seq = Sequence.paginate_by_sql(@query.get_sql,:page => params[:page], :order => 'id DESC')
     @poyjobs = PoyJob.find_by_sql("SELECT * FROM gisbank.poy_jobs where query_id =#{ params[:id]}")
     #@poyjobs = PoyJob.all.find_all {|i|  i.query_id = params[:id]}
@@ -48,7 +48,7 @@ class SetController < ApplicationController
   end
 
   def delete
-    @query = Study.find(params[:id])
+    @query = Query.find(params[:id])
 
     if(@query.kml_status != 0)
       Poy_service.delete(@query.job_id)
@@ -58,7 +58,7 @@ class SetController < ApplicationController
   end
 
   def download_fasta
-    @query = Study.find(params[:id])
+    @query = Query.find(params[:id])
     send_data @query.make_fasta, :filename => "#{@query.name}.fasta", :type => "chemical/seq-aa-fasta", :disposition => 'attachment'
     
     #send_file @query.make_fasta, :filename => "#{@query.name}.fasta", :type => "chemical/seq-aa-fasta"
@@ -68,12 +68,12 @@ class SetController < ApplicationController
   end
 
   def download_meta_geo_refs
-    @query = Study.find(params[:id])
+    @query = Query.find(params[:id])
   	send_data @query.make_geo, :filename => "#{@query.name}_geo.csv", :type => "csv", :disposition => 'attachment'
   end
 
   def download_metadata
-    @query = Study.find(params[:id])
+    @query = Query.find(params[:id])
   	send_data @query.make_metadata, :filename => "#{@query.name}_meta_data.csv", :type => "csv", :disposition => 'attachment'
   end
 

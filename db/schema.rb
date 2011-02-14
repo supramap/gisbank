@@ -156,6 +156,25 @@ ActiveRecord::Schema.define(:version => 0) do
     t.string "name", :limit => 10, :null => false
   end
 
+  create_table "queries", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "description"
+    t.string   "pathogens"
+    t.string   "hosts",            :limit => 1000
+    t.string   "locations",        :limit => 5000
+    t.string   "proteins"
+    t.datetime "max_collect_date"
+    t.datetime "min_collect_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "job_id",                           :default => 0
+    t.integer  "kml_status",                       :default => 0
+    t.integer  "total_sequences",                  :default => 0
+    t.boolean  "is_public",                        :default => false
+    t.text     "sql"
+  end
+
   create_table "sequences", :force => true do |t|
     t.integer "isolate_id"
     t.integer "protein_id"
@@ -206,25 +225,6 @@ ActiveRecord::Schema.define(:version => 0) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
-
-  create_table "studies", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "name"
-    t.string   "description"
-    t.string   "pathogens"
-    t.string   "hosts",            :limit => 1000
-    t.string   "locations",        :limit => 5000
-    t.string   "proteins"
-    t.datetime "max_collect_date"
-    t.datetime "min_collect_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "job_id",                           :default => 0
-    t.integer  "kml_status",                       :default => 0
-    t.integer  "total_sequences",                  :default => 0
-    t.boolean  "is_public",                        :default => false
-    t.text     "sql"
-  end
 
   create_table "users", :force => true do |t|
     t.string   "login",                              :null => false

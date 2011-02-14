@@ -1,12 +1,12 @@
-class Study < ActiveRecord::Base
+class Query < ActiveRecord::Base
   # validates_presence_of :user_id, :name
 
   def bind(params)
     #self.name=params["name"]
     self.description=params["description"]
     self.is_public=params["public"]
-    self.min_collect_date=DateTime.parse( params["start_date"]['month']+"/"+params["start_date"]['day']+"/"+params["start_date"]['year'])
-    self.max_collect_date=DateTime.parse(params["end_date"]['month']+"/"+params["end_date"]['day']+"/"+params["end_date"]['year'])
+    self.min_collect_date=DateTime.parse( params["start_date"]['year']+"-"+params["start_date"]['month']+"-"+params["start_date"]['day'])
+    self.max_collect_date=DateTime.parse(params["end_date"]['year']+"-"+params["end_date"]['month']+"-"+params["end_date"]['day'])
    
     self.pathogens =serilize_array( params[:pathogen])
     self.hosts =serilize_array( params[:hosts])
