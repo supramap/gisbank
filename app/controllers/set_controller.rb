@@ -37,11 +37,13 @@ class SetController < ApplicationController
   def show
     @query = Study.find(params[:id])
     @seq = Sequence.paginate_by_sql(@query.get_sql,:page => params[:page], :order => 'id DESC')
-    @poyjob = PoyJob.first(:conditions => ["query_id = ?",params[:id]])
-
-    if(@poyjob && @poyjob.status==1)
-      @poyjob.isdone
-    end
+    @poyjobs = PoyJob.find_by_sql("SELECT * FROM gisbank.poy_jobs where query_id =#{ params[:id]}")
+    #@poyjobs = PoyJob.all.find_all {|i|  i.query_id = params[:id]}
+#    @poyjob = PoyJob.first(:conditions => ["query_id = ?",params[:id]])
+#
+#    if(@poyjob && @poyjob.status==1)
+#      @poyjob.isdone
+#    end
 
   end
 

@@ -9,31 +9,51 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100708173841) do
+ActiveRecord::Schema.define(:version => 0) do
 
   create_table "hosts", :force => true do |t|
     t.string "name", :limit => 50, :null => false
   end
 
-  create_table "isolates", :id => false, :force => true do |t|
-    t.integer  "id",                             :default => 0, :null => false
-    t.integer  "ncbi_isolate_id",                :default => 0, :null => false
-    t.string   "ncbi_id",         :limit => 100,                :null => false
-    t.string   "host",            :limit => 30,                 :null => false
-    t.string   "subtype",         :limit => 4,                  :null => false
-    t.string   "country",         :limit => 30,                 :null => false
-    t.datetime "date",                                          :null => false
-    t.string   "virus_name",      :limit => 100,                :null => false
-    t.string   "mutation",        :limit => 30,                 :null => false
-    t.string   "age",             :limit => 10,                 :null => false
-    t.string   "gender",          :limit => 10,                 :null => false
+  create_table "isolates", :force => true do |t|
+    t.string   "isolates_genBank_id", :limit => 100
+    t.datetime "date"
+    t.string   "virus_name",          :limit => 100
     t.integer  "location_id"
-    t.string   "ncbi_name",       :limit => 50,                 :null => false
     t.integer  "pathogen_id"
     t.integer  "host_id"
-    t.string   "location_name",   :limit => 100
-    t.float    "longitude"
-    t.float    "latitude"
+  end
+
+  create_table "isolates_genBank", :force => true do |t|
+    t.string   "genBank_id",   :limit => 100, :null => false
+    t.string   "host",         :limit => 30,  :null => false
+    t.string   "subtype",      :limit => 4,   :null => false
+    t.string   "country",      :limit => 30,  :null => false
+    t.datetime "date",                        :null => false
+    t.string   "virus_name",   :limit => 100, :null => false
+    t.string   "mutation",     :limit => 30,  :null => false
+    t.string   "age",          :limit => 10,  :null => false
+    t.string   "gender",       :limit => 10,  :null => false
+    t.integer  "location_id"
+    t.string   "genBank_name", :limit => 50,  :null => false
+    t.integer  "pathogen_id"
+    t.integer  "host_id"
+  end
+
+  create_table "isolates_gisaid", :force => true do |t|
+    t.string   "gisaid_id",   :limit => 100, :null => false
+    t.string   "host",        :limit => 30,  :null => false
+    t.string   "subtype",     :limit => 4,   :null => false
+    t.string   "location",    :limit => 30,  :null => false
+    t.datetime "date",                       :null => false
+    t.string   "virus_name",  :limit => 100, :null => false
+    t.string   "mutation",    :limit => 30,  :null => false
+    t.string   "age",         :limit => 10,  :null => false
+    t.string   "gender",      :limit => 10,  :null => false
+    t.integer  "location_id"
+    t.string   "ncbi_name",   :limit => 50,  :null => false
+    t.integer  "pathogen_id"
+    t.integer  "host_id"
   end
 
   create_table "isolates_old", :force => true do |t|
@@ -108,72 +128,56 @@ ActiveRecord::Schema.define(:version => 20100708173841) do
     t.float  "longitude"
     t.string "name",           :limit => 100
     t.string "local",          :limit => 30
-  end
-
-  create_table "ncbi_isolate", :primary_key => "ncbi_isolate_id", :force => true do |t|
-    t.string   "ncbi_id",     :limit => 100, :null => false
-    t.string   "host",        :limit => 30,  :null => false
-    t.string   "subtype",     :limit => 4,   :null => false
-    t.string   "country",     :limit => 30,  :null => false
-    t.datetime "date",                       :null => false
-    t.string   "virus_name",  :limit => 100, :null => false
-    t.string   "mutation",    :limit => 30,  :null => false
-    t.string   "age",         :limit => 10,  :null => false
-    t.string   "gender",      :limit => 10,  :null => false
-    t.integer  "location_id"
-    t.string   "ncbi_name",   :limit => 50,  :null => false
-    t.integer  "pathogen_id"
-    t.integer  "host_id"
-  end
-
-  create_table "ncbi_sequences", :primary_key => "ncbi_sequences_id", :force => true do |t|
-    t.integer "ncbi_isolate_id"
-    t.string  "name",            :limit => 30,    :null => false
-    t.string  "protein",         :limit => 5,     :null => false
-    t.string  "data",            :limit => 10000, :null => false
-    t.string  "accession",       :limit => 30
-    t.integer "protein_id"
+    t.string "continent",      :limit => 30,  :null => false
   end
 
   create_table "pathogens", :force => true do |t|
     t.string "name", :limit => 4, :null => false
   end
 
+  create_table "poy_jobs", :force => true do |t|
+    t.integer  "query_id"
+    t.integer  "status",        :default => 0, :null => false
+    t.text     "kml"
+    t.text     "aligned_fasta"
+    t.text     "output"
+    t.text     "fasta"
+    t.text     "geo"
+    t.text     "poy"
+    t.integer  "outgroup"
+    t.integer  "search_time"
+    t.integer  "service_job"
+    t.text     "tree"
+    t.text     "poy_output"
+    t.datetime "created_at"
+  end
+
   create_table "proteins", :force => true do |t|
     t.string "name", :limit => 10, :null => false
   end
 
-  create_table "queries", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.string   "isolate_name"
-    t.string   "virus_type"
-    t.string   "h1n1_swine_set"
-    t.string   "hosts"
-    t.string   "locations"
-    t.datetime "max_collect_date"
-    t.datetime "min_collect_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "proteins"
-    t.integer  "user_id"
-    t.integer  "job_id",                          :default => 0
-    t.integer  "kml_status",                      :default => 0
-    t.string   "pathogen",         :limit => 20
-    t.integer  "total_sequences",                 :default => 0
-    t.boolean  "is_public",                       :default => false, :null => false
-    t.string   "sql",              :limit => 300
+  create_table "sequences", :force => true do |t|
+    t.integer "isolate_id"
+    t.integer "protein_id"
+    t.string  "accession",  :limit => 30
+    t.string  "data",       :limit => 10000, :null => false
   end
 
-  create_table "sequences", :id => false, :force => true do |t|
-    t.integer "id",                                 :default => 0, :null => false
-    t.integer "isolate_id"
-    t.integer "ncbi_sequences_id",                  :default => 0, :null => false
-    t.integer "ncbi_isolate_id"
-    t.string  "name",              :limit => 30,                   :null => false
-    t.string  "protein",           :limit => 5,                    :null => false
-    t.string  "data",              :limit => 10000,                :null => false
-    t.string  "accession",         :limit => 30
+  create_table "sequences_genBank", :force => true do |t|
+    t.integer "isolates_genBank_id"
+    t.string  "name",                :limit => 30,    :null => false
+    t.string  "protein",             :limit => 5,     :null => false
+    t.string  "data",                :limit => 10000, :null => false
+    t.string  "accession",           :limit => 30
+    t.integer "protein_id"
+  end
+
+  create_table "sequences_gisaid", :force => true do |t|
+    t.integer "Isolates_gisaid_id"
+    t.string  "name",               :limit => 30,    :null => false
+    t.string  "protein",            :limit => 5,     :null => false
+    t.string  "data",               :limit => 10000, :null => false
+    t.string  "accession",          :limit => 30
     t.integer "protein_id"
   end
 
@@ -208,18 +212,18 @@ ActiveRecord::Schema.define(:version => 20100708173841) do
     t.string   "name"
     t.string   "description"
     t.string   "pathogens"
-    t.string   "hosts"
-    t.string   "locations"
+    t.string   "hosts",            :limit => 1000
+    t.string   "locations",        :limit => 5000
     t.string   "proteins"
     t.datetime "max_collect_date"
     t.datetime "min_collect_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "job_id",                          :default => 0
-    t.integer  "kml_status",                      :default => 0
-    t.integer  "total_sequences",                 :default => 0
-    t.boolean  "is_public",                       :default => false
-    t.string   "sql",              :limit => 300
+    t.integer  "job_id",                           :default => 0
+    t.integer  "kml_status",                       :default => 0
+    t.integer  "total_sequences",                  :default => 0
+    t.boolean  "is_public",                        :default => false
+    t.text     "sql"
   end
 
   create_table "users", :force => true do |t|
