@@ -1,16 +1,23 @@
-
 <% content_for :head do %>
  <%= javascript_include_tag "fileuploader.js" %>
+    <%= javascript_include_tag "jquery.validate.min.js" %>
 <%= stylesheet_link_tag "/css/fileuploader.css" %>
+    <style type="text/css">
+    .block { display: block; }
+    label.error { display: none; }
+    </style>
+
+
     <script type="text/javascript">
+
+      
 $(document).ready(function(){
    $("#tree_upload").hide();
    $("#SelectOutDiv").hide();
    $("#TypeOutDiv").hide();
    /*$("#NoTree").checked =true*/
 
-    function outgroup_switch()
-    {
+    function outgroup_switch() {
         //alert($("#SelectOutGroup").i .checked);
         if($('input:radio[name=SelectOutGroup]:checked').val()==0 )
         {
@@ -23,25 +30,25 @@ $(document).ready(function(){
             $("#TypeOutDiv").show('slow');
         }
     }
+   $("#SelectOutGroup").change(function(){outgroup_switch() })
+   $("#TypeOutGroup").change(function(){outgroup_switch() })
+   $("#NoTree").change(function(){ $("#tree_upload").hide('slow');});
+   $("#YesTree").change(function(){ $("#tree_upload").show('slow');})
 
-   $("#SelectOutGroup").change(function(){
-       outgroup_switch()
-   })
-
-   $("#TypeOutGroup").change(function(){
-       outgroup_switch()
-   })
-
-   $("#NoTree").change(function(){
-     $("#tree_upload").hide('slow');
-   });
-
-   $("#YesTree").change(function(){
-      $("#tree_upload").show('slow');
-   })
-
-
-
+      $(".edit_job").validate({
+        //debug: true,
+        rules: {
+        "job[name]": {required: true, minlength: 2},
+        "fasta-file-uploader" : {required: true,remote:"fasta_uploaded"},
+        "is_prealigned": {required: true},
+        "SelectOutGroup": {required: true},
+        "use_tree": {required: true},
+        "outgroup"  : {required: true , depends: function(element) {return $("#SelectOutGroup:checked")}},
+        "job[outgroup]"  : {required: true , depends: function(element) {return $("#TypeOutGroup:checked")}},
+         "job[tree_file]"  : {required: true , depends: function(element) {return $("#YesTree:checked")}}
+        },
+        invalidHandler: function(form, validator) {alert('There were problems submitting you job look at the errors in red.')}
+        });
      });
    </script>
 <% end %>
@@ -54,10 +61,10 @@ $(document).ready(function(){
 
     <h4>Describe your job.</h4>
     <div  class="sub_input">
-    Job's name:<%= f.text_field :name %><br/>
+    <p>Job's name:<%= f.text_field :name %><br/></p>
     </div>
 
-    <h4>Upload your sequence data.</h4>
+    <h4>Upload your sequence data.</h4><label for="fasta-file-uploader" class="error" >You need to select one</label>
     <div  class="sub_input">
     <%#Select fasta file(.fasta):%>
 
@@ -83,17 +90,18 @@ $(document).ready(function(){
        });
 
     </script>
-      <div id="fasta-file-uploader"></div>
+      <div id="fasta-file-uploader" name="fasta-file-uploader"></div>
     <%#= f.file_field "fasta_file", :size => 20 %><br/>
     </div>
 
-    <h4>Is Your Fast file already Pre-aligned?</h4>
-    <div  class="sub_input">
-    <input  name="is_prealigned"  type="radio"  />Yes, my Fasta file is already pre-aligned. <br/>
-    <input  name="is_prealigned" type="radio"   />No, have poy do the alignment for me.<br/>
-    </div>
+    <h4>Is Your Fast file already Pre-aligned?</h4><label for="is_prealigned" class="error" >You need to select one</label>
 
-    <h4>What is the fasta files outgroups name?</h4>
+    <div  class="sub_input"><p>
+    <input  name="is_prealigned"  type="radio"  value="1" />Yes, my Fasta file is already pre-aligned. <br/>
+    <input  name="is_prealigned" type="radio"  value="0" />No, have poy do the alignment for me.<br/>
+   </p> </div>
+
+    <h4>What is the fasta files outgroups name?</h4><label for="SelectOutGroup" class="error" >You need to select one</label>
     <div  class="sub_input">
       <input id="SelectOutGroup"  name="SelectOutGroup" type="radio" value="0" />select outgroup from available options.<br/>
        <div  id="SelectOutDiv" style="padding-left:40px;padding-top:20px;padding-bottem:20px;">
@@ -107,7 +115,7 @@ $(document).ready(function(){
 
     </div>
 
-    <h4> Create a tree file. </h4>
+    <h4> Create a tree file. </h4><label for="use_tree" class="error" >You need to select one</label>
      <div  class="sub_input">
     <input id="NoTree"  name="use_tree" type="radio" value="0" />Have Poy automatically create my tree file.<br/>
     <input id="YesTree" name="use_tree" type="radio" value="1"  />Upload my own tree file.<br/>
@@ -117,7 +125,6 @@ $(document).ready(function(){
     <%= f.file_field "tree_file", :size => 20 %>
     </div>
        </div>
-
     <br/><br/><br/>
   <%= submit_tag("Submit") %>
 <% end %>

@@ -21,9 +21,9 @@ class PhenGenController < ApplicationController
      @job.name = params[:job][:name]
      @job.user_id = current_user.id
      @job.status = "queued"
-      @job.save
+     @job.save
 
-     @job.prealigned_fasta = params[:is_prealigned]
+     @job.prealigned_fasta = (params[:is_prealigned]=="1")
 
     if(params[:SelectOutGroup]=="0")
       @job.outgroup = params[:outgroup]
@@ -31,15 +31,15 @@ class PhenGenController < ApplicationController
       @job.outgroup = params[:job][:outgroup]
     end
 
-
-
    @job.supplied_tree = params[:use_tree]
     if(params[:use_tree]=="1")
         file =  File.open(params[:job][:tree_file].tempfile.path).read
         @tree_file = JobFile.new(:job_id =>@job.id, :file_type=>'tre',:name => params[:job][:tree_file].original_filename,  :data => file)
         @tree_file.save
     end
-     @job.save
+    @job.save
+
+     
     #@poy = Poy.new(@job)
     spawn(:method => :thread,:argv => 'phengen_job') do
       @poy = Poy.new(@job)
@@ -51,7 +51,6 @@ class PhenGenController < ApplicationController
   end
 
   def fasta_upload
-
     if(JobFile.where("file_type = 'fas' and job_id=#{params[:id]}").length>1)
       render :text => "{success:false}"
     end
@@ -59,15 +58,19 @@ class PhenGenController < ApplicationController
     file_data =request.raw_post
     @fasta_file = JobFile.new(:job_id =>params[:id], :file_type=>'fas', :name => params[:qqfile] ,  :data =>  file_data)
     @fasta_file.save
-
     render :text => "{success:true}"
-
   end
 
   def outgroup_options
-
      render :json  => JobFile.where("file_type = 'fas' and job_id=#{params[:id]}")[0].data.split("\n").select{|a| a[0]=='>'}.map{|a| a[1,9999].strip}
-        # >.*$
+  end
+
+  def fasta_uploaded
+    if(JobFile.where("file_type = 'fas' and job_id=#{params[:id]}")[0].count>0)
+     render :json  => true
+    else
+    render :json  => false
+    end
   end
 
   def debug
@@ -76,7 +79,6 @@ class PhenGenController < ApplicationController
   end
 
   def debug_poy
-    #Poy.new(Job.find(params[:id]))
     @job = Job.find(params[:id])
     poy_output = PoyService.get_file(@job.service_id,"#{@job.name}.poy_output")
     JobFile.new(:job_id => @job.id, :file_type=>"poy_out",:name => "#{@job.name}.poy_output",  :data => poy_output).save
@@ -87,13 +89,10 @@ class PhenGenController < ApplicationController
   end
 
   def delete
-
     JobFile.where("job_id = ?", params[:id]).each{|a| a.destroy}
     Job.find(params[:id]).destroy
     redirect_to "/phen_gen/list"
   end
-
-
 
   def get_file
     @file = JobFile.find(params[:id])

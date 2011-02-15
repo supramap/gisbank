@@ -119,6 +119,10 @@ a:hover { color: #9CC3DE;}
   display: table;
 }
 
+label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
+p { clear: both; }
+
+
 #errorExplanation {
   width: 400px;
   border: 2px solid red;

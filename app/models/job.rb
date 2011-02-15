@@ -2,6 +2,18 @@ class Job < ActiveRecord::Base
   belongs_to :user
   has_many :job_file
 
+=begin
+  def validate(params)
+    errors=""
+    if(params[:job][:name]==nil || params[:job][:name]=='')
+      errors << "The job needs a name.\n"
+    end
+
+  end
+=end
+  
+
+
  def start()
 
     begin

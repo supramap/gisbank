@@ -1,8 +1,22 @@
+<% content_for :head do %>
+ <%= javascript_include_tag "fileuploader.js" %>
+ <%= javascript_include_tag "jquery.validate.min.js" %>
 
+ <script type="text/javascript">
+
+
+$(document).ready(function(){
+    function delete_row(id){
+     alert('what');
+    $(id).remove();
+      };
+})
+ </script>
+<% end %>
 <h1> My Jobs </h1>
 <div class="list">
 
-<table>
+<table id="main_table">
   <tr>
     <th>Name</th>
     <th>Pid</th>
@@ -12,7 +26,7 @@
     <th>Actions</th>
   </tr>
 <%  @jobs.each { |job| %>
-  <tr>
+  <tr id="<%=job.id  %>" >
     <td><%=job[:name] %></td>
     <td><%=job[:pid] %></td>
     <td><%=job[:created_at] %></td>
@@ -25,6 +39,7 @@
       <td><ul>
         <li><%= link_to( 'Debug Poy', {:controller => 'phen_gen', :action => 'debug_poy', :id=> job.id}) %> </li>
         <li><%= link_to( 'Debug Job', {:controller => 'phen_gen', :action => 'debug', :id=> job.id}) %> </li>
+        <br/><li><input type="submit" value="Ajax Delete Job" onclick="delete_row('<%=job.id  %>')"/> </li>
         <br/><li><%= link_to( 'Delete Job', {:controller => 'phen_gen', :action => 'delete', :id=> job.id},{:confirm => 'Are you sure?'}) %> </li>
       </ul></td>
 

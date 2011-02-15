@@ -13,10 +13,10 @@ class Poy
       if(job.prealigned_fasta)
         @poy_script <<"read(prealigned:(\"#{fasta.name}\",tcm:(1,2)))\n"
         @poy_script <<"set (root:\"#{job.outgroup}\")\n"
-      else
+     else
         @poy_script <<"read (\"#{fasta.name}\")\n"
         @poy_script <<"set (root:\"#{job.outgroup}\")\n"
-        #@poy_script <<"transform (tcm:(1, 2))\n"
+        @poy_script <<"transform (tcm:(1, 2))\n"
       end
 
 
@@ -25,13 +25,13 @@ class Poy
         PoyService.add_text_file(job.service_id,tree.name,tree.data)
 
         @poy_script << "read(\"#{tree.name}\")\n"
-        #@poy_script << "transform(static_approx)\n"
+        @poy_script << "transform(static_approx)\n"
       else
 
         @poy_script << "search(max_time:00:0:5, memory:gb:2)\n"
         #@poy_script << "search(max_time:00:0:2, memory:gb:2)\n"
         #@poy_script << "search(max_time:00:0:2, memory:gb:2)\n"
-        #@poy_script << "transform(static_approx)\n"
+        @poy_script << "transform(static_approx)\n"
         @poy_script << "select(best:1)\n"
         @poy_script << "report (\"#{job.name}.tre\", trees)\n"
       end
