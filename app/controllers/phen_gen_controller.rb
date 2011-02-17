@@ -40,9 +40,10 @@ class PhenGenController < ApplicationController
     @job.save
 
      
-    #@poy = Poy.new(@job)
+    #PoyRunner.run(@job)
     spawn(:method => :thread,:argv => 'phengen_job') do
-      @poy = Poy.new(@job)
+      #@poy = Poy.new(@job)
+      PoyRunner.run(@job)
       @job.start
     end
 
@@ -91,7 +92,8 @@ class PhenGenController < ApplicationController
   def delete
     JobFile.where("job_id = ?", params[:id]).each{|a| a.destroy}
     Job.find(params[:id]).destroy
-    redirect_to "/phen_gen/list"
+    #redirect_to "/phen_gen/list"
+    render :nothing => true
   end
 
   def get_file

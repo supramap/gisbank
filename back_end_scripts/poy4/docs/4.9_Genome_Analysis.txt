@@ -1,0 +1,11 @@
+(* Genome analysis of multiple chromosomes *)
+read (genome:("gen5bp"))
+transform ((all, dynamic_pam: (chrom_breakpoint:80, chrom_indel:(15, 2.5), 
+locus_inversion:20,locus_indel:(10,1.5), median:1, swap_med:1)))
+build()
+swap()
+select()
+report ("genome", diagnosis)
+report ("genconsensus", graphconsensus)
+exit()
+

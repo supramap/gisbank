@@ -1,0 +1,11 @@
+(* Custom Alphabet to Breakinv characters *)
+read(custom_alphabet:("ca1.fas", "m1.fas"))
+transform((all,custom_to_breakinv:()))
+transform((all, dynamic_pam:(locus_breakpoint:20,
+locus_indel:(10, 1.5), median:1, swap_med:1)))
+build()
+swap()
+select()
+report("breakinv", diagnosis)
+report("consensustree", graphconsensus)
+exit()

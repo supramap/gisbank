@@ -99,6 +99,8 @@
     <orderEntry type="library" scope="PROVIDED" name="[gem] mail (v2.2.15, /usr/local/lib/ruby/gems/1.9.1/gems/mail-2.2.15)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] treetop (v1.4.9, /usr/local/lib/ruby/gems/1.9.1/gems/treetop-1.4.9)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] activemodel (v3.0.3, /usr/local/lib/ruby/gems/1.9.1/gems/activemodel-3.0.3)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] httparty (v0.7.4, /usr/local/lib/ruby/gems/1.9.1/gems/httparty-0.7.4)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] jquery-rails (v0.2.7, /usr/local/lib/ruby/gems/1.9.1/gems/jquery-rails-0.2.7)" level="application" />
   </component>
 </module>
 

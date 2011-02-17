@@ -1,0 +1,19 @@
+(* sensitivity analysis *)
+read("9.fas")
+set(root:"t1")
+store("original_data")
+transform (tcm:"111.txt")
+build(100)
+swap(timeout:3600)
+select()
+report("111.tre", trees:(total) ,"111con.tre", consensus,
+"111con.pdf", graphconsensus)
+use("original_data")
+transform (tcm:"112.txt")
+build(100)
+swap(timeout:3600)
+select()
+report("112.tre",trees:(total) ,"112con.tre",consensus,
+"112con.pdf",graphconsensus)
+exit()
+

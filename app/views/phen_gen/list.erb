@@ -3,13 +3,21 @@
  <%= javascript_include_tag "jquery.validate.min.js" %>
 
  <script type="text/javascript">
-
-
-$(document).ready(function(){
-    function delete_row(id){
-     alert('what');
-    $(id).remove();
+   function debug1(){
+     alert('what number one');
       };
+
+ function delete_row(id){
+
+     if (confirm("Are you sure you want to delete this job?"))
+     {
+        $('#row_'+id).remove();
+        $.get('/phen_gen/delete/'+id)
+      }
+
+   };
+$(document).ready(function(){
+
 })
  </script>
 <% end %>
@@ -26,24 +34,26 @@ $(document).ready(function(){
     <th>Actions</th>
   </tr>
 <%  @jobs.each { |job| %>
-  <tr id="<%=job.id  %>" >
+  <tr id="row_<%=job.id  %>" >
     <td><%=job[:name] %></td>
     <td><%=job[:pid] %></td>
     <td><%=job[:created_at] %></td>
     <td><%=job[:status] %></td>
     <td><ul>
-      <% JobFile.where("job_id = #{job.id}").each { |f| %>
+      <%# JobFile.where("job_id = #{job.id}").each { |f| %>
+       <%# job.get_files.each { |f| %>
+       <% JobFile.get_files(job.id).each { |f| %>
        <li><%= link_to f.name, "/phen_gen/get_file/#{f.id}" %></li>
       <% }  %>
       </ul></td>
       <td><ul>
         <li><%= link_to( 'Debug Poy', {:controller => 'phen_gen', :action => 'debug_poy', :id=> job.id}) %> </li>
         <li><%= link_to( 'Debug Job', {:controller => 'phen_gen', :action => 'debug', :id=> job.id}) %> </li>
-        <br/><li><input type="submit" value="Ajax Delete Job" onclick="delete_row('<%=job.id  %>')"/> </li>
-        <br/><li><%= link_to( 'Delete Job', {:controller => 'phen_gen', :action => 'delete', :id=> job.id},{:confirm => 'Are you sure?'}) %> </li>
+        <br/><li><input type="submit" value="Delete Job" onclick="delete_row('<%=job.id  %>')" /> </li>
       </ul></td>
 
   </tr>
   <% }  %>
 </table>
+
   </div>

@@ -1,0 +1,12 @@
+(* search using all data under ip *)
+read("9.fas", "31.ss", aminoacids:("41.aa"))
+read("inter_tree.tre")
+transform (tcm:(1,2), gap_opening:1)
+set(iterative:true)
+swap()
+select()
+report("all_trees", trees:(total) ,"constree", graphconsensus,
+"diagnosis", diagnosis)
+transform ((all, static_approx))
+report ("phastwinclad.ss", phastwinclad)
+exit()

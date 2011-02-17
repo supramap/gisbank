@@ -1,0 +1,10 @@
+(* Chromosome analysis of annotated sequences *)
+read(annotated:("aninv2"))
+transform ((all, dynamic_pam: (locus_inversion:20, locus_indel:(10, 1.5), 
+circular:false, median:1, swap_med:1)))
+build()
+swap()
+select()
+report("Annotated", diagnosis)
+report("consensustree", graphconsensus)
+exit()
