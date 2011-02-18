@@ -1,48 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3a2fcaa6-c407-4597-b81e-c888a836c010" name="Default" comment="back end script debugin">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/add_arbitrary_weights.awk" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/ncurses_poy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/Contents/._POY" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/Contents/POY" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/Resources/commands.pdf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/Resources/ncurses_poy.command" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/Resources/ncurses_poy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/Resources/seq_poy.command" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/docs/18s.fas" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/docs/28s.aln" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/docs/28s.fas" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/docs/31.ss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/docs/41.aa" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/docs/9.fas" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/docs/aninv2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/docs/ca1.fas" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/docs/commands.pdf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/docs/gen5bp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/docs/inter_tree.tre" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/docs/m1.fas" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/docs/ua15.fas" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/poy_runner.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/parse_noko_xml.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/docs/4.1_Combining_Search_Strategies.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/docs/4.2_Iterative_Pass.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/docs/4.3_Bremer_Support.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/docs/4.4_Jackknife_Support.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/docs/4.5_Sensitivity_Analysis.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/docs/4.6_Chromosome_Unannotated.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/docs/4.7_Chromosome_Annotated.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/docs/4.8_Custom_to_BreakInv.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/docs/4.9_Genome_Analysis.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/poy4/docs/changes.txt" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/log.txt" afterPath="" />
+    <list default="true" id="3a2fcaa6-c407-4597-b81e-c888a836c010" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/phenGen.iml" afterPath="$PROJECT_DIR$/.idea/phenGen.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/input_file_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/input_file_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/phen_gen_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/phen_gen_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/job.rb" afterPath="$PROJECT_DIR$/app/models/job.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/phen_gen/list.erb" afterPath="$PROJECT_DIR$/app/views/phen_gen/list.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/phen_gen/new.erb" afterPath="$PROJECT_DIR$/app/views/phen_gen/new.erb" />
     </list>
     <ignored path="phenGen.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -69,7 +33,7 @@
   <component name="FileColors" enabled="true" enabledForTabs="true" showNonProject="false" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="phen_gen_controller.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="phen_gen_controller.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/phen_gen_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state line="12" column="13" selection-start="246" selection-end="246" vertical-scroll-proportion="0.0">
@@ -78,10 +42,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="list.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="list.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/phen_gen/list.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="103" selection-start="1445" selection-end="1445" vertical-scroll-proportion="0.6060606">
+            <state line="46" column="14" selection-start="1085" selection-end="1085" vertical-scroll-proportion="-9.375">
               <folding />
             </state>
           </provider>
@@ -90,7 +54,7 @@
       <file leaf-file-name="job.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/job.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="2" selection-start="1520" selection-end="1520" vertical-scroll-proportion="0.0">
+            <state line="53" column="141" selection-start="2066" selection-end="2066" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -153,8 +117,8 @@
         <option value="$PROJECT_DIR$/app/controllers/phen_gen_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/job_file.rb" />
         <option value="$PROJECT_DIR$/app/views/phen_gen/new.erb" />
-        <option value="$PROJECT_DIR$/app/models/job.rb" />
         <option value="$PROJECT_DIR$/app/views/phen_gen/list.erb" />
+        <option value="$PROJECT_DIR$/app/models/job.rb" />
       </list>
     </option>
   </component>
@@ -520,6 +484,7 @@
     <frame x="0" y="24" width="1920" height="1032" extended-state="0" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32815966" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32890365" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -532,7 +497,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32815966" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -552,7 +516,7 @@
     <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
     <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="added some jquery" />
+    <option name="LAST_COMMIT_MESSAGE" value="back end script debuging" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -568,6 +532,7 @@
     <MESSAGE value="added poy web service component" />
     <MESSAGE value="extended the job creation process" />
     <MESSAGE value="added some jquery" />
+    <MESSAGE value="back end script debuging" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -643,20 +608,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/phen_gen_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="13" selection-start="246" selection-end="246" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/job.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="2" selection-start="1520" selection-end="1520" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/phen_gen/new.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="125" column="34" selection-start="5087" selection-end="5087" vertical-scroll-proportion="-72.5">
@@ -666,7 +617,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/phen_gen/list.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="103" selection-start="1445" selection-end="1445" vertical-scroll-proportion="0.6060606">
+        <state line="46" column="14" selection-start="1085" selection-end="1085" vertical-scroll-proportion="-9.375">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/job.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="141" selection-start="2066" selection-end="2066" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/phen_gen_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="13" selection-start="246" selection-end="246" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>

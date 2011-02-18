@@ -12,9 +12,10 @@ gem 'dynamic_form'
 gem 'httparty'
 
 #gem 'spawn' , '=0.1.0'
-#gem 'spawn'
-gem 'mongrel'
+gem 'spawn'
+#gem 'mongrel'
 gem 'hpricot'
+#gem 'nokogiri'
 # Use unicorn as the web server
 # gem 'unicorn'
 

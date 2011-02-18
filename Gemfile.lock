@@ -55,6 +55,7 @@ GEM
       daemons (~> 1.0.10)
       gem_plugin (~> 0.2.3)
     mysql (2.8.1)
+    nokogiri (1.4.4)
     polyglot (0.3.1)
     rack (1.2.1)
     rack-mount (0.6.13)
@@ -91,4 +92,5 @@ DEPENDENCIES
   jquery-rails (>= 0.2.6)
   mongrel
   mysql
+  nokogiri
   rails (= 3.0.3)
