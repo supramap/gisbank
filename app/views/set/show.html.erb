@@ -14,11 +14,13 @@
 
 <br/>
 <%= link_to 'Download Nucleotides', "/set/download_fasta/#{@query.id}" %> |
+<%= link_to 'Download Trimed Nucleotides', "/set/download_trim_fasta/#{@query.id}" %> |
 <%= link_to 'Download Georefs', "/set/download_meta_geo_refs/#{@query.id}" %> |
 <%= link_to 'Download Metadata', "/set/download_metadata/#{@query.id}" %>
 <br/><br/>
 
 
+<p><b>Supramap:</b></p>
 
     <% if(@poyjobs ==nil || @poyjobs==[] )   %>
   <%= form_tag "/poy/new/#{params[:id]}" %>
@@ -30,7 +32,7 @@
     job.isdone;
  %>
     <%  if job.status==1%>
-  <%=  label_tag('Your kml file for supra map is currently being generated please come back again soon.') %>
+  <%=  label_tag("run #{(counter).to_s} : Your kml file for supra map is currently being generated for run #{(counter).to_s} please come back again soon.") %><br/><br/>
 <%  else %>
             <%="run #{(counter).to_s} : " %>
           <%=  (job.kml != nil) ? link_to('Download Supramap KML', "/poy/download_supramap_kml/#{job.id}"):' ' %>

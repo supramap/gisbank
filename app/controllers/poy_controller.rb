@@ -11,7 +11,12 @@ class PoyController < ApplicationController
     @job = PoyJob.new(params[:job])
     @job.outgroup = params[:outgroup]
     @job.query_id = @query.id
-    @job.fasta= @query.make_fasta
+    if(params[:trimed] == "1")
+      @job.fasta= @query.make_trim_fasta
+    else
+      @job.fasta= @query.make_fasta
+    end
+
     @job.geo = @query.make_geo
     @job.addpoyfile(@query.name,@query.get_sequence.length)
     @job.save
