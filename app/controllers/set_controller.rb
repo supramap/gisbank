@@ -69,7 +69,7 @@ class SetController < ApplicationController
 
   def download_trim_fasta
      @query = Query.find(params[:id])
-     send_data @query.make_trim_fasta, :filename => "#{@query.name}.fasta", :type => "chemical/seq-aa-fasta", :disposition => 'attachment'
+     send_data @query.make_trim_fasta, :filename => "#{@query.name}.trimmed.fasta", :type => "chemical/seq-aa-fasta", :disposition => 'attachment'
   end
 
   def download_meta_geo_refs

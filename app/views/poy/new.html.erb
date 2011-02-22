@@ -10,10 +10,10 @@
       <%="<option value='#{sequence[:id]}'>#{sequence.name}</option>"%>
     <% } %></select><br/>
   <br/>
-    Do you want rour fasta input trimed to the protien reading frame?<br/>
+<!--    Do you want rour fasta input trimed to the protien reading frame?<br/>
     <%= radio_button_tag(:trimed, "1",true) %>trimed fasta<br/>
     <%= radio_button_tag(:trimed, "0", false) %>raw fasta<br/>
-  <br/>
+  <br/>-->
     <%
        search_time = ((@query.get_sequence.length * @query.get_sequence.length )/3000).ceil+2
     if(search_time>60)
