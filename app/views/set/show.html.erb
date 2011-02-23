@@ -36,7 +36,7 @@
 <%  else %>
             <%="Run #{(counter).to_s} : " %>
           <%=  (job.kml != nil) ? link_to('Download Supramap KML', "/poy/download_supramap_kml/#{job.id}"):' ' %>
-      <%#=  (job.aligned_fasta != nil) ? link_to( 'Download Implied Alignment', "/poy/download_aligned_fasta/#{job.id}") :' ' %>
+      <%=  (job.aligned_fasta != nil) ? link_to( 'Download Implied Alignment', "/poy/download_aligned_fasta/#{job.id}") :' ' %>
        <%=  (job.tree != nil) ? link_to( 'Download Tree', "/poy/download_tree/#{job.id}") :' ' %>
       <%=  (job.kml != nil) ? link_to( 'Download Stats', "/poy/download_output/#{job.id}") :' ' %>
       <%=  (job.poy != nil) ? link_to( 'Download poy script', "/poy/download_poy_script/#{job.id}") :' ' %>

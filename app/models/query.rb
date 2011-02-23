@@ -99,14 +99,33 @@ and date < '#{max_collect_date}'"
  end
 
 def make_trim_fasta
+
+  sequences = get_sequence
+  #trim_cut_max = trim( sequences.max{|x|  x[:data].length } )[:data].length
+  trim_cut_max = sequences.max{|x|  (x && x[:data]) ? x[:data].length : 0 }[:data].length
   fasta =""
-   get_sequence.each do |seq|
-     #bad [/ATG[...]*(TAA|TAG|TGA)/]
+
+   sequences.each do |seq|
+
      #old code  fasta << ">#{seq[:accession]}\n#{seq[:data].gsub(/ |\r|\n/,'')[/ATG.*\z/][/^.{3}+?(TAA|TAG|TGA)/]}\n"
-    fasta << ">#{seq[:accession]}\n#{seq[:data].gsub(/ |\r|\n/,'')[/ATG.*(TAA|TAG|TGA)/]}\n"
+    fasta << ">#{seq[:accession]}\n#{ seq[:data].length>trim_cut_max  ? trim(seq[:data]) : seq[:data] }\n"
     end
     return fasta
 end
+
+def trim seq
+    #algo_one   seq[/ATG.*\z/mx][/^.{3}+?(TAA|TAG|TGA)/mx]
+    return seq[/ATG.*(TAA|TAG|TGA)/mx]
+end
+
+# class String
+#   def capitalize_each
+#     self.split(" ").each{|word| word.capitalize!}.join(" ")
+#   end
+#   def capitalize_each!
+#     replace capitalize_each
+#   end
+# end
 
 def make_geo
   geodata = "strain_name,latitude,longitude,date\n"
