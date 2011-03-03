@@ -33,11 +33,9 @@ GEM
       activesupport
     builder (2.1.2)
     crack (0.1.8)
-    daemons (1.0.10)
     dynamic_form (1.1.3)
     erubis (2.6.6)
       abstract (>= 1.0.0)
-    gem_plugin (0.2.3)
     hpricot (0.8.3)
     httparty (0.7.3)
       crack (= 0.1.8)
@@ -51,11 +49,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
-    mongrel (1.2.0.pre2)
-      daemons (~> 1.0.10)
-      gem_plugin (~> 0.2.3)
     mysql (2.8.1)
-    nokogiri (1.4.4)
     polyglot (0.3.1)
     rack (1.2.1)
     rack-mount (0.6.13)
@@ -90,7 +84,5 @@ DEPENDENCIES
   hpricot
   httparty
   jquery-rails (>= 0.2.6)
-  mongrel
   mysql
-  nokogiri
   rails (= 3.0.3)

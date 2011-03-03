@@ -29,13 +29,18 @@ class Job < ActiveRecord::Base
 
       poy_out_file=JobFile.where("file_type = 'poy_out' and job_id=#{self.id}")[0]
       tree_file=JobFile.where("file_type = 'tre' and job_id=#{self.id}")[0]
-      File.open(@dir+poy_out_file.name, 'w') {|f| f.write(poy_out_file.data) }
+      File.open(@dir+poy_out_file.name, 'wb') {|f| f.write(poy_out_file.data) }
+
+      #zip_file = File.open(@dir+poy_out_file.name, 'w')
+      #zip_file << poy_out_file.data
+
       File.open(@dir+tree_file.name, 'w') {|f|  f.write(tree_file.data ) }
 
+      `unzip #{@dir+poy_out_file.name} -d #{@dir}`
 
      `awk -f #{path_dir}add_arbitrary_weights.awk #{@dir+tree_file.name} > #{@dir}temp_tree.tre `
 
-      `cat #{@dir}temp_tree.tre #{@dir+poy_out_file.name} | #{path_dir}add_tree.pl >#{@dir+self.name}_output.xml`
+     `cat #{@dir}temp_tree.tre #{@dir}#{self.name}.poy_output | #{path_dir}add_tree.pl >#{@dir+self.name}_output.xml`
 
      #`#{ path_dir}parse_noko_xml.rb #{@dir+self.name}_output.xml >#{@dir+self.name}_parsed.txt`
 

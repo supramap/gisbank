@@ -1,3 +1,6 @@
+require 'rubygems'
+require 'base64'
+
 class PhenGenController < ApplicationController
   before_filter :require_user, :only => [:list, :new, :create]
 
@@ -18,7 +21,7 @@ class PhenGenController < ApplicationController
      @job =Job.find(params[:id])
     #@job = Job.new(:name => params[:job][:name],:outgroup => params[:job][:outgroup], :prealigned_fasta => params[:is_prealigned],  :supplied_tree=> params[:use_tree],:user_id => current_user.id , :status => "queued" )
 
-     @job.name = params[:job][:name]
+     @job.name = params[:job][:name].gsub(' ','_')
      @job.user_id = current_user.id
      @job.status = "queued"
      @job.save
@@ -42,8 +45,8 @@ class PhenGenController < ApplicationController
      
     #PoyRunner.run(@job)
     spawn(:method => :thread,:argv => 'phengen_job') do
-      #@poy = Poy.new(@job)
-      PoyRunner.run(@job)
+      poy = Poy.new(@job)
+      #PoyRunner.run(@job)
       @job.start
     end
 
@@ -81,11 +84,35 @@ class PhenGenController < ApplicationController
 
   def debug_poy
     @job = Job.find(params[:id])
-    poy_output = PoyService.get_file(@job.service_id,"#{@job.name}.poy_output")
-    JobFile.new(:job_id => @job.id, :file_type=>"poy_out",:name => "#{@job.name}.poy_output",  :data => poy_output).save
 
-    tree_data = PoyService.get_file(@job.service_id,"#{@job.name}.tre")
-    JobFile.new(:job_id => @job.id, :file_type=>"tre",:name => "#{@job.name}.tre",  :data => tree_data).save
+    #spawn(:method => :thread,:argv => 'phengen_job') do
+
+
+    zip_file = PoyService.get_zip_file(@job.service_id,"#{@job.name}.poy_output")
+    JobFile.new(:job_id => @job.id, :file_type=>"poy_out",:name => "#{@job.name}.poy_output.zip",  :data => zip_file).save
+
+    if(!@job.supplied_tree)
+        tree_data = PoyService.get_file(@job.service_id,"#{@job.name}.tre")
+        JobFile.new(:job_id => @job.id, :file_type=>"tre",:name => "#{@job.name}.tre",  :data => tree_data).save
+      end
+
+    #end
+
+    #poy_output = PoyService.get_file(@job.service_id,"#{@job.name}.poy_output")
+    #JobFile.new(:job_id => @job.id, :file_type=>"poy_out",:name => "#{@job.name}.poy_output",  :data => poy_output).save
+    #tree_data = PoyService.get_file(@job.service_id,"#{@job.name}.tre")
+    #JobFile.new(:job_id => @job.id, :file_type=>"tre",:name => "#{@job.name}.tre",  :data => tree_data).save
+
+
+    redirect_to "/phen_gen/list"
+  end
+
+  def debug_bin
+    #Job.find(params[:id]).start
+    #filedata = ActiveSupport::Base64.decode64( PoyService.get_zip_file(1222951586,'tree.tre'))
+    filedata = Base64.decode64( PoyService.get_zip_file(1222951586,'tree.tre'))
+    File.open('zip.test', 'w') {|f| f.write(filedata ) }
+
     redirect_to "/phen_gen/list"
   end
 

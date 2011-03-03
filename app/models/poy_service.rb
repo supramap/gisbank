@@ -1,8 +1,11 @@
+require 'rubygems'
+require 'base64'
 require 'httparty'
 
 class PoyService
   include HTTParty
   base_uri 'http://glenn-webservice.bmi.ohio-state.edu//PoyService.asmx'
+  #base_uri 'http://127.0.0.1:8080//PoyService.asmx'
   default_params
 
   def initialize()
@@ -18,7 +21,7 @@ class PoyService
   end
 
   def self.submit_poy(job_id)
-   get("/SubmitPoy?jobId=#{job_id}&numberOfNodes=2&wallTimeHours=1&wallTimeMinutes=0")["string"]
+   get("/SubmitPoy?jobId=#{job_id}&numberOfNodes=2&wallTimeHours=3&wallTimeMinutes=0")["string"]
   end
 
   def self.is_done_yet(job_id)
@@ -30,6 +33,15 @@ class PoyService
     results = get "/GetTextFile?jobId=#{job_id.to_s}&fileName=#{file_name}"
     return results['string']
   end
+
+   def self.get_zip_file(job_id,file_name)
+    require 'rubygems'
+    require 'base64'
+    results = get "/GetZipedFile?jobId=#{job_id.to_s}&fileName=#{file_name}"
+    bin =  Base64.decode64(results['base64Binary'])
+    return bin
+  end
+
   def self.delete(job_id)
     get("/PoyService.asmx/DeleteJob?jobId=#{job_id}")
   end

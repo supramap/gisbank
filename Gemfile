@@ -12,7 +12,7 @@ gem 'dynamic_form'
 gem 'httparty'
 
 #gem 'spawn' , '=0.1.0'
-gem 'spawn'
+#gem 'spawn'
 #gem 'mongrel'
 gem 'hpricot'
 #gem 'nokogiri'
