@@ -11,6 +11,8 @@ class Poy
       PoyService.add_text_file(job.service_id,fasta.name,fasta.data)
 
       if(job.prealigned_fasta)
+        fasta[:file_type]="ia"
+        fasta.save
         @poy_script <<"read(prealigned:(\"#{fasta.name}\",tcm:(1,2)))\n"
         @poy_script <<"set (root:\"#{job.outgroup}\")\n"
      else
@@ -36,6 +38,10 @@ class Poy
         @poy_script << "report (\"#{job.name}.tre\", trees)\n"
       end
 
+      if(!job.prealigned_fasta)
+         @poy_script << "report (\"#{job.name}.ia\", ia)\n"
+      end
+
       @poy_script << "report(\"#{job.name}.poy_output\",data,diagnosis)\n"
       @poy_script << "exit()\n"
       @poy_file = JobFile.new(:job_id =>job.id, :file_type=>"poy",:name => job.name+".poy",  :data => @poy_script)
@@ -55,6 +61,11 @@ class Poy
       if(!job.supplied_tree)
         tree_data = PoyService.get_file(job.service_id,"#{job.name}.tre")
         JobFile.new(:job_id => job.id, :file_type=>"tre",:name => "#{job.name}.tre",  :data => tree_data).save
+      end
+
+       if(!job.prealigned_fasta)
+         ia_data = PoyService.get_file(job.service_id,"#{job.name}.ia")
+        JobFile.new(:job_id => job.id, :file_type=>"ia",:name => "#{job.name}.ia",  :data => ia_data).save
       end
 
     rescue Exception => ex

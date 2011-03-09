@@ -1,16 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3a2fcaa6-c407-4597-b81e-c888a836c010" name="Default" comment="everything now works">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/phenGen.iml" afterPath="$PROJECT_DIR$/.idea/phenGen.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
+    <list default="true" id="3a2fcaa6-c407-4597-b81e-c888a836c010" name="Default" comment="adding stuff before changing scripts">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/W2.poy_output" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/loading.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/raw_fasta_and_tree.poy_output" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/plugins/spawn/CHANGELOG" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/plugins/spawn/README.markdown" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zip.test" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/job_file.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/transpose_maker.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/phen_gen/show.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/phen_gen/show2.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/divisiderum_postparse_totaldown.pl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/back_end_scripts/transpose.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20110113185502_create_job_files.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20110204203539_extend_jobs_i.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/fileuploader.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/fileuploader.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/jquery-ui.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/jquery-ui.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/jquery.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/jquery.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/jquery.validate.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/plugins/spawn/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/plugins/spawn/init.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/plugins/spawn/lib/patches.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/plugins/spawn/lib/spawn.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/phen_gen_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/phen_gen_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/job.rb" afterPath="$PROJECT_DIR$/app/models/job.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/poy.rb" afterPath="$PROJECT_DIR$/app/models/poy.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/poy_service.rb" afterPath="$PROJECT_DIR$/app/models/poy_service.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/phen_gen/list.erb" afterPath="$PROJECT_DIR$/app/views/phen_gen/list.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/back_end_scripts/apomorphy_andtable_test_statistic_cox.pl" afterPath="$PROJECT_DIR$/back_end_scripts/apomorphy_andtable_test_statistic_cox.pl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nbproject/private/rake-d.txt" afterPath="$PROJECT_DIR$/nbproject/private/rake-d.txt" />
     </list>
     <ignored path="phenGen.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,16 +63,7 @@
       <file leaf-file-name="phen_gen_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/phen_gen_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="91" column="95" selection-start="2531" selection-end="2531" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="application.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="10" selection-start="202" selection-end="220" vertical-scroll-proportion="0.0">
+            <state line="154" column="7" selection-start="4842" selection-end="4842" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -64,28 +78,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="poy_service.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/poy_service.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="0" selection-start="1146" selection-end="1146" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="poy.rb" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/models/poy.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="95" selection-start="1990" selection-end="1990" vertical-scroll-proportion="1.2206572">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="list.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/phen_gen/list.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="8" selection-start="1553" selection-end="1553" vertical-scroll-proportion="-22.875">
+            <state line="43" column="12" selection-start="958" selection-end="958" vertical-scroll-proportion="-16.541666">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="show.erb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/phen_gen/show.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="40" column="11" selection-start="1404" selection-end="1404" vertical-scroll-proportion="0.566706">
               <folding />
             </state>
           </provider>
@@ -94,7 +99,7 @@
       <file leaf-file-name="job.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/job.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="0" selection-start="950" selection-end="1048" vertical-scroll-proportion="0.0">
+            <state line="89" column="51" selection-start="3390" selection-end="3390" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -137,21 +142,21 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/views/user_sessions/new_user.erb" />
-        <option value="$PROJECT_DIR$/db/migrate/20110204203539_extend_jobs_i.rb" />
-        <option value="$PROJECT_DIR$/db/migrate/20110111180909_create_jobs.rb" />
-        <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/db/migrate/20110113185502_create_job_files.rb" />
-        <option value="$PROJECT_DIR$/public/css/main.css" />
         <option value="$PROJECT_DIR$/app/controllers/input_file_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/poy_runner.rb" />
         <option value="$PROJECT_DIR$/app/models/job_file.rb" />
         <option value="$PROJECT_DIR$/app/views/phen_gen/new.erb" />
         <option value="$PROJECT_DIR$/app/models/poy_service.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/phen_gen_controller.rb" />
+        <option value="$PROJECT_DIR$/app/models/transpose_maker.rb" />
+        <option value="$PROJECT_DIR$/back_end_scripts/transpose.rb" />
         <option value="$PROJECT_DIR$/app/models/poy.rb" />
+        <option value="$PROJECT_DIR$/public/css/main.css" />
+        <option value="$PROJECT_DIR$/app/views/phen_gen/show2.erb" />
         <option value="$PROJECT_DIR$/app/models/job.rb" />
+        <option value="$PROJECT_DIR$/app/views/phen_gen/show.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/phen_gen_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/phen_gen/list.erb" />
       </list>
     </option>
@@ -189,81 +194,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="phengen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="phengen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="phengen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="phengen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="phengen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="phengen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="phengen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="phen_gen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="phengen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="phengen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope" />
       <pane id="RailsProjectView">
         <subPane>
           <PATH>
@@ -292,7 +222,18 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="phengen" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Favorites" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -526,9 +467,9 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32890365" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32910722" sideWeight="0.7427938" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2572062" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32594234" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22292657" sideWeight="0.67627496" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3214671" sideWeight="0.0" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32372504" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32815966" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -554,7 +495,7 @@
     <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
     <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="everything now works" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding stuff before changing scripts" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -572,36 +513,19 @@
     <MESSAGE value="added some jquery" />
     <MESSAGE value="back end script debuging" />
     <MESSAGE value="everything now works" />
+    <MESSAGE value="adding stuff before changing scripts" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/app/views/phen_gen/show.erb</url>
+          <line>12</line>
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/models/user.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/user_session.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/user_sessions_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="16" selection-start="686" selection-end="686" vertical-scroll-proportion="0.867052" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="123" column="0" selection-start="2017" selection-end="2017" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/input_file_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="7" selection-start="304" selection-end="304" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/poy_runner.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="0" selection-start="531" selection-end="531" vertical-scroll-proportion="0.0" />
@@ -622,14 +546,49 @@
         <state line="21" column="0" selection-start="558" selection-end="558" vertical-scroll-proportion="0.4945055" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/phen_gen_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="91" column="95" selection-start="2531" selection-end="2531" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="10" selection-start="202" selection-end="220" vertical-scroll-proportion="0.0">
+        <state line="7" column="10" selection-start="202" selection-end="220" vertical-scroll-proportion="0.17073171" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/transpose_maker.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="15" selection-start="60" selection-end="60" vertical-scroll-proportion="0.09389672" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/poy.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="69" selection-start="2501" selection-end="2501" vertical-scroll-proportion="0.60390353" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/poy_service.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="0" selection-start="1146" selection-end="1146" vertical-scroll-proportion="0.6888634" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/back_end_scripts/transpose.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="26" selection-start="164" selection-end="186" vertical-scroll-proportion="0.15499426" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="88" column="12" selection-start="1430" selection-end="1430" vertical-scroll-proportion="0.017221585" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/phen_gen/show2.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="30" selection-start="602" selection-end="617" vertical-scroll-proportion="0.29161748" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/job.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="89" column="51" selection-start="3390" selection-end="3390" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/phen_gen_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="154" column="7" selection-start="4842" selection-end="4842" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -639,28 +598,16 @@
         <state line="17" column="3" selection-start="496" selection-end="496" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/job.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="0" selection-start="950" selection-end="1048" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/phen_gen/list.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="8" selection-start="1553" selection-end="1553" vertical-scroll-proportion="-22.875">
+        <state line="43" column="12" selection-start="958" selection-end="958" vertical-scroll-proportion="-16.541666">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/poy_service.rb">
+    <entry file="file://$PROJECT_DIR$/app/views/phen_gen/show.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="0" selection-start="1146" selection-end="1146" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/poy.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="95" selection-start="1990" selection-end="1990" vertical-scroll-proportion="1.2206572">
+        <state line="40" column="11" selection-start="1404" selection-end="1404" vertical-scroll-proportion="0.566706">
           <folding />
         </state>
       </provider>

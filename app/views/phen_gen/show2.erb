@@ -1,0 +1,54 @@
+<% content_for :head do %>
+<style type="text/css">
+    #doublescroll { font-family: Andale Mono, Courier New, Courier; width: 740px; overflow: auto; overflow-y: hidden; }
+    #doublescroll p { margin: 0; padding: 1em; white-space: nowrap; }
+</style>
+
+
+
+<% end %>
+<p style="Color:Green"></p>
+<h1>  <%= @job.name %></h1>
+<div id="doublescroll" >
+
+  <div style="width:1000000000000000000000000000000000;">
+
+  <%match = @pairs.flatten;%>
+  <% @fasta_hash.values.each{|seg| %>
+      <%=  seg.gsub('-','_') %><br/>
+      <%# count = 0 %>
+      <%#  seg.gsub('-','_').split(//).each{|char| %>
+            <%# count = count+1 %>
+           <%#= match.include?(count) ? "<p style='Color:Green'> #{char} </p>": char %>
+            <%#if match.include?(count) %>
+              <span style='Color:Green;'><%#=char%></span>
+            <%#else %>
+                  <%#=char%>
+           <%#end %>
+      <%# } %>
+  <% } %>
+</div>
+
+</div>
+
+<script type="text/javascript">
+    function DoubleScroll(element) {
+        var scrollbar= document.createElement('div');
+        scrollbar.appendChild(document.createElement('div'));
+        scrollbar.style.overflow= 'auto';
+        scrollbar.style.overflowY= 'hidden';
+        scrollbar.firstChild.style.width= element.scrollWidth+'px';
+        scrollbar.firstChild.style.paddingTop= '1px';
+        scrollbar.firstChild.appendChild(document.createTextNode('\xA0'));
+        scrollbar.onscroll= function() {
+            element.scrollLeft= scrollbar.scrollLeft;
+        };
+        element.onscroll= function() {
+            scrollbar.scrollLeft= element.scrollLeft;
+        };
+        element.parentNode.insertBefore(scrollbar, element);
+    }
+
+    DoubleScroll(document.getElementById('doublescroll'));
+</script>
+

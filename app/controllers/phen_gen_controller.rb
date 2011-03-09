@@ -9,6 +9,7 @@ class PhenGenController < ApplicationController
   
   def list
     @jobs = Job.where("user_id = #{current_user.id}")
+    #@jobs = Job. .where "SELECT id,job_id,name,file_type,created_at FROM phenGen.job_files where user_id = #{current_user.id}"
   end
 
   def new
@@ -69,13 +70,13 @@ class PhenGenController < ApplicationController
      render :json  => JobFile.where("file_type = 'fas' and job_id=#{params[:id]}")[0].data.split("\n").select{|a| a[0]=='>'}.map{|a| a[1,9999].strip}
   end
 
-  def fasta_uploaded
-    if(JobFile.where("file_type = 'fas' and job_id=#{params[:id]}")[0].count>0)
-     render :json  => true
-    else
-    render :json  => false
-    end
-  end
+#  def fasta_uploaded
+#    if(JobFile.where("file_type = 'fas' and job_id=#{params[:id]}")[0].count>0)
+#     render :json  => true
+#    else
+#    render :json  => false
+#    end
+#  end
 
   def debug
     Job.find(params[:id]).start
@@ -126,6 +127,56 @@ class PhenGenController < ApplicationController
   def get_file
     @file = JobFile.find(params[:id])
   	send_data @file.data, :filename => @file.name #, :type => "chemical/seq-aa-fasta"
+  end
+
+  def show
+     @job_file = JobFile.find(params[:id])
+
+     @pairs = Array.new
+     @job_file.data.split("\n").each{ |line|
+     @pairs << [  line.split(/\t|:/)[1].to_i/2 , line.split(/\t|:/)[3].to_i/2 ]
+     }
+     flatten_pairs = @pairs.flatten
+
+
+     @fasta_hash = Hash.new
+     @ia_file_data = JobFile.where("job_id = ? and file_type='ia'", @job_file.job_id)[0].data
+     count = 0
+     @ia_file_data.split("\n").each{ |line|
+    if line[0]=='>'
+       @header =line
+       @fasta_hash.store(@header, '')
+       count = 0
+    else
+        line.split(//).each{|char|
+          count = count+1
+          flatten_pairs.include?(count) ?  @fasta_hash[@header] <<  "<span class='corralation' onclick=\"alert('position #{count} correlates to #{find_matches count} ')\" >#{char}</span>" : @fasta_hash[@header] << char
+        }
+    end
+       }
+  end
+
+  def find_matches id
+    @pairs.select {| obj | obj.include?(id) }.flatten.reject{|obj| obj==id }
+  end
+
+    def show2
+     @job = Job.find(params[:id])
+     @fasta_hash = Hash.new
+    @ia_file_data = JobFile.where("job_id = ? and file_type='ia'", params[:id])[0].data
+     @ia_file_data.split("\n").each{ |line|
+    if line[0]=='>'
+       @header =line
+       @fasta_hash.store(@header, '')
+     else
+        @fasta_hash[@header] << line
+    end
+       }
+
+     @pairs = Array.new
+     JobFile.where("name='#{@job.name}_stat_p0.0001.txt'")[0].data.split("\n").each{ |line|
+    @pairs << [  line.split(/\t|:/)[1].to_i/2 , line.split(/\t|:/)[3].to_i/2 ]
+    }
   end
 
   def about

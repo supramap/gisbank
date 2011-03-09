@@ -45,6 +45,7 @@ doc\:clobber_rails=
 doc\:guides=
 doc\:plugins=
 doc\:plugins\:delayed_job=
+doc\:plugins\:spawn=
 doc\:rails=
 doc\:reapp=
 doc\:rerails=

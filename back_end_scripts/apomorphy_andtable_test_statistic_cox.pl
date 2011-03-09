@@ -3,57 +3,98 @@
 # This script reads in a table of apomorphies (in xml format) and a table of internode distances, and spits out some stats on each pair of apomorphies.
 
 # Takes no "arguments", I'm lazy so I just used globals.
+
 sub teststat_dists{
-		%seen1 = ();
-		%seen2 = ();
-		@pairs = ();
-		$numseen1 = 0;
-		$numseen2 = 0;
-		$test1 = 0;
-		$test2 = 0;
+		# OKAY!  Major change in this version.
+		#  Ancestral edges ($edge1) are sorted in *ascending* order of weight.
+		#  Descendent edges ($edge2) are sorted in *descending* order of weight.
+		#   As ancestral edges are processed, they are pushed onto a default list, replacing any of their own descendents.
+		#   
+ 		#   Then, starting from that default list, the unused descendent edges are pushed into the list.
+		#   
+		@templist1 = sort {$masterweight{$a} <=> $masterweight{$b} || $a cmp $b} @{$apolists{$list1}};
+
+		@templist2p = ();
+		#print "LIST1 @templist1\n";
+
 		foreach $edge1 (@{$apolists{$list1}}){
-			foreach $edge2 (@{$apolists{$list2}}){
-				$seen1{$edge1} = 0;
-				$seen2{$edge2} = 0;
-				$pushstring = $edge1 . "," . $edge2; 
-				if (exists($distance{$pushstring})){
-					push @pairs, $pushstring;
-				}
-		}}
-		@sortedpairs = sort {$distance{$a} <=> $distance{$b}} (@pairs);
-		print "$list1\t$printstr\t";
+			push @templist2p, "I" . $edge1; 
+		}
+		#print "LIST2 @templist2p\n";
+		
+		foreach $edge2 (@{$apolists{$list2}}){
+			push @templist2p, "D" . $edge2; 
+		}
+		#print "LIST2 @templist2p\n";
+
+		@templist2 = sort {$masterweight{substr($b,1)} <=> $masterweight{substr($a,1)} || substr($a,1) cmp substr($b,1) || $b cmp $a} @templist2p;
+		#@templist2 = sort {$masterweight{substr($b,1)} <=> $masterweight{substr($a,1)}} @templist2p; 
+		%templistdex = ();
+
+		#print "LIST @templist2\n";
+
+		$qt = 0;
+		foreach $edge2 (@templist2){
+			$qt++;
+			if (substr($edge2,0,1) eq "I"){
+				$templistdex{substr($edge2,1)} = $qt;
+			}
+		}
+
+		%seen = ();
 		$numdied = 0;
 		$numcensored = 0;
 		$numexpectedtodie = 0;
-SORTDONE:	foreach $this_pair (@sortedpairs){
-			#if ($numseen1 > $#{$apolists{$list1}} && $numseen2 > $#{$apolists{$list2}}){last SORTDONE;}
-			($edge1,$edge2) = split /,/, $this_pair;
-			if ($seen1{$edge1} + $seen2{$edge2} + 0 < 1){
-				#$test1++;
-				#$test2+=$distance{$this_pair};
+		$alldeaths = 0;
+		@weightsagain = ();
+		$remainingweight = 1;
+		foreach $edge1 (@templist1){
+			@descendentlist = ();
+			$dies = 0;
+			$currentweight = $masterweight{$edge1};	
+			for ($qt = $templistdex{$edge1}; $qt <= $#templist2; $qt++){
+				$edge2 = substr($templist2[$qt],1);
+				$status2 = substr($templist2[$qt],0,1); 
+				if (!exists $seen{$edge2}){
+					#First, check the existing descend list for ancestors of this sequence.
+					foreach $refedge (@descendentlist){
+						if (exists $ancestor_rel{$refedge . "," . $edge2}){
+							$seen{$edge2} = 1;
+							}
+					}
+					if (!exists $seen{$edge2}){
+						if (exists $ancestor_rel{$edge1 . "," . $edge2}){
+							push @descendentlist, $edge2;
+							if ($status2 eq "D"){
+								$dies++;
+							}
+						$currentweight-=$masterweight{$edge2};
+						}
+					} 
+				} 
+			}		
+			$alldeaths+=$dies;
+			if ($dies > 0){
 				$numdied++;
-				$numexpectedtodie += 1 - exp(-1 * $distance{$this_pair} * ($#{$apolists{$list2}} + 1));
-				$seen1{$edge1}++;
-				$numseen1++;
-			}
-			if ($seen2{$edge2} + 0 < 1){
-				$seen2{$edge2}++;
-				$numseen2++;
-			}
-		}		
-		foreach $edge1 (@{$apolists{$list1}}){
-			if ($seen1{$edge1} + 0 < 1){
-				#$test2+=$max_radius{$edge1};
+			} else {
 				$numcensored++;
-				$numexpectedtodie += 1 - exp(-1 * $max_radius{$edge1} * ($#{$apolists{$list2}} + 1));
 			}
-		}
+			if ($currentweight < $minweight{$edge1}){$currentweight = $minweight{$edge1};}
+			$numexpectedtodie += 1 - exp(-1 * $currentweight * ($#{$apolists{$list2}} + 1));
+			push @weightsagain, $currentweight;
+			$remainingweight -= $currentweight;
+		} 
+		print "$list1\t$printstr\t";
 		print "$numdied\t$numcensored\t$numexpectedtodie\t";
 		print $#{$apolists{$list1}}+1;
 		print "\t";
 		print $#{$apolists{$list2}}+1;
-		print "\n";
-		#print "DONE CHAR\n";
+		print "\t";
+		$numexpectedtodie = 0;
+		foreach $currentweight (@weightsagain){
+			$numexpectedtodie += 1 - exp(-1 * $currentweight * ($#{$apolists{$list2}} + 1.5 - $alldeaths) / $remainingweight);
+		}	
+		print "$alldeaths\t$numcensored\t$numexpectedtodie\n";	
 }
 
 # First, we read in the table of transformations which is in xml format
@@ -72,19 +113,26 @@ while (<APOMFILE>){
 
 # Second, we load in the table of inter-edge distances.
 # NOTE - with a flag, and alternate version of the script will want to read in the tree as well, and use that to exclude non-descendent distances!
+
+# MAJOR MAJOR REVISION!!!!
+# This file now contaisn two classes of entries.
+# One is for ancestor-descendent relations.
+# The other is for total-descendent tree length. 
 open DISTFILE, $ARGV[1] or die "file not found!\n";
 while (<DISTFILE>){
 	chomp;
-	@line = split;
-	@items = split /,/, $line[0];
-	if (!exists($distance{$line[0]}) || $line[2] < $distance{$line[0]}){
-		$distance{$items[0] . "," . $items[1]} = $line[2];
-		if ($line[2] > $max_radius{$items[0]}) {$max_radius{$items[0]} = $line[2];}
-		#$censor_radius{$items[0]} += $line[2];
+	@line = split /,/;
+	if (/^D/){
+		$ancestor_rel{$line[1] . "," . $line[2]} = 1;
+		#print "KEY1 $line[1] $line[2]\n";
+	}
+
+	if (/^W/){
+		$minweight{$line[1]} = $line[3];
+		$masterweight{$line[1]} = $line[2];
 	}
 }
 close DISTFILE;
-
 
 if ($ARGV[2]){
 	open TESTSFILE, $ARGV[2];

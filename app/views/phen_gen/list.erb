@@ -26,29 +26,35 @@ $(document).ready(function(){
 
 <table id="main_table">
   <tr>
-    <th>Name</th>
-    <th>Pid</th>
+    <th>Description</th>
+<!--    <th>Pid</th>
     <th>Glenn Folder</th>
     <th>Date</th>
-    <th>Status</th>
+    <th>Status</th>-->
     <th>Files</th>
     <th>Actions</th>
   </tr>
 <%  @jobs.each { |job| %>
   <tr id="row_<%=job.id  %>" >
-    <td><%=job[:name] %></td>
-    <td><%=job[:pid] %></td>
-    <td><%=job[:service_id] %></td>
-    <td><%=job[:created_at] %></td>
-    <td><%=job[:status] %></td>
+    <td>Name : <%=job[:name] %><br/>
+      Pid : <%=job[:pid] %><br/>
+    Glenn Folder : <%=job[:service_id] %><br/>
+   Date : <%=job[:created_at] %><br/>
+    Status : <%=job[:status] %></td>
     <td><ul>
-      <%# JobFile.where("job_id = #{job.id}").each { |f| %>
-       <%# job.get_files.each { |f| %>
        <% JobFile.get_files(job.id).each { |f| %>
-       <li><%= link_to f.name, "/phen_gen/get_file/#{f.id}" %></li>
+       <li><%= link_to f.name, "/phen_gen/get_file/#{f.id}" %>
+       <%= f.file_type=='p' ? link_to( "(visualization)", "/phen_gen/show/#{f.id}" ) :  '' %>
+       </li>
       <% }  %>
       </ul></td>
       <td><ul>
+	 <% p_file = JobFile.where("name='#{job.name}_stat_p0.0001.txt'")[0] %>
+	
+	<% if p_file %>          	
+         <li><%= link_to( 'show', {:controller => 'phen_gen', :action => 'show', :id=> JobFile.where("name='#{job.name}_stat_p0.0001.txt'")[0].id}) %> </li><br/>
+	<% end %>
+
         <li><%= link_to( 'Debug Poy', {:controller => 'phen_gen', :action => 'debug_poy', :id=> job.id}) %> </li>
         <li><%= link_to( 'Debug Job', {:controller => 'phen_gen', :action => 'debug', :id=> job.id}) %> </li>
         <br/><li><input type="submit" value="Delete Job" onclick="delete_row('<%=job.id  %>')" /> </li>
