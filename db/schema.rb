@@ -137,18 +137,18 @@ ActiveRecord::Schema.define(:version => 0) do
 
   create_table "poy_jobs", :force => true do |t|
     t.integer  "query_id"
-    t.integer  "status",        :default => 0, :null => false
-    t.text     "kml"
-    t.text     "aligned_fasta"
-    t.text     "output"
-    t.text     "fasta"
-    t.text     "geo"
-    t.text     "poy"
+    t.integer  "status",                            :default => 0, :null => false
+    t.text     "kml",           :limit => 16777215
+    t.text     "aligned_fasta", :limit => 16777215
+    t.text     "output",        :limit => 16777215
+    t.text     "fasta",         :limit => 16777215
+    t.text     "geo",           :limit => 16777215
+    t.text     "poy",           :limit => 16777215
     t.integer  "outgroup"
     t.integer  "search_time"
     t.integer  "service_job"
-    t.text     "tree"
-    t.text     "poy_output"
+    t.text     "tree",          :limit => 16777215
+    t.text     "poy_output",    :limit => 16777215
     t.datetime "created_at"
   end
 
@@ -209,12 +209,12 @@ ActiveRecord::Schema.define(:version => 0) do
     t.string   "sequence_type",  :limit => 50
   end
 
-  add_index "sequences_old", ["genbank_acc_id"], :name => "genbank_acc_id"
-  add_index "sequences_old", ["genbank_acc_id"], :name => "unique_sequences_genbank_acc_id", :unique => true
-  add_index "sequences_old", ["isolate_id", "sequence_type"], :name => "isolate_id"
-  add_index "sequences_old", ["isolate_id", "sequence_type"], :name => "unique_sequences_u2", :unique => true
-  add_index "sequences_old", ["sequence_id"], :name => "sequence_id"
-  add_index "sequences_old", ["sequence_id"], :name => "unique_sequences_sequence_id", :unique => true
+ # add_index "sequences_old", ["genbank_acc_id"], :name => "genbank_acc_id"
+ # add_index "sequences_old", ["genbank_acc_id"], :name => "unique_sequences_genbank_acc_id", :unique => true
+ # add_index "sequences_old", ["isolate_id", "sequence_type"], :name => "isolate_id"
+ # add_index "sequences_old", ["isolate_id", "sequence_type"], :name => "unique_sequences_u2", :unique => true
+ # add_index "sequences_old", ["sequence_id"], :name => "sequence_id"
+ # add_index "sequences_old", ["sequence_id"], :name => "unique_sequences_sequence_id", :unique => true
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id",                       :null => false

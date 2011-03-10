@@ -101,21 +101,34 @@ and date < '#{max_collect_date}'"
 def make_trim_fasta
 
   sequences = get_sequence
-  #trim_cut_max = trim( sequences.max{|x|  x[:data].length } )[:data].length
-  trim_cut_max = sequences.max{|x|  (x && x[:data]) ? x[:data].length : 0 }[:data].length
+  trim_cut_max = trim( sequences.max{|x| (x && x[:data]) ? x[:data].length : 0}[:data]).length
+  #trim_cut_max = sequences.max{|x|  (x && x[:data]) ? x[:data].length : 0 }[:data].length
+  #trim_cut_max = sequences.map{|x|  (x && x[:data]) ? trim(x[:data]).length : 0 }.max
   fasta =""
 
    sequences.each do |seq|
-
      #old code  fasta << ">#{seq[:accession]}\n#{seq[:data].gsub(/ |\r|\n/,'')[/ATG.*\z/][/^.{3}+?(TAA|TAG|TGA)/]}\n"
-    fasta << ">#{seq[:accession]}\n#{ seq[:data].length>trim_cut_max  ? trim(seq[:data]) : seq[:data] }\n"
+
+    trim_seq =  trim(seq[:data]);
+    fasta << ">#{seq[:accession]}\n#{ (trim_seq.length+30< trim_cut_max)?seq[:data]: trim_seq }\n"
+
+    #fasta << ">#{seq[:accession]}\n#{  trim(seq[:data]) }\n"
     end
     return fasta
 end
 
 def trim seq
     #algo_one   seq[/ATG.*\z/mx][/^.{3}+?(TAA|TAG|TGA)/mx]
-    return seq[/ATG.*(TAA|TAG|TGA)/mx]
+    #return seq[/ATG.*(TAA|TAG|TGA)/mx]
+    #return seq.gsub(/ |\r|\n/,'')[/ATG.*\z/][/\A.{3}+?(TAA|TAG|TGA)/]
+    #return seq.gsub(/ |\r|\n/,'')[/ATG(A|T|G|C){3}+(TAA|TAG|TGA)/]
+    return seq.gsub(/ |\r|\n/,'')[/ATG(A|T|G|C){3}+(TAA|TAG|TGA)/] #best one yet
+
+    #s1 =  seq.gsub(/\s|\r|\n/,'')[/ATG.{3}*\z/mx][/\A.{3}+?(TAA|TAG|TGA)/mx]
+    #s2 =  seq.gsub(/\s|\r|\n/,'')[/ATG..{3}*\z/mx][/\A.{3}+?(TAA|TAG|TGA)/mx]
+    #s3 =  seq.gsub(/\s|\r|\n/,'')[/ATG...{3}*\z/mx][/\A.{3}+?(TAA|TAG|TGA)/mx]
+   #return  [s1, s2, s3].max{|x| x ? x.length : 0}
+
 end
 
 # class String

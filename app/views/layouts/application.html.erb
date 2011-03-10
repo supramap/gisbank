@@ -8,7 +8,7 @@
   <link href="/css/main.css" media="screen" rel="stylesheet" type="text/css" />
 
 <%= javascript_include_tag :defaults %>
-
+<%= yield :head %>
 </head>
 <body>
   <div id="wrapper">
@@ -17,7 +17,7 @@
     </div>
     <div id="nav1">
     <ul id="menus">
-       <%#*<li><a href="/queries/new">Create A New Query</a></li>%>
+      <%#*<li><a href="/queries/new">Create A New Query</a></li>%>
       <%#*<li><a href="/queries/private">My Queries</a></li>%>
       <%#*<li><a href="/queries/public">Public Queries</a></li>%>
       <li><a href="/set/new">Create A New Query</a></li>
