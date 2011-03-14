@@ -93,7 +93,7 @@ and date < '#{max_collect_date}'"
  def make_fasta
   	fasta = ""
     get_sequence.each do |seq|
-    	fasta << ">#{seq[:accession]}\n#{seq[:data]}\n"
+    	fasta << ">#{seq[:accession]}\n#{seq[:data].gsub('-','')}\n"
     end
     return fasta
  end

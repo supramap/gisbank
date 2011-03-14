@@ -15,21 +15,22 @@ class DataAccess
   end
 end
 
-#@connection = Mysql.real_connect("140.254.80.125", "gisman", "gisman$", "gisbank")
-#@db = DataAccess.new
-@db= Mysql.real_connect("localhost", "root", "password", "gisbank")
+@db = Mysql.real_connect("140.254.80.125", "gisman", "gisman$", "gisbank")
+
+#@db= Mysql.real_connect("localhost", "root", "password", "gisbank")
 
 
 def add_isolate items
-  result = @db.query("SELECT id FROM gisbank.isolates where virus_name =\"#{items[12].strip }\"").fetch_row()
+  result = @db.query("SELECT id FROM gisbank.isolates where virus_name =\"#{items[11].strip }\"").fetch_row()
   if (result)
     return result[0]
   else
     location_id = add_location items
     host_id     = add_host items
     pathogen_id = add_pathogen items
-    @db.query("INSERT INTO gisbank.isolates(date,virus_name,location_id,pathogen_id,Host_id) VALUES('#{  items[10].strip=='' ? 6 :items[10].strip}-#{items[11].strip=='' ? 15 :items[11].strip}-#{items[9].strip}-00:00:00',\"#{items[12].strip}\",'#{ location_id }','#{pathogen_id}','#{host_id}')")
-    return @db.query("SELECT @@IDENTITY").fetch_row()[0]
+    @db.query("INSERT INTO gisbank.isolates(date,virus_name,location_id,pathogen_id,Host_id) VALUES('#{items[8].strip}-#{  items[9].strip=='' ? 6 :items[9].strip}-#{items[10].strip=='' ? 15 :items[10].strip} 00:00:00',\"#{items[11].strip}\",'#{ location_id }','#{pathogen_id}','#{host_id}')")
+
+       return @db.query("SELECT @@IDENTITY").fetch_row()[0]
   end
 end
 
@@ -65,38 +66,67 @@ def geo_search(country, region)
         if(region=='')
           region = 'other'
         end
-        sql = "INSERT INTO gisbank.locations(country, gen_bank_label,name,latitude,longitude,local) VALUES(\"#{country}\",\"#{country+'/'+region}\",\"#{country+'/'+region}\",#{gn.latitude},#{gn.longitude},\"#{region}\")"
+        if(country=='')
+          country =  region
+          region = 'other'
+        end
+        sql = "INSERT INTO gisbank.locations(country, name,local,latitude,longitude) VALUES(\"#{country}\",\"#{country+'/'+region}\",\"#{region}\",#{gn.latitude},#{gn.longitude})"
         @db.query(sql)
-        return @db.query("select LAST_INSERT_ID()").fetch_row() [0]
+        return @db.query("select LAST_INSERT_ID()").fetch_row()[0]
       end
     end
     return 0
     puts 'failed: '+ region +' '+ country 
   end
 
-    rescue StandardError => ex
-      puts ex
+  rescue StandardError => ex
+
+      puts "geo_search error:"+ex
     return 0
     end
 end
 
+  def add_blank_local(country, region)
+  if(country == region)
+    region = 'other'
+  end
+  result = @db.query("SELECT id FROM gisbank.locations where name = '#{country}/#{region==''?'other':region}'").fetch_row()
+  if (result)
+    return result[0]
+  else
+
+     sql = "INSERT INTO gisbank.locations(country, name,local,latitude,longitude) VALUES(\"#{country}\",\"#{country+'/'+region}\",\"#{region}\",0,0)"
+     #puts sql
+     @db.query(sql)
+    return @db.query("select LAST_INSERT_ID()").fetch_row()[0]
+
+    end
+
+  end
+
+
 def add_location items
   country = items[6].strip
 
-  country == "Viet Nam" ? country ="VietNam" : ''
-  country == "USA" ? country ="united states" : ''
+  country == "Viet Nam" ? country ="Vietnam" : ''
+  country == "USA" ? country ="United States" : ''
   country == "Cote d'Ivoire" ? country ="Ivory Cost" : ''
+  country == "Cote dIvoire" ? country ="Ivory Cost" : ''
 
   if (items[3].strip=="Human")
-    region = items[12].split('/')[1].strip
+    region = items[11].split('/')[1].strip
   else
-    region = items[12].split('/')[2].strip
+    region = items[11].split('/')[2].strip
   end
- 
+     region == "Viet Nam" ?  region ="Vietnam" : ''
+     region == "USA" ? region ="united states" : ''
+     region == "Cote d'Ivoire" ? region ="Ivory Cost" : ''
+
   output = geo_search(country, region)
 
   if(output==0)
-    return geo_search(country, '')
+    output2 = geo_search(country, '')
+    (output2==0) ? (return geo_search('',  region)) : (return add_blank_local(country, region))
   else
     return output
   end
@@ -130,11 +160,17 @@ begin
   if (items.count<10)
     next
   end
-  protein_id = add_protein(items)
-  isolate_id = add_isolate(items)
-  @db.query("INSERT INTO gisbank.sequences(Isolate_id,protein_id,accession,data) VALUES('#{isolate_id }','#{ protein_id}','#{items[0].strip}','#{items[13].gsub(/ |\r|\n/, '')}')");
-rescue StandardError => ex
+  result = @db.query("SELECT id FROM gisbank.sequences where accession = '#{items[0].strip }'").fetch_row()
+  if (result)
+    puts "accession : #{items[0].strip} is already in the database"
+  else
+    protein_id = add_protein(items)
+    isolate_id = add_isolate(items)
+    @db.query("INSERT INTO gisbank.sequences(Isolate_id,protein_id,accession,data) VALUES('#{isolate_id }','#{ protein_id}','#{items[0].strip}','#{items[12].gsub(/ |\r|\n/, '')}')");
+  end
+  rescue StandardError => ex
   puts ex
+  puts ex.backtrace
   fails = fails+1
   puts "failed #{fails} number of times "
   #next
