@@ -9,7 +9,12 @@ class PhenGenController < ApplicationController
   
   def list
     @jobs = Job.where("user_id = #{current_user.id}")
-    #@jobs = Job. .where "SELECT id,job_id,name,file_type,created_at FROM phenGen.job_files where user_id = #{current_user.id}"
+
+  end
+
+   def list_all
+    @jobs = Job.all
+    render "list"
   end
 
   def new
@@ -83,10 +88,11 @@ class PhenGenController < ApplicationController
     redirect_to "/phen_gen/list"
   end
 
-  def debug_poy
+   def debug_poy_end
     @job = Job.find(params[:id])
 
-    #spawn(:method => :thread,:argv => 'phengen_job') do
+
+    spawn(:method => :thread,:argv => 'phengen_job') do
 
 
     zip_file = PoyService.get_zip_file(@job.service_id,"#{@job.name}.poy_output")
@@ -95,16 +101,14 @@ class PhenGenController < ApplicationController
     if(!@job.supplied_tree)
         tree_data = PoyService.get_file(@job.service_id,"#{@job.name}.tre")
         JobFile.new(:job_id => @job.id, :file_type=>"tre",:name => "#{@job.name}.tre",  :data => tree_data).save
-      end
+    end
+    end
+   redirect_to "/phen_gen/list"
+  end
 
-    #end
-
-    #poy_output = PoyService.get_file(@job.service_id,"#{@job.name}.poy_output")
-    #JobFile.new(:job_id => @job.id, :file_type=>"poy_out",:name => "#{@job.name}.poy_output",  :data => poy_output).save
-    #tree_data = PoyService.get_file(@job.service_id,"#{@job.name}.tre")
-    #JobFile.new(:job_id => @job.id, :file_type=>"tre",:name => "#{@job.name}.tre",  :data => tree_data).save
-
-
+  def debug_poy
+    @job = Job.find(params[:id])
+      poy = Poy.new(@job)
     redirect_to "/phen_gen/list"
   end
 
@@ -141,16 +145,17 @@ class PhenGenController < ApplicationController
 
      @fasta_hash = Hash.new
      @ia_file_data = JobFile.where("job_id = ? and file_type='ia'", @job_file.job_id)[0].data
-     count = 0
-     @ia_file_data.split("\n").each{ |line|
+     @count = 0
+     @ia_file_data.strip.split("\n").each{ |line|
     if line[0]=='>'
        @header =line
        @fasta_hash.store(@header, '')
-       count = 0
+       @count = 0
     else
         line.split(//).each{|char|
-          count = count+1
-          flatten_pairs.include?(count) ?  @fasta_hash[@header] <<  "<span class='corralation' onclick=\"alert('position #{count} correlates to #{find_matches count} ')\" >#{char}</span>" : @fasta_hash[@header] << char
+          @count = @count+1
+          flatten_pairs.include?(@count) ?  @fasta_hash[@header] <<  "<span class='corralation' onclick=\"find_correlates(#{@count})  \" >#{char}</span>" : @fasta_hash[@header] << char
+          # flatten_pairs.include?(count) ?  @fasta_hash[@header] <<  "<span class='corralation' onclick=\"alert('position #{count} correlates to #{find_matches count} ')\" >#{char}</span>" : @fasta_hash[@header] << char
         }
     end
        }
@@ -160,25 +165,6 @@ class PhenGenController < ApplicationController
     @pairs.select {| obj | obj.include?(id) }.flatten.reject{|obj| obj==id }
   end
 
-    def show2
-     @job = Job.find(params[:id])
-     @fasta_hash = Hash.new
-    @ia_file_data = JobFile.where("job_id = ? and file_type='ia'", params[:id])[0].data
-     @ia_file_data.split("\n").each{ |line|
-    if line[0]=='>'
-       @header =line
-       @fasta_hash.store(@header, '')
-     else
-        @fasta_hash[@header] << line
-    end
-       }
-
-     @pairs = Array.new
-     JobFile.where("name='#{@job.name}_stat_p0.0001.txt'")[0].data.split("\n").each{ |line|
-    @pairs << [  line.split(/\t|:/)[1].to_i/2 , line.split(/\t|:/)[3].to_i/2 ]
-    }
-  end
-
   def about
 
   end
@@ -186,4 +172,5 @@ class PhenGenController < ApplicationController
   def contact
 
   end
+
 end

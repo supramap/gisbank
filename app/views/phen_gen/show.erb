@@ -1,16 +1,36 @@
 <% content_for :head do %>
 <style type="text/css">
-    #doublescroll { float: right; font-family: Andale Mono, Courier New, Courier; width: 650px; overflow: auto; overflow-y: hidden; }
+
+    #doublescroll { float: right; font-family: Andale Mono, Courier New, Courier; width: 640px; overflow: auto; overflow-y: hidden; }
+
     #doublescroll p { margin: 0; padding: 0em; white-space: nowrap; }
     .corralation {color:red;}
 </style>
+<script type="text/javascript">
+  var pairs= <%= @pairs %>
+  function find_correlates(id){
+    <!--ruby version: @pairs.select {| obj | obj.include?(id) }.flatten.reject{|obj| obj==id }  -->
+   var output = [];
+   for each (var variable in pairs){
+        if(variable[0] == id){ output.push(variable[1])}
+        if(variable[1] == id){ output.push(variable[0])}
+  };
+
+     alert('position '+id+' correlates to '+output)
+
+   };
+
+
+</script>
 <% end %>
 
 
 <h1>  <%= @job_file.name %></h1>
 <h4>(Click on any of the red columns to see what the column correlates to.)</h4>
 
-<% length = @fasta_hash.values[0].strip.length; r100=''; r10=''; bottom=''; row_count=Math.log10(length).ceil; rows = Array.new( row_count,'')  %>
+<% row_count=Math.log10(@count).ceil; rows = Array.new( row_count,'')  %>
+
+<%#<div  style="height:700px;overflow:scroll;overflow-y:scroll;overflow-x:hidden;position:relative">  %>
 <div  style="width:90px; float: left">
   <br/>Sequence Id<br/>
    <% (1..row_count).each{|row| %>
@@ -23,27 +43,25 @@
 </div>
 
 <div id="doublescroll" >
-  <div id="index">
+  <%#<div id="index"  style="position:absolute;top:0;">   %>
+  <div id="index" >
+  <% (1..((@count/10)+1)).each{|a| pos=(a*10).to_s.rjust( row_count)
+        (0..row_count-2).reverse_each{|row|
+         rows[row] += pos[row].rjust(10).gsub(' ','&nbsp;')
+          }
+         rows[row_count-1] += "1234567890"
 
-  <% (1..(length/10)).each{|a| pos=(a*10).to_s.rjust( row_count) %>
+     }
+  %>
 
-       <% (0..row_count-2).reverse_each{|row| %>
-        <% rows[row] += pos[row].rjust(10).gsub(' ','&nbsp;') %>
-
-        <%  } %>
-        <% rows[row_count-1] += "1234567890"  %>
-  <%# r100 << "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#{pos >= 100 ? pos.to_s[-3] : '&nbsp;'}"   %>
-  <%# r10 << "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#{pos >= 10 ? pos.to_s[-2] : '&nbsp;'}"   %>
-  <%# bottom << "1234567890"  %>
-    <% } %>
     <% rows.each{|r|  %>
     <p> <%=raw r %> </p>
     <% } %>
-      <%#=raw r100 %>
-      <%#=raw r10 %>
-       <%#=raw bottom %>
+
      </div>
   <div id="data">
+
+
   <% @fasta_hash.values.each{|seg| %>
      <p> <%= raw seg %> </p>
   <% } %>
@@ -51,6 +69,7 @@
 
 </div>
 
+<%#</div> %>
 
 <script type="text/javascript">
     function DoubleScroll(element) {
@@ -72,4 +91,3 @@
 
     DoubleScroll(document.getElementById('doublescroll'));
 </script>
-

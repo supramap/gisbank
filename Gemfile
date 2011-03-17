@@ -16,6 +16,9 @@ gem 'httparty'
 #gem 'mongrel'
 gem 'hpricot'
 #gem 'nokogiri'
+
+gem 'savon'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

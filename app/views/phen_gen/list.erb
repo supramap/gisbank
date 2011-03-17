@@ -56,6 +56,7 @@ $(document).ready(function(){
 	<% end %>
 
         <li><%= link_to( 'Debug Poy', {:controller => 'phen_gen', :action => 'debug_poy', :id=> job.id}) %> </li>
+        <li><%= link_to( 'Debug Poy end', {:controller => 'phen_gen', :action => 'debug_poy_end', :id=> job.id}) %> </li>
         <li><%= link_to( 'Debug Job', {:controller => 'phen_gen', :action => 'debug', :id=> job.id}) %> </li>
         <br/><li><input type="submit" value="Delete Job" onclick="delete_row('<%=job.id  %>')" /> </li>
       </ul></td>

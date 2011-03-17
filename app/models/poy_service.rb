@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'base64'
 require 'httparty'
+#require 'savon'
 
 class PoyService
   include HTTParty
@@ -18,6 +19,22 @@ class PoyService
 
   def self.add_text_file(job_id,file_name,file_data)
     post("/AddTextFile",{:body => "jobId=#{job_id}&fileData=#{file_data}&fileName=#{file_name}"})
+
+#    client = Savon::Client.new do
+#      wsdl.document = "http://glenn-webservice.bmi.ohio-state.edu/PoyService.asmx?wsdl"
+#    end
+#
+#    client.request :add_text_file do
+#      soap.body = {:jobId => job_id,  :fileData => file_data, :fileName => file_name   }
+#    end
+
+    end
+
+  def self.add_file(job_id,file_name,file_data)
+     require 'rubygems'
+    require 'base64'
+    bin =  Base64.encode64(file_data)
+    post("/AddFile",{:body => "jobId=#{job_id}&fileData=#{bin}&fileName=#{file_name}"})
   end
 
   def self.submit_poy(job_id)
@@ -37,7 +54,8 @@ class PoyService
    def self.get_zip_file(job_id,file_name)
     require 'rubygems'
     require 'base64'
-    results = get "/GetZipedFile?jobId=#{job_id.to_s}&fileName=#{file_name}"
+    #results = get "/GetZipedFile?jobId=#{job_id.to_s}&fileName=#{file_name}"
+    results = get "/GetZipedFile?compressionType=tar.gz&jobId=#{job_id.to_s}&fileName=#{file_name}"
     bin =  Base64.decode64(results['base64Binary'])
     return bin
   end

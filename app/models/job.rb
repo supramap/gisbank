@@ -36,13 +36,8 @@ class Job < ActiveRecord::Base
       ia_file=JobFile.where("file_type = 'ia' and job_id=#{self.id}")[0]
       File.open(@dir+'fasta.ia', 'w') {|f|  f.write(ia_file.data ) }
 
-
-      #zip_file = File.open(@dir+poy_out_file.name, 'w')
-      #zip_file << poy_out_file.data
-
-
-
-      `unzip #{@dir+poy_out_file.name} -d #{@dir}`
+      `cd #{dir};  tar -zxvf  #{poy_out_file.name} ; `
+      #`unzip #{@dir+poy_out_file.name} -d #{@dir}`
 
      `awk -f #{path_dir}add_arbitrary_weights.awk #{@dir+tree_file.name} > #{@dir}temp_tree.tre `
 
@@ -52,7 +47,7 @@ class Job < ActiveRecord::Base
 
      `#{ path_dir}parse_xml.rb #{@dir+self.name}_output.xml >#{@dir+self.name}_parsed.txt`
 
-     `echo "awk -f #{path_dir}reweight_tree.awk #{@dir+self.name}_parsed.txt #{@dir+self.name}_parsed.txt > #{@dir+self.name}_rwt.txt" >#{@dir}log.txt `
+     #`echo "awk -f #{path_dir}reweight_tree.awk #{@dir+self.name}_parsed.txt #{@dir+self.name}_parsed.txt > #{@dir+self.name}_rwt.txt" >#{@dir}log.txt `
      `awk -f #{path_dir}reweight_tree.awk #{@dir+self.name}_parsed.txt #{@dir+self.name}_parsed.txt > #{@dir+self.name}_rwt.txt`
 
      `#{path_dir}divisiderum_postparse_totaldown.pl root  #{@dir+self.name}_rwt.txt > #{@dir+self.name}_down.txt`

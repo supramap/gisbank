@@ -9,7 +9,7 @@ class Poy
       @poy_script =""
       fasta = JobFile.where("file_type = 'fas' and job_id=#{job.id}")[0]
       PoyService.add_text_file(job.service_id,fasta.name,fasta.data)
-
+      #PoyService.add_file(job.service_id,fasta.name,fasta.data)
       if(job.prealigned_fasta)
         fasta[:file_type]="ia"
         fasta.save

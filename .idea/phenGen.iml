@@ -52,6 +52,12 @@
       </requirement>
       <source from="Gemfile" />
     </requirement>
+    <requirement>
+      <requirement>
+        <dependency name="savon" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+      </requirement>
+      <source from="Gemfile" />
+    </requirement>
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
@@ -76,22 +82,24 @@
     <orderEntry type="library" scope="PROVIDED" name="[gem] hpricot (v0.8.3, /usr/local/lib/ruby/gems/1.9.1/gems/hpricot-0.8.3)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] httparty (v0.7.4, /usr/local/lib/ruby/gems/1.9.1/gems/httparty-0.7.4)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] jquery-rails (v0.2.7, /usr/local/lib/ruby/gems/1.9.1/gems/jquery-rails-0.2.7)" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="[gem] i18n (v0.5.0, /usr/local/lib/ruby/gems/1.9.1/gems/i18n-0.5.0)" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="[gem] tzinfo (v0.3.24, /usr/local/lib/ruby/gems/1.9.1/gems/tzinfo-0.3.24)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] builder (v2.1.2, /usr/local/lib/ruby/gems/1.9.1/gems/builder-2.1.2)" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="[gem] arel (v2.0.8, /usr/local/lib/ruby/gems/1.9.1/gems/arel-2.0.8)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] rack (v1.2.1, /usr/local/lib/ruby/gems/1.9.1/gems/rack-1.2.1)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] httpi (v0.7.9, /usr/local/lib/ruby/gems/1.9.1/gems/httpi-0.7.9)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] savon (v0.8.6, /usr/local/lib/ruby/gems/1.9.1/gems/savon-0.8.6)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] gyoku (v0.3.1, /usr/local/lib/ruby/gems/1.9.1/gems/gyoku-0.3.1)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] tzinfo (v0.3.24, /usr/local/lib/ruby/gems/1.9.1/gems/tzinfo-0.3.24)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] i18n (v0.5.0, /usr/local/lib/ruby/gems/1.9.1/gems/i18n-0.5.0)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] polyglot (v0.3.1, /usr/local/lib/ruby/gems/1.9.1/gems/polyglot-0.3.1)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] erubis (v2.6.6, /usr/local/lib/ruby/gems/1.9.1/gems/erubis-2.6.6)" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="[gem] rack (v1.2.1, /usr/local/lib/ruby/gems/1.9.1/gems/rack-1.2.1)" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="[gem] mail (v2.2.15, /usr/local/lib/ruby/gems/1.9.1/gems/mail-2.2.15)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] abstract (v1.0.0, /usr/local/lib/ruby/gems/1.9.1/gems/abstract-1.0.0)" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="[gem] treetop (v1.4.9, /usr/local/lib/ruby/gems/1.9.1/gems/treetop-1.4.9)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] rack-mount (v0.6.13, /usr/local/lib/ruby/gems/1.9.1/gems/rack-mount-0.6.13)" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="[gem] activemodel (v3.0.3, /usr/local/lib/ruby/gems/1.9.1/gems/activemodel-3.0.3)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] mime-types (v1.16, /usr/local/lib/ruby/gems/1.9.1/gems/mime-types-1.16)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] rack-test (v0.5.7, /usr/local/lib/ruby/gems/1.9.1/gems/rack-test-0.5.7)" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="[gem] spawn (v0.1.4, /usr/local/lib/ruby/gems/1.9.1/gems/spawn-0.1.4)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] arel (v2.0.8, /usr/local/lib/ruby/gems/1.9.1/gems/arel-2.0.8)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] rake (v0.9.0.beta.1, /home/jacob/.gem/ruby/1.9.1/gems/rake-0.9.0.beta.1)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] mail (v2.2.15, /usr/local/lib/ruby/gems/1.9.1/gems/mail-2.2.15)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] treetop (v1.4.9, /usr/local/lib/ruby/gems/1.9.1/gems/treetop-1.4.9)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] activemodel (v3.0.3, /usr/local/lib/ruby/gems/1.9.1/gems/activemodel-3.0.3)" level="application" />
   </component>
 </module>
 
