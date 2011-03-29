@@ -1,11 +1,11 @@
-#development:
-#  adapter: mysql
-#  encoding: utf8
-#  host: 140.254.80.125
-#  database: gisbank
-#  pool: 5
-#  username: gisman
-#  password: gisman$
+development:
+  adapter: mysql
+  encoding: utf8
+  host: 140.254.80.125
+  database: gisbank
+  pool: 5
+  username: gisman
+  password: gisman$
 
 #development:
 #  adapter: sqlite3
@@ -13,14 +13,14 @@
 #  pool: 5
 #  timeout: 5000
 
-development:
-  adapter: mysql
-  encoding: utf8
-  host: localhost
-  database: gisbank
-  pool: 5
-  username: root
-  password: password
+#development:
+#  adapter: mysql
+#  encoding: utf8
+#  host: localhost
+#  database: gisbank
+#  pool: 5
+#  username: root
+#  password: password
 
 test:
   adapter: mysql

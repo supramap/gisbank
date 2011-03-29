@@ -51,7 +51,7 @@ def geo_search(country, region)
   if(country == region)
     return 0
   end
-  result = @db.query("SELECT id FROM gisbank.locations where name = '#{country}/#{region==''?'other':region}'").fetch_row()
+  result = @db.query("SELECT id FROM gisbank.locations where country = '#{country}' and local = '#{region==''?'other':region}'").fetch_row()
   if (result)
     return result[0]
   else
@@ -70,7 +70,7 @@ def geo_search(country, region)
           country =  region
           region = 'other'
         end
-        sql = "INSERT INTO gisbank.locations(country, name,local,latitude,longitude) VALUES(\"#{country}\",\"#{country+'/'+region}\",\"#{region}\",#{gn.latitude},#{gn.longitude})"
+        sql = "INSERT INTO gisbank.locations(country, local,latitude,longitude) VALUES(\"#{country}\",\"#{region}\",#{gn.latitude},#{gn.longitude})"
         @db.query(sql)
         return @db.query("select LAST_INSERT_ID()").fetch_row()[0]
       end
@@ -81,7 +81,9 @@ def geo_search(country, region)
 
   rescue StandardError => ex
 
-      puts "geo_search error:"+ex
+      $stderr.puts "geo_search error:"
+      $stderr.puts ex
+      $stderr.puts ex.backtrace
     return 0
     end
 end
@@ -90,13 +92,13 @@ end
   if(country == region)
     region = 'other'
   end
-  result = @db.query("SELECT id FROM gisbank.locations where name = '#{country}/#{region==''?'other':region}'").fetch_row()
+  result = @db.query("SELECT id FROM gisbank.locations where country = '#{country}' and local = '#{region==''?'other':region}'").fetch_row()
   if (result)
     return result[0]
   else
 
-     sql = "INSERT INTO gisbank.locations(country, name,local,latitude,longitude) VALUES(\"#{country}\",\"#{country+'/'+region}\",\"#{region}\",0,0)"
-     #puts sql
+     sql = "INSERT INTO gisbank.locations(country,local,latitude,longitude) VALUES(\"#{country}\",\"#{region}\",0,0)"
+     #$stderr.puts sql
      @db.query(sql)
     return @db.query("select LAST_INSERT_ID()").fetch_row()[0]
 
@@ -169,10 +171,11 @@ begin
     @db.query("INSERT INTO gisbank.sequences(Isolate_id,protein_id,accession,data) VALUES('#{isolate_id }','#{ protein_id}','#{items[0].strip}','#{items[12].gsub(/ |\r|\n/, '')}')");
   end
   rescue StandardError => ex
-  puts ex
-  puts ex.backtrace
+  $stdout.puts seq
+  $stderr.puts ex
+  $stderr.puts ex.backtrace
   fails = fails+1
-  puts "failed #{fails} number of times "
+  $stderr.puts "failed #{fails} number of times "
   #next
 end
 }

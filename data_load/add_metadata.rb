@@ -1,7 +1,6 @@
 
 hash = Hash.new
 
-  puts 'start'
 File.open(ARGV[0]) do |infile|
   while (line = infile.gets)
    if (line[0]!='>' )

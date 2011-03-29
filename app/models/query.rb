@@ -62,7 +62,7 @@ pathogens.name as subtype,
 country,
 date,
 virus_name,
-locations.name as location_name,
+locations.country+'/'+locations.local as location_name,
 longitude,
 latitude
 FROM sequences, isolates,locations,hosts,pathogens,proteins
