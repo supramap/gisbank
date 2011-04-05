@@ -3,6 +3,7 @@ require 'base64'
 
 class PhenGenController < ApplicationController
   before_filter :require_user, :only => [:list, :new, :create]
+   protect_from_forgery :only => [ :update, :destroy]
 
   def home
   end
@@ -92,17 +93,17 @@ class PhenGenController < ApplicationController
     @job = Job.find(params[:id])
 
 
-    spawn(:method => :thread,:argv => 'phengen_job') do
+   # spawn(:method => :thread,:argv => 'phengen_job') do
+         if(!@job.supplied_tree)
+          tree_data = PoyService.get_file(@job.service_id,"#{@job.name}.tre")
+          JobFile.new(:job_id => @job.id, :file_type=>"tre",:name => "#{@job.name}.tre",  :data => tree_data).save
+      end
+
+      zip_file = PoyService.get_zip_file(@job.service_id,"#{@job.name}.poy_output")
+      JobFile.new(:job_id => @job.id, :file_type=>"poy_out",:name => "#{@job.name}.poy_output.tar.gz",  :data => zip_file).save
 
 
-    zip_file = PoyService.get_zip_file(@job.service_id,"#{@job.name}.poy_output")
-    JobFile.new(:job_id => @job.id, :file_type=>"poy_out",:name => "#{@job.name}.poy_output.zip",  :data => zip_file).save
-
-    if(!@job.supplied_tree)
-        tree_data = PoyService.get_file(@job.service_id,"#{@job.name}.tre")
-        JobFile.new(:job_id => @job.id, :file_type=>"tre",:name => "#{@job.name}.tre",  :data => tree_data).save
-    end
-    end
+    #end
    redirect_to "/phen_gen/list"
   end
 
@@ -159,6 +160,44 @@ class PhenGenController < ApplicationController
         }
     end
        }
+  end
+
+  def new_vis
+
+  end
+
+  def show_file
+     #@job_file = JobFile.find(params[:id])
+
+     @pairs = Array.new
+
+    file_data =  File.open(params[:phenGen_output].tempfile.path).read
+
+
+     file_data.split("\n").each{ |line|
+     @pairs << [  line.split(/\t|:/)[1].to_i/2 , line.split(/\t|:/)[3].to_i/2 ]
+     }
+     flatten_pairs = @pairs.flatten
+
+
+     @fasta_hash = Hash.new
+     @ia_file_data = File.open(params[:aligned_fasta].tempfile.path).read
+     @count = 0
+     @ia_file_data.strip.split("\n").each{ |line|
+    if line[0]=='>'
+       @header =line
+       @fasta_hash.store(@header, '')
+       @count = 0
+    else
+        line.split(//).each{|char|
+          @count = @count+1
+          flatten_pairs.include?(@count) ?  @fasta_hash[@header] <<  "<span class='corralation' onclick=\"find_correlates(#{@count})  \" >#{char}</span>" : @fasta_hash[@header] << char
+
+        }
+    end
+       }
+
+      render "show"
   end
 
   def find_matches id

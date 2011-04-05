@@ -37,6 +37,7 @@ $(document).ready(function(){
 <%  @jobs.each { |job| %>
   <tr id="row_<%=job.id  %>" >
     <td>Name : <%=job[:name] %><br/>
+      <td>Job Id : <%=job.id %><br/>
       Pid : <%=job[:pid] %><br/>
     Glenn Folder : <%=job[:service_id] %><br/>
    Date : <%=job[:created_at] %><br/>

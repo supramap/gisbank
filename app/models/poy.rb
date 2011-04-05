@@ -56,7 +56,7 @@ class Poy
 
       #poy_output = PoyService.get_file(job.service_id,"#{job.name}.poy_output")
       poy_output = PoyService.get_zip_file(job.service_id,"#{job.name}.poy_output")
-      JobFile.new(:job_id => job.id, :file_type=>"poy_out",:name => "#{job.name}.poy_output.zip",  :data => poy_output).save
+      JobFile.new(:job_id => job.id, :file_type=>"poy_out",:name => "#{job.name}.poy_output.tar.gz",  :data => poy_output).save
 
       if(!job.supplied_tree)
         tree_data = PoyService.get_file(job.service_id,"#{job.name}.tre")

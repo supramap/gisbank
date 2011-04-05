@@ -1,0 +1,8 @@
+<h1>Visualize a File </h1>
+
+<form action="show_file" enctype="multipart/form-data" method="post" >
+   <%#= form_tag(:controller => "supramap", :action => "create", :method => "post")   %>
+phenGen output:  <input type="file" name="phenGen_output" />  <br/><br/>
+aligned fasta:  <input type="file" name="aligned_fasta" />  <br/><br/>
+  <input type="submit" name="submit" />
+   </form>

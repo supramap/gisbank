@@ -36,7 +36,7 @@ class Job < ActiveRecord::Base
       ia_file=JobFile.where("file_type = 'ia' and job_id=#{self.id}")[0]
       File.open(@dir+'fasta.ia', 'w') {|f|  f.write(ia_file.data ) }
 
-      `cd #{dir};  tar -zxvf  #{poy_out_file.name} ; `
+      `cd #{@dir};  tar -zxvf  #{poy_out_file.name} ; `
       #`unzip #{@dir+poy_out_file.name} -d #{@dir}`
 
      `awk -f #{path_dir}add_arbitrary_weights.awk #{@dir+tree_file.name} > #{@dir}temp_tree.tre `
