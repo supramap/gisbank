@@ -1,7 +1,7 @@
 class Poy
   def initialize(job)
     job.service_id = PoyService.init
-    job.status = "running poy"
+    job.status = "starting poy service"
     job.save
 
     begin
@@ -48,11 +48,18 @@ class Poy
       @poy_file.save
       PoyService.add_text_file(job.service_id,@poy_file.name,@poy_file.data)
 
+       job.status = "uploaded all poy files"
+       job.save
+
       PoyService.submit_poy(job.service_id)
 
       while(! PoyService.is_done_yet(job.service_id))
             sleep(30)
       end
+
+
+        job.status = "Finished Running Poy"
+         job.save
 
       #poy_output = PoyService.get_file(job.service_id,"#{job.name}.poy_output")
       poy_output = PoyService.get_zip_file(job.service_id,"#{job.name}.poy_output")
@@ -66,8 +73,10 @@ class Poy
        if(!job.prealigned_fasta)
          ia_data = PoyService.get_file(job.service_id,"#{job.name}.ia")
         JobFile.new(:job_id => job.id, :file_type=>"ia",:name => "#{job.name}.ia",  :data => ia_data).save
-      end
+       end
 
+      job.status = "Downloaded Poy Files"
+      job.save
     rescue Exception => ex
       job.status = "poy failed"
       job.error_output = ex.message+ex.backtrace.to_s

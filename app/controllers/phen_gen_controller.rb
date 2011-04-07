@@ -94,10 +94,10 @@ class PhenGenController < ApplicationController
 
 
    # spawn(:method => :thread,:argv => 'phengen_job') do
-         if(!@job.supplied_tree)
-          tree_data = PoyService.get_file(@job.service_id,"#{@job.name}.tre")
-          JobFile.new(:job_id => @job.id, :file_type=>"tre",:name => "#{@job.name}.tre",  :data => tree_data).save
-      end
+       #  if(!@job.supplied_tree)
+       #   tree_data = PoyService.get_file(@job.service_id,"#{@job.name}.tre")
+       #   JobFile.new(:job_id => @job.id, :file_type=>"tre",:name => "#{@job.name}.tre",  :data => tree_data).save
+     # end
 
       zip_file = PoyService.get_zip_file(@job.service_id,"#{@job.name}.poy_output")
       JobFile.new(:job_id => @job.id, :file_type=>"poy_out",:name => "#{@job.name}.poy_output.tar.gz",  :data => zip_file).save
