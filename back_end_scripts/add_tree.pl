@@ -123,18 +123,28 @@ foreach $child (keys %isleaf){
 
 # Now print out the actual results.
 foreach $child (keys %ancestor){
-	print "<node>\n";
-	print "<id>$child</id>\n";
-	print "<weight>$oldweights{$map{$child}}</weight>\n";
-	print "<transformations>\n";
-	foreach $transform (@{$apmorphy_list{$child}}){
-		print "<transformation $transform/>\n";
+	print "$child,$ancestor{$child},$oldweights{$map{$child}}\n";
+	foreach $transform(@{$apomorphy_list{$child}}){
+		$transformlist{$transform}.= " $child";
 	}
-	print "</transformations>\n";
-	print "<ancestors>\n";	
-	print "<ancestor";
-	print " ";
-	print "id=\"$ancestor{$child}\" type=\"node\"/>\n";
-	print "</ancestors>\n";	
-	print "</node>\n";
+#	print "<node>\n";
+#	print "<id>$child</id>\n";
+#	print "<weight>$oldweights{$map{$child}}</weight>\n";
+#	print "<transformations>\n";
+#	foreach $transform (@{$apmorphy_list{$child}}){
+#		print "<transformation $transform/>\n";
+#	}
+#	print "</transformations>\n";
+#	print "<ancestors>\n";	
+#	print "<ancestor";
+#	print " ";
+#	print "id=\"$ancestor{$child}\" type=\"node\"/>\n";
+#	print "</ancestors>\n";	
+#	print "</node>\n";
+}
+
+print "*****\n";
+
+foreach $character (keys %transformlist){
+	print "$character $transformlist{$character}\n";
 }

@@ -41,11 +41,13 @@ class Job < ActiveRecord::Base
 
      `awk -f #{path_dir}add_arbitrary_weights.awk #{@dir+tree_file.name} > #{@dir}temp_tree.tre `
 
-     `cat #{@dir}temp_tree.tre #{@dir}#{self.name}.poy_output | #{path_dir}add_tree.pl >#{@dir+self.name}_output.xml`
+     #Note from Sam: We are combining parse_xml.rb with the previous script to produce the _parsed.txt directly.
+     #`cat #{@dir}temp_tree.tre #{@dir}#{self.name}.poy_output | #{path_dir}add_tree.pl >#{@dir+self.name}_output.xml`
 
      #`#{ path_dir}parse_noko_xml.rb #{@dir+self.name}_output.xml >#{@dir+self.name}_parsed.txt`
 
-     `#{ path_dir}parse_xml.rb #{@dir+self.name}_output.xml >#{@dir+self.name}_parsed.txt`
+     #`#{ path_dir}parse_xml.rb #{@dir+self.name}_output.xml >#{@dir+self.name}_parsed.txt`
+     `cat #{@dir}temp_tree.tre #{@dir}#{self.name}.poy_output | #{path_dir}add_tree.pl >#{@dir+self.name}_parsed.txt`
 
      #`echo "awk -f #{path_dir}reweight_tree.awk #{@dir+self.name}_parsed.txt #{@dir+self.name}_parsed.txt > #{@dir+self.name}_rwt.txt" >#{@dir}log.txt `
      `awk -f #{path_dir}reweight_tree.awk #{@dir+self.name}_parsed.txt #{@dir+self.name}_parsed.txt > #{@dir+self.name}_rwt.txt`
