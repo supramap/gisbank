@@ -53,11 +53,17 @@ class Job < ActiveRecord::Base
      `awk -f #{path_dir}reweight_tree.awk #{@dir+self.name}_parsed.txt #{@dir+self.name}_parsed.txt > #{@dir+self.name}_rwt.txt`
 
      `#{path_dir}divisiderum_postparse_totaldown.pl root  #{@dir+self.name}_rwt.txt > #{@dir+self.name}_down.txt`
+     `#{path_dir}divisiderum_postparse_onlydown.pl root  #{@dir+self.name}_rwt.txt > #{@dir+self.name}_dist.txt`
 
      #`sort -k3,3n #{@dir+self.name}_down.txt | awk -f #{path_dir}dirty_reweight.awk #{@dir+self.name}_rwt.txt - > #{@dir+self.name}_cum.txt`
 
      `#{path_dir}apomorphy_andtable_test_statistic_cox.pl #{@dir+self.name}_rwt.txt  #{@dir+self.name}_down.txt > #{@dir+self.name}_stat.txt`
       save_file self.name+"_stat.txt", 'stat'
+
+     `#{path_dir}parsimony_list.pl root #{@dir+self.name}_rwt.txt 500 > #{@dir+self.name}_parsimony.txt`
+     `#{path_dir}generate_apomorphies_thetas_expdecay.pl #{@dir+self.name}_rwt.txt #{@dir+self.name}_dist.txt #{@dir+self.name}_parsimony.txt 0.2 > #{@dir+self.name}_simulations.txt`
+     `#{path_dir}apomorphy_andtable_test_statistic_cox.pl #{@dir+self.name}_rwt.txt  #{@dir+self.name}_down.txt > #{@dir+self.name}_stat.txt #{@dir+self.name}_simulations.txt > #{@dir+self.name}_simstat.txt`
+
 
      `awk '($1 != $2 && ($3+$4) > 3 && $3 > $5 && ($3-$10)*($3-$10)/$10 >=6){print;}' #{@dir+self.name}_stat.txt > #{@dir+self.name}_stat_p0.05.txt`
       save_file self.name+"_stat_p0.05.txt", 'p'
