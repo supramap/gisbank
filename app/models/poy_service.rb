@@ -41,6 +41,10 @@ class PoyService
     get("/SubmitPoy?jobId=#{job_id}&numberOfNodes=2&wallTimeHours=3&wallTimeMinutes=0")["string"]
   end
 
+   def self.submit_phenGen(job_id, jobName,treeName)
+    get("/SubmitGenPhen?jobId=#{job_id}&jobName=#{jobName}&treeName=#{treeName}")["string"]
+  end
+
   def self.is_done_yet(job_id)
     results = get("/IsDoneYet?jobId=#{job_id}");
     return ((results["q1:boolean"] == 'true')||(results["boolean"] == 'true'))
@@ -63,7 +67,7 @@ class PoyService
     #end
     #return Base64.decode64(r.to_hash['base64Binary'])
 
-    results = get "/GetZipedFile?compressionType=tar.gz&jobId=#{job_id.to_s}&fileName=#{file_name}"
+    results = get "/GetZipedFile?compressionType=tar.gz&jobId=#{job_id.to_s}&fileName=#{file_name}", {:timeout=>100000000}
     bin =  Base64.decode64(results['base64Binary'])
     return bin
   end
