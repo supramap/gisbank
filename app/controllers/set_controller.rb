@@ -77,6 +77,11 @@ class SetController < ApplicationController
   	send_data @query.make_geo, :filename => "#{@query.name}_geo.csv", :type => "csv", :disposition => 'attachment'
   end
 
+  def download_kml
+    @query = Query.find(params[:id])
+  	send_data @query.make_kml, :filename => "#{@query.name}.kml", :type => "kml", :disposition => 'attachment'
+  end
+
   def download_metadata
     @query = Query.find(params[:id])
   	send_data @query.make_metadata, :filename => "#{@query.name}_meta_data.csv", :type => "csv", :disposition => 'attachment'

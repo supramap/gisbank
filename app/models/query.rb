@@ -2,7 +2,7 @@ class Query < ActiveRecord::Base
   # validates_presence_of :user_id, :name
 
   def bind(params)
-    #self.name=params["name"]
+    self.name=params["name"]
     self.description=params["description"]
     self.is_public=params["public"]
     self.min_collect_date=DateTime.parse( params["start_date"]['year']+"-"+params["start_date"]['month']+"-"+params["start_date"]['day'])
@@ -147,6 +147,21 @@ def make_geo
          geodata << "#{seq[:accession]},#{seq[:latitude]},#{seq[:longitude]},#{format_date(seq[:date])}\n"
   end
   return geodata
+end
+
+def make_kml
+  kml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<kml xmlns=\"http://earth.google.com/kml/2.2\">\n\t<Document>\n"
+  kml << "\t\t<name>#{self.name}</name><open>1</open>\n"
+  kml << "\t\t<description>#{self.description}</description>\n"
+
+  get_sequence.each do |seq|
+           kml << "\t\t\t<Placemark>\n\t\t\t\t<name>#{seq[:accession]}</name>\n"
+           kml << " \t\t\t\t<Style><IconStyle><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/wht-pushpin.png</href></Icon></IconStyle></Style>\n"
+           kml << "\t\t\t\t<TimeStamp><when>#{format_date(seq[:date])}</when></TimeStamp>\n"
+           kml << "\t\t\t\t<Point><coordinates>#{seq[:longitude]},#{seq[:latitude]}</coordinates> </Point> </Placemark>\n"
+  end
+  kml << "\t</Document>\n</kml>"
+  return kml
 end
 
 def make_metadata
