@@ -1,4 +1,4 @@
-class Query < ActiveRecord::Base
+class Query2 < ActiveRecord::Base
   # validates_presence_of :user_id, :name
 
   def bind(params)

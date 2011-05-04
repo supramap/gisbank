@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
   end
 
   def viewable
-    queryInstance = Query.find(params[:id])
+    queryInstance = Query2.find(params[:id])
   	if queryInstance.user_id != current_user.id and queryInstance.is_public == 0
   	  flash[:notice] = "You don't have permission to view that query."
   	  redirect_to queries_url
@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
   end
 
   def editable
-  	if Query.find(params[:id]).user_id != current_user.id
+  	if Query2.find(params[:id]).user_id != current_user.id
   	  flash[:notice] = "You don't have permission to edit this query."
   	  redirect_to "/queries/show/#{params[:id]}"
   	  return false

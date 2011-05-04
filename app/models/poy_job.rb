@@ -62,7 +62,7 @@ exit ()
  def isdone
     output =  Poy_service.is_done_yet(self.service_job)
     if(output)
-      name = Query.find(self.query_id).name.gsub(" ","")
+      name = Query2.find(self.query_id).name.gsub(" ","")
 
       ia = Poy_service.get_file(self.service_job,"#{name}.ia")
       if(ia)

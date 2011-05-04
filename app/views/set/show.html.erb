@@ -43,7 +43,7 @@
       <%=  (job.kml != nil) ? link_to( 'Download Stats', "/poy/download_output/#{job.id}") :' ' %>
       <%=  (job.poy != nil) ? link_to( 'Download poy script', "/poy/download_poy_script/#{job.id}") :' ' %>
       <%=  (job.poy_output != nil) ? link_to( 'Download output', "/poy/download_poy_output/#{job.id}") :' ' %>
-             <%="<br/> <br/>"%>
+             <br/> <br/>
 <%  end  %>
 <% } %>
  <%= form_tag "/poy/new/#{params[:id]}" %>
@@ -56,9 +56,9 @@
 
 
 <br/><br/>
-<h3>Listing <%= @seq.total_entries %> Results:</h3>
+<%# <h3>Listing <%= @seq.total_entries %><%# Results:</h3>           %>
 
-<%= will_paginate @seq %>
+<%#= will_paginate @seq %>
 
 <div class="list">
 <table>
