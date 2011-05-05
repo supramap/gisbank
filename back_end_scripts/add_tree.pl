@@ -15,11 +15,12 @@ sub ACCTRANS{
 			}
 		} else {
 			if (exists($ancestor{$this_node}) && ${$state{$this_node}}{$this_character} ne ${$state{$ancestor{$this_node}}}{$this_character}){
-				$apostring = "id=\"$this_character\" change=\"";
-				$apostring.= ${$state{$ancestor{$this_node}}}{$this_character};
-				$apostring.= " -> ";
-				$apostring.= ${$state{$this_node}}{$this_character};
-				$apostring.= "\"";
+				$apostring = $this_character;
+				#$apostring = "id=\"$this_character\" change=\"";
+				#$apostring.= ${$state{$ancestor{$this_node}}}{$this_character};
+				#$apostring.= " -> ";
+				#$apostring.= ${$state{$this_node}}{$this_character};
+				#$apostring.= "\"";
 				push @{$apmorphy_list{$this_node}},$apostring;
 			}
 		}
@@ -121,10 +122,11 @@ foreach $child (keys %isleaf){
 # Start at the root, and resolve all apomorphies by ACCTRAN
 &ACCTRANS("root");
 
+
 # Now print out the actual results.
 foreach $child (keys %ancestor){
 	print "$child,$ancestor{$child},$oldweights{$map{$child}}\n";
-	foreach $transform(@{$apomorphy_list{$child}}){
+	foreach $transform(@{$apmorphy_list{$child}}){
 		$transformlist{$transform}.= " $child";
 	}
 #	print "<node>\n";
@@ -142,8 +144,8 @@ foreach $child (keys %ancestor){
 #	print "</ancestors>\n";	
 #	print "</node>\n";
 }
-
 print "*****\n";
+
 
 foreach $character (keys %transformlist){
 	print "$character $transformlist{$character}\n";
