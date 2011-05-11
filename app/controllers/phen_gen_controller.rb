@@ -22,35 +22,6 @@ class PhenGenController < ApplicationController
     @job.save
   end
 
-#  def run
-#    @job =Job.find(params[:id])
-#       #@job = Job.new(:name => params[:job][:name],:outgroup => params[:job][:outgroup], :prealigned_fasta => params[:is_prealigned],  :supplied_tree=> params[:use_tree],:user_id => current_user.id , :status => "queued" )
-#
-#        @job.name = params[:job][:name].gsub(' ','_')
-#        @job.user_id = current_user.id
-#        @job.status = "queued"
-#        @job.save
-#
-#        @job.prealigned_fasta = (params[:is_prealigned]=="1")
-#
-#       if(params[:SelectOutGroup]=="0")
-#         @job.outgroup = params[:outgroup]
-#       else
-#         @job.outgroup = params[:job][:outgroup]
-#       end
-#
-#      @job.supplied_tree = params[:use_tree]
-#       if(params[:use_tree]=="1")
-#           file =  File.open(params[:job][:tree_file].tempfile.path).read
-#           @tree_file = JobFile.new(:job_id =>@job.id, :file_type=>'tre',:name => params[:job][:tree_file].original_filename,  :data => file)
-#           @tree_file.save
-#       end
-#       @job.save
-#
-#       Poy.run_all (@job)
-#       redirect_to "/phen_gen/list"
-#  end
-#
   def create
 
      @job =Job.find(params[:id])
