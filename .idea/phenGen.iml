@@ -108,6 +108,11 @@
     <orderEntry type="library" scope="PROVIDED" name="[gem] activerecord (v3.0.4, /usr/local/lib/ruby/gems/1.9.1/gems/activerecord-3.0.4)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] treetop (v1.4.9, /usr/local/lib/ruby/gems/1.9.1/gems/treetop-1.4.9)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] actionmailer (v3.0.4, /usr/local/lib/ruby/gems/1.9.1/gems/actionmailer-3.0.4)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] hpricot (v0.8.4, /usr/local/lib/ruby/gems/1.9.1/gems/hpricot-0.8.4)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] savon (v0.9.1, /usr/local/lib/ruby/gems/1.9.1/gems/savon-0.9.1)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] dynamic_form (v1.1.4, /usr/local/lib/ruby/gems/1.9.1/gems/dynamic_form-1.1.4)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] httparty (v0.7.6, /usr/local/lib/ruby/gems/1.9.1/gems/httparty-0.7.6)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] gyoku (v0.4.2, /usr/local/lib/ruby/gems/1.9.1/gems/gyoku-0.4.2)" level="application" />
   </component>
 </module>
 

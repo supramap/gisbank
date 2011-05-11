@@ -96,6 +96,4 @@ class Job < ActiveRecord::Base
   def get_files
     return JobFile.find_by_sql("SELECT id,job_id,name,file_type,created_at,updated_at FROM phenGen.job_files where job_id = #{job.id}")
   end
-
-
 end

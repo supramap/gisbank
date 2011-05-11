@@ -10,7 +10,6 @@ class PhenGenController < ApplicationController
   
   def list
     @jobs = Job.where("user_id = #{current_user.id}")
-
   end
 
    def list_all
@@ -105,14 +104,6 @@ class PhenGenController < ApplicationController
      render :json  => JobFile.where("file_type = 'fas' and job_id=#{params[:id]}")[0].data.split("\n").select{|a| a[0]=='>'}.map{|a| a[1,9999].strip}
   end
 
-#  def fasta_uploaded
-#    if(JobFile.where("file_type = 'fas' and job_id=#{params[:id]}")[0].count>0)
-#     render :json  => true
-#    else
-#    render :json  => false
-#    end
-#  end
-
   def debug
     Job.find(params[:id]).start
     redirect_to "/phen_gen/list"
@@ -120,19 +111,8 @@ class PhenGenController < ApplicationController
 
    def debug_poy_end
     @job = Job.find(params[:id])
-
-
-   # spawn(:method => :thread,:argv => 'phengen_job') do
-       #  if(!@job.supplied_tree)
-       #   tree_data = PoyService.get_file(@job.service_id,"#{@job.name}.tre")
-       #   JobFile.new(:job_id => @job.id, :file_type=>"tre",:name => "#{@job.name}.tre",  :data => tree_data).save
-     # end
-
       zip_file = PoyService.get_zip_file(@job.service_id,"#{@job.name}.poy_output")
       JobFile.new(:job_id => @job.id, :file_type=>"poy_out",:name => "#{@job.name}.poy_output.tar.gz",  :data => zip_file).save
-
-
-    #end
    redirect_to "/phen_gen/list"
   end
 
@@ -143,8 +123,6 @@ class PhenGenController < ApplicationController
   end
 
   def debug_bin
-    #Job.find(params[:id]).start
-    #filedata = ActiveSupport::Base64.decode64( PoyService.get_zip_file(1222951586,'tree.tre'))
     filedata = Base64.decode64( PoyService.get_zip_file(1222951586,'tree.tre'))
     File.open('zip.test', 'w') {|f| f.write(filedata ) }
 
@@ -154,7 +132,6 @@ class PhenGenController < ApplicationController
   def delete
     JobFile.where("job_id = ?", params[:id]).each{|a| a.destroy}
     Job.find(params[:id]).destroy
-    #redirect_to "/phen_gen/list"
     render :nothing => true
   end
 
@@ -196,18 +173,14 @@ class PhenGenController < ApplicationController
   end
 
   def show_file
-     #@job_file = JobFile.find(params[:id])
-
      @pairs = Array.new
-
-    file_data =  File.open(params[:phenGen_output].tempfile.path).read
-
+     file_data =  File.open(params[:phenGen_output].tempfile.path).read
 
      file_data.split("\n").each{ |line|
-     @pairs << [  line.split(/\t|:/)[1].to_i/2 , line.split(/\t|:/)[3].to_i/2 ]
+        @pairs << [  line.split(/\t|:/)[1].to_i/2 , line.split(/\t|:/)[3].to_i/2 ]
      }
-     flatten_pairs = @pairs.flatten
 
+     flatten_pairs = @pairs.flatten
 
      @fasta_hash = Hash.new
      @ia_file_data = File.open(params[:aligned_fasta].tempfile.path).read

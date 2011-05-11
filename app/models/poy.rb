@@ -21,7 +21,6 @@ class Poy
         @poy_script <<"transform (tcm:(1, 2))\n"
       end
 
-
       if(job.supplied_tree)
         tree= JobFile.where("file_type = 'tre' and job_id=#{job.id}")[0]
         PoyService.add_text_file(job.service_id,tree.name,tree.data)
@@ -120,8 +119,6 @@ class Poy
       else
         tree_name = "#{job.name}.tre"
         @poy_script << "search(max_time:00:0:5, memory:gb:2)\n"
-        #@poy_script << "search(max_time:00:0:2, memory:gb:2)\n"
-        #@poy_script << "search(max_time:00:0:2, memory:gb:2)\n"
         @poy_script << "transform(static_approx)\n"
         @poy_script << "select(best:1)\n"
         @poy_script << "report (\"#{job.name}.tre\", trees)\n"
@@ -140,10 +137,15 @@ class Poy
        job.status = "uploaded all poy files"
        job.save
 
-      PoyService.submit_poy(job.service_id)
-      PoyService.submit_phenGen(job.service_id,job.name,  tree_name)
-
-
+       begin
+         PoyService.submit_poy(job.service_id)
+         #PoyService.submit_phenGen(job.service_id,job.name,  tree_name)
+      rescue Exception => ex
+      job.status = "poy failed"
+      job.error_output = ex.message+ex.backtrace.to_s
+      job.save
+      exit
+    end
+      job.save
   end
-
 end

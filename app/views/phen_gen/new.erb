@@ -57,7 +57,7 @@ $(document).ready(function(){
 
 <h1> Creating a new GenPhen Job.</h1>
 
-<% form_for @job, :url =>"/phen_gen/run/#{@job.id}",  :html => {:multipart => true} do |f|%>
+<% form_for @job, :url =>"/phen_gen/create/#{@job.id}",  :html => {:multipart => true} do |f|%>
 
     <h4>Describe your job.</h4>
     <div  class="sub_input">
