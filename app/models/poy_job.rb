@@ -11,6 +11,10 @@ class PoyJob < ActiveRecord::Base
        self.search_time=60;
      end
 
+    if(self.search_time>5 && self.resource == 'superdev' )
+       self.search_time=5 ;
+     end
+
       @hours = self.search_time.div(60);
       @minutes = self.search_time.modulo(60);
 #name = Query.find(self.query_id).name.gsub(" ","")
@@ -32,12 +36,12 @@ exit ()
  end
 
  def submit
- self.service_job = Poy_service.init
- name = Query.find(self.query_id).name.gsub(" ","")
+ self.service_job = Poy_service.init(self.resource)
+ name = Query2.find(self.query_id).name.gsub(" ","")
  Poy_service.add_text_file(self.service_job,"#{name}.fasta", self.fasta)
  Poy_service.add_text_file(self.service_job,"#{name}.csv", self.geo)
  Poy_service.add_text_file(self.service_job,"run.poy", self.poy)
- results = Poy_service.submit_poy(self.service_job,self.search_time*20 )
+ results = Poy_service.submit_poy(self.service_job,self.search_time*20 ,10)
  output =(results=="Success")
  if(output)
    self.status = 1

@@ -31,15 +31,15 @@
     <% counter = 0;
     @poyjobs.each{ |job|
         counter = counter +1;
-    job.isdone;
- %>
+    	job.isdone;
+     %>
     <%  if job.status==1%>
   <%=  label_tag("Run #{(counter).to_s} : Your kml file for supra map is currently being generated for run #{(counter).to_s} please come back again soon.") %><br/><br/>
 <%  else %>
-            <%="Run #{(counter).to_s} : " %>
-          <%=  (job.kml != nil) ? link_to('Download Supramap KML', "/poy/download_supramap_kml/#{job.id}"):' ' %>
+      <%="Run #{(counter).to_s} : " %>
+      <%=  (job.kml != nil) ? link_to('Download Supramap KML', "/poy/download_supramap_kml/#{job.id}"):' ' %>
       <%=  (job.aligned_fasta != nil) ? link_to( 'Download Implied Alignment', "/poy/download_aligned_fasta/#{job.id}") :' ' %>
-       <%=  (job.tree != nil) ? link_to( 'Download Tree', "/poy/download_tree/#{job.id}") :' ' %>
+      <%=  (job.tree != nil) ? link_to( 'Download Tree', "/poy/download_tree/#{job.id}") :' ' %>
       <%=  (job.kml != nil) ? link_to( 'Download Stats', "/poy/download_output/#{job.id}") :' ' %>
       <%=  (job.poy != nil) ? link_to( 'Download poy script', "/poy/download_poy_script/#{job.id}") :' ' %>
       <%=  (job.poy_output != nil) ? link_to( 'Download output', "/poy/download_poy_output/#{job.id}") :' ' %>
@@ -49,11 +49,6 @@
  <%= form_tag "/poy/new/#{params[:id]}" %>
         <%= submit_tag("Re-Run Supra Map", :confirm =>'Are you sure? You only want to do this if changed your query parameters or ran supramap a while ago with now out of date data' ) %>
       <%  end %>
-
-
-
-
-
 
 <br/><br/>
 <%# <h3>Listing <%= @seq.total_entries %><%# Results:</h3>           %>

@@ -16,16 +16,18 @@ require 'httparty'
 
 class Poy_service
   include HTTParty
-  base_uri 'http://glenn-webservice.bmi.ohio-state.edu//PoyService.asmx'
+  #base_uri 'http://glenn-webservice.bmi.ohio-state.edu//PoyService.asmx'
+  base_uri 'http://140.254.80.123//PoyService.asmx'
   default_params
 
   def initialize()
 
   end
 
-  def self.init
-
-    get("/Init?passPhase=JDWKWHDFMCMAHHMCJVHVPJDIRJNGNTINIMQRBPNUSGBYLYESGT")["int"]
+  def self.init(resource)
+    get("/Init?passPhase=JDWKWHDFMCMAHHMCJVHVPJDIRJNGNTINIMQRBPNUSGBYLYESGT&resource=#{resource}")["int"]
+    #get("/Init?passPhase=JDWKWHDFMCMAHHMCJVHVPJDIRJNGNTINIMQRBPNUSGBYLYESGT&resource=glenn")["int"]
+    #get("/Init?passPhase=JDWKWHDFMCMAHHMCJVHVPJDIRJNGNTINIMQRBPNUSGBYLYESGT")["int"]
   end
 
 #  def self.add_poy_file(job_id,job_name,minutes)
@@ -60,12 +62,12 @@ class Poy_service
   #  opt2 = soap.AddFile(:jobId => job_id,:fileData => encoded_file_data,:fileName => file_name.gsub(" ",""))
   #end
   
-  def self.submit_poy(job_id,minutes)
+  def self.submit_poy(job_id,minutes,nodes)
 
      @hours = minutes.div(60);
      @minutes = minutes.modulo(60);
 
-   get("/SubmitPoy?jobId=#{job_id}&numberOfNodes=15&wallTimeHours=#{@hours}&wallTimeMinutes=#{@minutes}")["string"]
+   get("/SubmitPoy?jobId=#{job_id}&numberOfNodes=#{nodes}&wallTimeHours=#{@hours}&wallTimeMinutes=#{@minutes}")["string"]
     #get("/SubmitSmallPoy?jobId=#{job_id}")["boolean"]
   end
 

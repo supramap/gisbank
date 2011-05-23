@@ -1,5 +1,7 @@
 source 'http://rubygems.org'
 
+
+#gem 'dynamic_form'
 gem 'rails', '3.0.7'
 gem 'mysql'
 gem "authlogic"

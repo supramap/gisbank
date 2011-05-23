@@ -10,6 +10,8 @@ class PoyController < ApplicationController
     @query = Query2.find(params[:id])
     @job = PoyJob.new(params[:job])
     @job.outgroup = params[:outgroup]
+    @job.resource = params[:resource]
+
     @job.query_id = @query.id
     if(params[:trimed] == "1")
       @job.fasta= @query.make_trim_fasta
