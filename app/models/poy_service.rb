@@ -67,12 +67,12 @@ class Poy_service
      @hours = minutes.div(60);
      @minutes = minutes.modulo(60);
 
-   get("/SubmitPoy?jobId=#{job_id}&numberOfNodes=#{nodes}&wallTimeHours=#{@hours}&wallTimeMinutes=#{@minutes}")["string"]
+   get("/SubmitPoy?jobId=#{job_id}&numberOfNodes=#{nodes}&wallTimeHours=#{@hours}&wallTimeMinutes=#{@minutes}&postBackURL=gisbank.bmi.ohio-state.edu/poy/done/#{job_id}")["string"]
     #get("/SubmitSmallPoy?jobId=#{job_id}")["boolean"]
   end
 
   def self.is_done_yet(job_id)
-    results = get("/IsDoneYet?jobId=#{job_id}");
+    results = get("/IsDoneYet?jobId=#{job_id}&command=poy");
 
     return ((results["q1:boolean"] == 'true' )||(  results["boolean"] == 'true'))
 
