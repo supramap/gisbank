@@ -10,8 +10,12 @@
          <h3>Tree</h3>
   Outgroup :  <select id="outgroup" name="outgroup">
     <%  @query.get_sequence.each { |sequence| %>
+<<<<<<< HEAD
+      <option value='<%="#{sequence[:id]}"%>'><%="#{sequence.name}"%></option>
+=======
       <%#="<option value='#{sequence[:id]}'>#{sequence.name}</option>"%>
       "<option value='<%=sequence[:id]%>'> <%=sequence.name%></option>"
+>>>>>>> 60f98bf380da49c3ea2bc09425108ed7954b0322
     <% } %></select><br/>
   <br/>
     <!--Do you want rour fasta input trimed to the protien reading frame?<br/>

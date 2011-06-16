@@ -67,7 +67,7 @@ exit ()
     output =  Poy_service.is_done_yet(self.service_job)
     if(output)
       name = Query2.find(self.query_id).name.gsub(" ","")
-
+                                                   -
       ia = Poy_service.get_file(self.service_job,"#{name}.ia")
       if(ia)
           self.aligned_fasta = ia.split("\n")[8..-1].join("\n")
