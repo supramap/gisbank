@@ -28,24 +28,48 @@ class SetController < ApplicationController
 
   def update
     @study = Query2.find(params[:id])
+     name = @study.name
     @study.bind(params)
-
+     @study.name = name
     @study.save
     redirect_to :action => "show", :id => @study.id
   end
 
   def show
-    @query = Query2.find(params[:id])
-    #@seq = Sequence.paginate_by_sql(@query.get_sql,:page => params[:page], :order => 'id DESC')
-    @seq = Sequence.find_by_sql(@query.get_sql)
-    @poyjobs = PoyJob.find_by_sql("SELECT * FROM gisbank.poy_jobs where query_id =#{ params[:id]}")
-    #@poyjobs = PoyJob.all.find_all {|i|  i.query_id = params[:id]}
-#    @poyjob = PoyJob.first(:conditions => ["query_id = ?",params[:id]])
-#
-#    if(@poyjob && @poyjob.status==1)
-#      @poyjob.isdone
-#    end
+    debug = File.new('log/debug.txt', "a")
 
+    debug.write "\n\n\nstart a show at"+  Time.now.to_s() +"\n"
+
+    debug.flush
+    logger.info 'start a show at'+  Time.now.to_s() +"\n"
+    logger.flush
+    @query = Query2.find(params[:id])
+
+     logger.info "got query #{@query.name}info at"+  Time.now.to_s
+     debug.write  "got query #{@query.name} info at "+  Time.now.to_s() +"\n"
+
+
+    @seq = Sequence.find_by_sql(@query.get_sql)
+    #@poyjobs = PoyJob.find_by_sql("SELECT * FROM gisbank.poy_jobs where query_id =#{ params[:id]}")
+
+    logger.info 'got query results at at'+  Time.now.to_s
+      debug.write  'got query results at at'+  Time.now.to_s()   +"\n"
+
+
+      @poyjobs = PoyJob.find_by_sql("SELECT id, query_id, status, service_job,
+case when kml is null then 0 else 1 end as iskml ,
+case when aligned_fasta is null then 0 else 1 end as isaligned_fasta,
+case when poy_output is null then 0 else 1 end as ispoy_output,
+case when output is null then 0 else 1 end as isoutput,
+case when tree is null then 0 else 1 end as istree,
+case when poy is null then 0 else 1 end as ispoy
+FROM gisbank.poy_jobs where query_id=#{ params[:id]}")
+
+    logger.debug 'got poy jobs at'+  Time.now.to_s
+      logger.flush
+      debug.write 'got poy jobs at'+  Time.now.to_s()   +"\n"
+    debug.flush
+    debug.close
   end
 
   def delete

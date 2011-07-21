@@ -8,7 +8,7 @@
 </p>
 
  <%  if(@query.user_id == current_user.id) %>
-<%= link_to 'Change Search Parameters', :controller => 'set', :action => 'edit', :id=> @query.id %> |
+<%= link_to 'Change Query', :controller => 'set', :action => 'edit', :id=> @query.id %> |
 <%= link_to( 'Delete Query', {:controller => 'set', :action => 'delete', :id=> @query.id},{:confirm => 'Are you sure?'}) %>
 <%  end %>
 
@@ -16,12 +16,16 @@
 <%= link_to 'Download Nucleotides', "/set/download_fasta/#{@query.id}" %> |
 <%#= link_to 'Download Trimed Nucleotides', "/set/download_trim_fasta/#{@query.id}" %>
 <%= link_to 'Download Georefs', "/set/download_meta_geo_refs/#{@query.id}" %> |
-<%= link_to 'Download KML', "/set/download_kml/#{@query.id}" %> |
+<%= link_to 'Download Georefs as KML', "/set/download_kml/#{@query.id}" %> |
 <%= link_to 'Download Metadata', "/set/download_metadata/#{@query.id}" %>
 
 <br/><br/>
 
-
+<%
+            debug = File.new('log/debug.txt', "a")
+            debug.write "in the view starting to write the poy jobs #{Time.now}\n"
+            debug.flush
+%>
 <p><b>Supramap:</b></p>
 
     <% if(@poyjobs ==nil || @poyjobs==[] )   %>
@@ -29,20 +33,26 @@
     <%= submit_tag("Create a supra map kml file") %>
     <% else  %>
     <% counter = 0;
+
     @poyjobs.each{ |job|
         counter = counter +1;
-    	job.isdone;
+    	job.isdone job.id
+        debug.write "just ran a isdone command #{Time.now}\n"
+       debug.flush
      %>
     <%  if job.status==1%>
   <%=  label_tag("Run #{(counter).to_s} : Your kml file for supra map is currently being generated for run #{(counter).to_s} please come back again soon.") %><br/><br/>
 <%  else %>
       <%="Run #{(counter).to_s} : " %>
-      <%=  (job.kml != nil) ? link_to('Download Supramap KML', "/poy/download_supramap_kml/#{job.id}"):' ' %>
-      <%=  (job.aligned_fasta != nil) ? link_to( 'Download Implied Alignment', "/poy/download_aligned_fasta/#{job.id}") :' ' %>
-      <%=  (job.tree != nil) ? link_to( 'Download Tree', "/poy/download_tree/#{job.id}") :' ' %>
-      <%=  (job.kml != nil) ? link_to( 'Download Stats', "/poy/download_output/#{job.id}") :' ' %>
-      <%=  (job.poy != nil) ? link_to( 'Download poy script', "/poy/download_poy_script/#{job.id}") :' ' %>
-      <%=  (job.poy_output != nil) ? link_to( 'Download output', "/poy/download_poy_output/#{job.id}") :' ' %>
+      <%=  (job.iskml == "1") ? link_to('Download Supramap KML', "/poy/download_supramap_kml/#{job.id}"):' ' %>
+           <% debug.write "just checked for a kml #{Time.now}\n" ;debug.flush %>
+      <%=  (job.isaligned_fasta == "1") ? link_to( 'Download Implied Alignment', "/poy/download_aligned_fasta/#{job.id}") :' ' %>
+             <% debug.write "just checked for a fasta #{Time.now}\n" ;debug.flush %>
+      <%=  (job.istree == "1") ? link_to( 'Download Tree', "/poy/download_tree/#{job.id}") :' ' %>
+         <% debug.write "just checked for a tree #{Time.now}\n" ;debug.flush %>
+      <%=  (job.ispoy == "1") ? link_to( 'Download poy script', "/poy/download_poy_script/#{job.id}") :' ' %>
+        <%=  (job.isoutput == "1") ? link_to( 'Download stats', "/poy/download_output/#{job.id}") :' ' %>
+      <%=  (job.ispoy_output == "1") ? link_to( 'Download output', "/poy/download_poy_output/#{job.id}") :' ' %>
              <br/> <br/>
 <%  end  %>
 <% } %>
@@ -88,3 +98,8 @@
 <% } %>
 </table>
 </div>
+<%
+            debug.write "page finished #{Time.now}\n"
+            debug.flush
+            debug.close
+   %>

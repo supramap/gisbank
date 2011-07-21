@@ -16,8 +16,8 @@ require 'httparty'
 
 class Poy_service
   include HTTParty
-  #base_uri 'http://glenn-webservice.bmi.ohio-state.edu//PoyService.asmx'
-  base_uri 'http://140.254.80.123//PoyService.asmx'
+  base_uri 'http://glenn-webservice.bmi.ohio-state.edu//PoyService.asmx'
+  #base_uri 'http://140.254.80.123//PoyService.asmx'
   default_params
 
   def initialize()
@@ -79,7 +79,7 @@ class Poy_service
   end
 
   def self.get_file(job_id,file_name)
-    s5 = "http://glenn-webservice.bmi.ohio-state.edu/PoyService.asmx/GetTextFile?jobId=#{job_id}&fileName=#{file_name}"
+    #s5 = "http://glenn-webservice.bmi.ohio-state.edu/PoyService.asmx/GetTextFile?jobId=#{job_id}&fileName=#{file_name}"
     results = get "/GetTextFile?jobId=#{job_id}&fileName=#{file_name}"
     return results['string']
     #soap = SOAP::WSDLDriverFactory.new("http://glenn-webservice.bmi.ohio-state.edu/PoyService.asmx?wsdl").create_rpc_driver()

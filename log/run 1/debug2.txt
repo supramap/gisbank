@@ -1,0 +1,22 @@
+started is done Wed Jul 20 12:09:30 -0400 2011
+found poy job Wed Jul 20 12:09:32 -0400 2011
+ran service Wed Jul 20 12:09:32 -0400 2011
+*** loading poy job files Wed Jul 20 12:09:32 -0400 2011
+found name Wed Jul 20 12:09:32 -0400 2011
+failed to load ia Wed Jul 20 12:09:33 -0400 2011
+loaded kml Wed Jul 20 12:11:20 -0400 2011
+loaded stats Wed Jul 20 12:11:20 -0400 2011
+loaded stats Wed Jul 20 12:11:21 -0400 2011
+started is done Wed Jul 20 12:11:21 -0400 2011
+found poy job Wed Jul 20 12:11:21 -0400 2011
+ran service Wed Jul 20 12:11:23 -0400 2011
+*** loading poy job files Wed Jul 20 12:11:23 -0400 2011
+found name Wed Jul 20 12:11:23 -0400 2011
+failed to load ia Wed Jul 20 12:11:23 -0400 2011
+loaded kml Wed Jul 20 12:11:23 -0400 2011
+loaded stats Wed Jul 20 12:11:23 -0400 2011
+loaded stats Wed Jul 20 12:11:24 -0400 2011
+started is done Wed Jul 20 12:11:24 -0400 2011
+found poy job Wed Jul 20 12:11:24 -0400 2011
+ran service Wed Jul 20 12:11:25 -0400 2011
+loaded stats Wed Jul 20 12:11:25 -0400 2011

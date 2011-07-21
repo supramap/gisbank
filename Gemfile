@@ -10,6 +10,8 @@ gem "httparty"
 gem "savon"
 
 
+gem 'spawn'
+
 
 
 

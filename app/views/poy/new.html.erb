@@ -10,15 +10,15 @@
          <h3>Tree</h3>
   Outgroup :  <select id="outgroup" name="outgroup">
     <%  @query.get_sequence.each { |sequence| %>
-<<<<<<< HEAD
+
       <option value='<%="#{sequence[:id]}"%>'><%="#{sequence.name}"%></option>
-=======
+
       <%#="<option value='#{sequence[:id]}'>#{sequence.name}</option>"%>
       "<option value='<%=sequence[:id]%>'> <%=sequence.name%></option>"
->>>>>>> 60f98bf380da49c3ea2bc09425108ed7954b0322
+
     <% } %></select><br/>
   <br/>
-    <!--Do you want rour fasta input trimed to the protien reading frame?<br/>
+    <!--Do you want your fasta input trimed to the protien reading frame?<br/>
     <%#= radio_button_tag(:trimed, "1",true) %>trimed fasta<br/>
     <%#= radio_button_tag(:trimed, "0", false) %>raw fasta<br/>
   <br/>-->
@@ -28,10 +28,12 @@
        search_time=60;
      end
         %>
-    <%  %>
+    <%
+     search_time=2
+    %>
 
 
-Your job will have a search time of <%=search_time %> minutes and a max run time of <%=search_time*20 %> minutes + any time spent in the queue.
+Your job will have a search time of <%=search_time %> minutes and a max run time of 5<%#=search_time*20 %> minutes + any time spent in the queue.
  <br/> <br/>
   <%= f.submit 'Submit' %>
 

@@ -1,0 +1,21 @@
+
+
+
+start a show atWed Jul 20 12:09:29 -0400 2011
+got query small 2 info at Wed Jul 20 12:09:29 -0400 2011
+got query results at atWed Jul 20 12:09:30 -0400 2011
+got poy jobs atWed Jul 20 12:09:30 -0400 2011
+in the view starting to write the poy jobs Wed Jul 20 12:09:30 -0400 2011
+just ran a isdone command Wed Jul 20 12:11:21 -0400 2011
+just checked for a kml Wed Jul 20 12:11:21 -0400 2011
+just checked for a fasta Wed Jul 20 12:11:21 -0400 2011
+just checked for a tree Wed Jul 20 12:11:21 -0400 2011
+just ran a isdone command Wed Jul 20 12:11:24 -0400 2011
+just checked for a kml Wed Jul 20 12:11:24 -0400 2011
+just checked for a fasta Wed Jul 20 12:11:24 -0400 2011
+just checked for a tree Wed Jul 20 12:11:24 -0400 2011
+just ran a isdone command Wed Jul 20 12:11:25 -0400 2011
+just checked for a kml Wed Jul 20 12:11:25 -0400 2011
+just checked for a fasta Wed Jul 20 12:11:25 -0400 2011
+just checked for a tree Wed Jul 20 12:11:25 -0400 2011
+page finished Wed Jul 20 12:11:25 -0400 2011
