@@ -588,3 +588,352 @@ ran service Thu Jul 21 10:20:33 -0400 2011
 found name Thu Jul 21 10:20:33 -0400 2011
 load ia Thu Jul 21 10:20:34 -0400 2011
 loaded kml Thu Jul 21 10:20:34 -0400 2011
+
+
+
+started is done Fri Jul 22 12:18:59 -0400 2011
+
+
+
+started is done Fri Jul 22 12:18:59 -0400 2011
+found poy job Fri Jul 22 12:18:59 -0400 2011
+ran service Fri Jul 22 12:20:43 -0400 2011
+*** loading poy job files Fri Jul 22 12:20:43 -0400 2011
+found name Fri Jul 22 12:20:43 -0400 2011
+load ia Fri Jul 22 12:20:43 -0400 2011
+loaded kml Fri Jul 22 12:20:44 -0400 2011
+
+
+
+started is done Fri Jul 22 13:56:27 -0400 2011
+
+
+
+started is done Fri Jul 22 14:16:43 -0400 2011
+found poy job Fri Jul 22 14:16:44 -0400 2011
+ran service Fri Jul 22 14:17:49 -0400 2011
+*** loading poy job files Fri Jul 22 14:17:49 -0400 2011
+found name Fri Jul 22 14:17:49 -0400 2011
+load ia Fri Jul 22 14:17:50 -0400 2011
+loaded kml Fri Jul 22 14:17:50 -0400 2011
+finished Fri Jul 22 14:17:51 -0400 2011
+
+
+
+started is done Fri Jul 22 14:18:06 -0400 2011
+found poy job Fri Jul 22 14:18:06 -0400 2011
+ran service Fri Jul 22 14:18:06 -0400 2011
+*** loading poy job files Fri Jul 22 14:18:06 -0400 2011
+found name Fri Jul 22 14:18:06 -0400 2011
+load ia Fri Jul 22 14:18:06 -0400 2011
+
+
+
+started is done Fri Jul 22 14:24:38 -0400 2011
+
+
+
+started is done Fri Jul 22 14:25:51 -0400 2011
+found poy job Fri Jul 22 14:25:52 -0400 2011
+ran service Fri Jul 22 14:26:08 -0400 2011
+*** loading poy job files Fri Jul 22 14:26:08 -0400 2011
+found name Fri Jul 22 14:26:08 -0400 2011
+load ia Fri Jul 22 14:26:09 -0400 2011
+loaded kml Fri Jul 22 14:26:09 -0400 2011
+finished Fri Jul 22 14:26:10 -0400 2011
+
+
+
+started is done Fri Jul 22 14:49:12 -0400 2011
+
+
+
+started is done Fri Jul 22 14:49:21 -0400 2011
+found poy job Fri Jul 22 14:49:21 -0400 2011
+ran service Fri Jul 22 14:49:21 -0400 2011
+*** loading poy job files Fri Jul 22 14:49:21 -0400 2011
+found name Fri Jul 22 14:49:21 -0400 2011
+load ia Fri Jul 22 14:49:22 -0400 2011
+loaded kml Fri Jul 22 14:49:22 -0400 2011
+
+
+
+started is done Fri Jul 22 14:51:11 -0400 2011
+found poy job Fri Jul 22 14:51:11 -0400 2011
+ran service Fri Jul 22 14:51:11 -0400 2011
+*** loading poy job files Fri Jul 22 14:51:11 -0400 2011
+found name Fri Jul 22 14:51:11 -0400 2011
+load ia Fri Jul 22 14:51:12 -0400 2011
+loaded kml Fri Jul 22 14:51:12 -0400 2011
+
+
+
+started is done Fri Jul 22 14:52:13 -0400 2011
+found poy job Fri Jul 22 14:52:13 -0400 2011
+
+
+
+started is done Fri Jul 22 14:53:14 -0400 2011
+found poy job Fri Jul 22 14:53:14 -0400 2011
+
+
+
+started is done Fri Jul 22 14:54:15 -0400 2011
+found poy job Fri Jul 22 14:54:15 -0400 2011
+
+
+
+started is done Fri Jul 22 14:55:49 -0400 2011
+found poy job Fri Jul 22 14:55:50 -0400 2011
+ran service Fri Jul 22 14:55:50 -0400 2011
+*** loading poy job files Fri Jul 22 14:55:50 -0400 2011
+found name Fri Jul 22 14:55:50 -0400 2011
+load ia Fri Jul 22 14:58:25 -0400 2011
+loaded kml Fri Jul 22 14:58:26 -0400 2011
+
+
+
+started is done Fri Jul 22 15:00:15 -0400 2011
+
+
+
+started is done Fri Jul 22 15:09:37 -0400 2011
+found poy job Fri Jul 22 15:09:37 -0400 2011
+ran service Fri Jul 22 15:09:38 -0400 2011
+*** loading poy job files Fri Jul 22 15:09:38 -0400 2011
+found name Fri Jul 22 15:09:38 -0400 2011
+load ia Fri Jul 22 15:09:38 -0400 2011
+loaded kml Fri Jul 22 15:09:38 -0400 2011
+
+
+
+started is done Fri Jul 22 15:11:20 -0400 2011
+found poy job Fri Jul 22 15:11:20 -0400 2011
+ran service Fri Jul 22 15:11:20 -0400 2011
+*** loading poy job files Fri Jul 22 15:11:20 -0400 2011
+found name Fri Jul 22 15:11:20 -0400 2011
+load ia Fri Jul 22 15:11:48 -0400 2011
+loaded kml Fri Jul 22 15:11:53 -0400 2011
+
+
+
+started is done Fri Jul 22 15:15:28 -0400 2011
+found poy job Fri Jul 22 15:15:28 -0400 2011
+ran service Fri Jul 22 15:15:38 -0400 2011
+*** loading poy job files Fri Jul 22 15:15:38 -0400 2011
+found name Fri Jul 22 15:15:38 -0400 2011
+load ia Fri Jul 22 15:15:57 -0400 2011
+loaded kml Fri Jul 22 15:16:10 -0400 2011
+finished Fri Jul 22 15:19:10 -0400 2011
+
+
+
+started is done Fri Jul 22 15:20:26 -0400 2011
+
+
+
+started is done Fri Jul 22 15:20:34 -0400 2011
+
+
+
+started is done Fri Jul 22 15:20:52 -0400 2011
+
+
+
+started is done Fri Jul 22 15:20:53 -0400 2011
+found poy job Fri Jul 22 15:20:53 -0400 2011
+ran service Fri Jul 22 15:21:02 -0400 2011
+finished Fri Jul 22 15:21:02 -0400 2011
+
+
+
+started is done Fri Jul 22 15:21:14 -0400 2011
+
+
+
+started is done Fri Jul 22 15:21:14 -0400 2011
+found poy job Fri Jul 22 15:21:14 -0400 2011
+ran service Fri Jul 22 15:21:14 -0400 2011
+finished Fri Jul 22 15:21:14 -0400 2011
+
+
+
+started is done Fri Jul 22 15:33:49 -0400 2011
+
+
+
+started is done Fri Jul 22 15:33:49 -0400 2011
+found poy job Fri Jul 22 15:33:49 -0400 2011
+ran service Fri Jul 22 15:33:50 -0400 2011
+*** loading poy job files Fri Jul 22 15:33:50 -0400 2011
+found name Fri Jul 22 15:33:50 -0400 2011
+load ia Fri Jul 22 15:33:50 -0400 2011
+loaded kml Fri Jul 22 15:33:51 -0400 2011
+finished Fri Jul 22 15:33:52 -0400 2011
+
+
+
+started is done Fri Jul 22 15:33:52 -0400 2011
+found poy job Fri Jul 22 15:33:52 -0400 2011
+ran service Fri Jul 22 15:33:52 -0400 2011
+*** loading poy job files Fri Jul 22 15:33:52 -0400 2011
+found name Fri Jul 22 15:33:52 -0400 2011
+load ia Fri Jul 22 15:33:53 -0400 2011
+loaded kml Fri Jul 22 15:33:53 -0400 2011
+
+
+
+started is done Mon Jul 25 14:54:26 -0400 2011
+found poy job Mon Jul 25 14:54:26 -0400 2011
+ran service Mon Jul 25 14:54:26 -0400 2011
+*** loading poy job files Mon Jul 25 14:54:26 -0400 2011
+found name Mon Jul 25 14:54:26 -0400 2011
+load ia Mon Jul 25 14:54:27 -0400 2011
+loaded kml Mon Jul 25 14:54:27 -0400 2011
+
+
+
+started is done Mon Jul 25 14:56:19 -0400 2011
+found poy job Mon Jul 25 14:56:19 -0400 2011
+ran service Mon Jul 25 14:56:19 -0400 2011
+*** loading poy job files Mon Jul 25 14:56:19 -0400 2011
+found name Mon Jul 25 14:56:19 -0400 2011
+load ia Mon Jul 25 14:56:20 -0400 2011
+loaded kml Mon Jul 25 14:56:20 -0400 2011
+
+
+
+started is done Mon Jul 25 15:07:02 -0400 2011
+found poy job Mon Jul 25 15:07:02 -0400 2011
+ran service Mon Jul 25 15:07:03 -0400 2011
+*** loading poy job files Mon Jul 25 15:07:03 -0400 2011
+found name Mon Jul 25 15:07:03 -0400 2011
+load ia Mon Jul 25 15:07:03 -0400 2011
+loaded kml Mon Jul 25 15:07:03 -0400 2011
+
+
+
+started is done Mon Jul 25 15:40:39 -0400 2011
+found poy job Mon Jul 25 15:40:39 -0400 2011
+ran service Mon Jul 25 15:40:40 -0400 2011
+*** loading poy job files Mon Jul 25 15:40:40 -0400 2011
+found name Mon Jul 25 15:40:40 -0400 2011
+load ia Mon Jul 25 15:40:40 -0400 2011
+loaded kml Mon Jul 25 15:40:41 -0400 2011
+
+
+
+started is done Mon Jul 25 16:41:25 -0400 2011
+found poy job Mon Jul 25 16:41:25 -0400 2011
+ran service Mon Jul 25 16:41:25 -0400 2011
+*** loading poy job files Mon Jul 25 16:41:25 -0400 2011
+found name Mon Jul 25 16:41:25 -0400 2011
+load ia Mon Jul 25 16:41:25 -0400 2011
+loaded kml Mon Jul 25 16:41:26 -0400 2011
+finished Mon Jul 25 16:41:27 -0400 2011
+
+
+
+started is done Mon Jul 25 16:41:27 -0400 2011
+found poy job Mon Jul 25 16:41:27 -0400 2011
+ran service Mon Jul 25 16:41:27 -0400 2011
+finished Mon Jul 25 16:41:27 -0400 2011
+
+
+
+started is done Mon Jul 25 16:41:31 -0400 2011
+
+
+
+started is done Mon Jul 25 16:41:31 -0400 2011
+found poy job Mon Jul 25 16:41:31 -0400 2011
+ran service Mon Jul 25 16:41:31 -0400 2011
+finished Mon Jul 25 16:41:31 -0400 2011
+
+
+
+started is done Mon Jul 25 16:41:54 -0400 2011
+
+
+
+started is done Mon Jul 25 16:41:54 -0400 2011
+found poy job Mon Jul 25 16:41:54 -0400 2011
+ran service Mon Jul 25 16:41:54 -0400 2011
+finished Mon Jul 25 16:41:54 -0400 2011
+
+
+
+started is done Mon Jul 25 16:41:54 -0400 2011
+found poy job Mon Jul 25 16:41:54 -0400 2011
+ran service Mon Jul 25 16:41:54 -0400 2011
+finished Mon Jul 25 16:41:54 -0400 2011
+
+
+
+started is done Mon Jul 25 16:42:09 -0400 2011
+
+
+
+started is done Mon Jul 25 16:42:09 -0400 2011
+found poy job Mon Jul 25 16:42:09 -0400 2011
+ran service Mon Jul 25 16:42:10 -0400 2011
+finished Mon Jul 25 16:42:10 -0400 2011
+
+
+
+started is done Mon Jul 25 16:42:10 -0400 2011
+found poy job Mon Jul 25 16:42:10 -0400 2011
+ran service Mon Jul 25 16:42:10 -0400 2011
+finished Mon Jul 25 16:42:10 -0400 2011
+
+
+
+started is done Mon Jul 25 16:56:26 -0400 2011
+
+
+
+started is done Mon Jul 25 16:56:26 -0400 2011
+found poy job Mon Jul 25 16:56:26 -0400 2011
+ran service Mon Jul 25 16:56:26 -0400 2011
+finished Mon Jul 25 16:56:26 -0400 2011
+
+
+
+started is done Mon Jul 25 16:56:26 -0400 2011
+found poy job Mon Jul 25 16:56:26 -0400 2011
+ran service Mon Jul 25 16:56:27 -0400 2011
+*** loading poy job files Mon Jul 25 16:56:27 -0400 2011
+found name Mon Jul 25 16:56:27 -0400 2011
+load ia Mon Jul 25 16:56:27 -0400 2011
+loaded kml Mon Jul 25 16:56:27 -0400 2011
+finished Mon Jul 25 16:56:28 -0400 2011
+
+
+
+started is done Mon Jul 25 17:06:50 -0400 2011
+
+
+
+started is done Mon Jul 25 17:06:50 -0400 2011
+found poy job Mon Jul 25 17:06:50 -0400 2011
+ran service Mon Jul 25 17:06:51 -0400 2011
+finished Mon Jul 25 17:06:51 -0400 2011
+
+
+
+started is done Mon Jul 25 17:06:51 -0400 2011
+
+
+
+started is done Mon Jul 25 17:07:55 -0400 2011
+
+
+
+started is done Mon Jul 25 17:07:55 -0400 2011
+found poy job Mon Jul 25 17:07:55 -0400 2011
+ran service Mon Jul 25 17:07:55 -0400 2011
+finished Mon Jul 25 17:07:55 -0400 2011
+
+
+
+started is done Mon Jul 25 17:07:55 -0400 2011

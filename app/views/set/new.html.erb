@@ -65,7 +65,7 @@
 
      <h4>Nucleotide Locus </h4>
      <div style='width:400px; height:300px;  border-style: ridge;  overflow:auto' >
-    <%  Protein.all.each { |p|  %>
+    <%  Protein.all.sort_by {|a| a.name}.each { |p|  %>
     <%= radio_button_tag("protein[]",  p.id, p.id==1?true:false ) %><%= p.name %><br/>
   <%  } %>
 </div>

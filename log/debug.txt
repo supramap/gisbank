@@ -609,3 +609,456 @@ got query results at atThu Jul 21 10:20:29 -0400 2011
 got poy jobs atThu Jul 21 10:20:29 -0400 2011
 in the view starting to write the poy jobs Thu Jul 21 10:20:29 -0400 2011
 just ran a isdone command Thu Jul 21 10:20:33 -0400 2011
+
+
+
+start a show atFri Jul 22 12:15:35 -0400 2011
+got query local_II info at Fri Jul 22 12:15:35 -0400 2011
+got query results at atFri Jul 22 12:15:36 -0400 2011
+got poy jobs atFri Jul 22 12:15:36 -0400 2011
+
+
+
+start a show atFri Jul 22 12:17:31 -0400 2011
+got query local_II info at Fri Jul 22 12:17:31 -0400 2011
+got query results at atFri Jul 22 12:17:31 -0400 2011
+got poy jobs atFri Jul 22 12:17:31 -0400 2011
+
+
+
+start a show atFri Jul 22 12:18:59 -0400 2011
+got query local_II info at Fri Jul 22 12:18:59 -0400 2011
+got query results at atFri Jul 22 12:18:59 -0400 2011
+got poy jobs atFri Jul 22 12:18:59 -0400 2011
+in the view starting to write the poy jobs Fri Jul 22 12:18:59 -0400 2011
+just ran a isdone command Fri Jul 22 12:18:59 -0400 2011
+just checked for a kml Fri Jul 22 12:18:59 -0400 2011
+just checked for a fasta Fri Jul 22 12:18:59 -0400 2011
+just checked for a tree Fri Jul 22 12:18:59 -0400 2011
+
+
+
+start a show atFri Jul 22 13:56:26 -0400 2011
+got query prod_test_I info at Fri Jul 22 13:56:26 -0400 2011
+got query results at atFri Jul 22 13:56:27 -0400 2011
+got poy jobs atFri Jul 22 13:56:27 -0400 2011
+in the view starting to write the poy jobs Fri Jul 22 13:56:27 -0400 2011
+just ran a isdone command Fri Jul 22 13:56:29 -0400 2011
+just checked for a kml Fri Jul 22 13:56:29 -0400 2011
+just checked for a fasta Fri Jul 22 13:56:29 -0400 2011
+just checked for a tree Fri Jul 22 13:56:29 -0400 2011
+page finished Fri Jul 22 13:56:29 -0400 2011
+
+
+
+start a show atFri Jul 22 14:16:41 -0400 2011
+got query prod_test_I info at Fri Jul 22 14:16:41 -0400 2011
+got query results at atFri Jul 22 14:16:42 -0400 2011
+got poy jobs atFri Jul 22 14:16:42 -0400 2011
+in the view starting to write the poy jobs Fri Jul 22 14:16:42 -0400 2011
+just ran a isdone command Fri Jul 22 14:17:51 -0400 2011
+just checked for a kml Fri Jul 22 14:17:51 -0400 2011
+just checked for a fasta Fri Jul 22 14:17:51 -0400 2011
+just checked for a tree Fri Jul 22 14:17:51 -0400 2011
+page finished Fri Jul 22 14:17:52 -0400 2011
+
+
+
+start a show atFri Jul 22 14:18:05 -0400 2011
+got query prod_test_II info at Fri Jul 22 14:18:05 -0400 2011
+got query results at atFri Jul 22 14:18:05 -0400 2011
+got poy jobs atFri Jul 22 14:18:06 -0400 2011
+in the view starting to write the poy jobs Fri Jul 22 14:18:06 -0400 2011
+
+
+
+start a show atFri Jul 22 14:24:35 -0400 2011
+got query prod_test_I info at Fri Jul 22 14:24:35 -0400 2011
+got query results at atFri Jul 22 14:24:38 -0400 2011
+got poy jobs atFri Jul 22 14:24:38 -0400 2011
+in the view starting to write the poy jobs Fri Jul 22 14:24:38 -0400 2011
+just ran a isdone command Fri Jul 22 14:24:40 -0400 2011
+just checked for a kml Fri Jul 22 14:24:40 -0400 2011
+just checked for a fasta Fri Jul 22 14:24:40 -0400 2011
+just checked for a tree Fri Jul 22 14:24:40 -0400 2011
+page finished Fri Jul 22 14:24:40 -0400 2011
+
+
+
+start a show atFri Jul 22 14:25:50 -0400 2011
+got query prod_test_I info at Fri Jul 22 14:25:50 -0400 2011
+got query results at atFri Jul 22 14:25:51 -0400 2011
+got poy jobs atFri Jul 22 14:25:51 -0400 2011
+in the view starting to write the poy jobs Fri Jul 22 14:25:51 -0400 2011
+just ran a isdone command Fri Jul 22 14:26:10 -0400 2011
+just checked for a kml Fri Jul 22 14:26:10 -0400 2011
+just checked for a fasta Fri Jul 22 14:26:10 -0400 2011
+just checked for a tree Fri Jul 22 14:26:10 -0400 2011
+page finished Fri Jul 22 14:26:11 -0400 2011
+
+
+
+start a show atFri Jul 22 14:49:11 -0400 2011
+got query prod_test_I info at Fri Jul 22 14:49:11 -0400 2011
+got query results at atFri Jul 22 14:49:12 -0400 2011
+got poy jobs atFri Jul 22 14:49:12 -0400 2011
+in the view starting to write the poy jobs Fri Jul 22 14:49:12 -0400 2011
+just ran a isdone command Fri Jul 22 14:49:14 -0400 2011
+just checked for a kml Fri Jul 22 14:49:14 -0400 2011
+just checked for a fasta Fri Jul 22 14:49:14 -0400 2011
+just checked for a tree Fri Jul 22 14:49:14 -0400 2011
+page finished Fri Jul 22 14:49:14 -0400 2011
+
+
+
+start a show atFri Jul 22 14:49:20 -0400 2011
+got query prod_test_II info at Fri Jul 22 14:49:21 -0400 2011
+got query results at atFri Jul 22 14:49:21 -0400 2011
+got poy jobs atFri Jul 22 14:49:21 -0400 2011
+in the view starting to write the poy jobs Fri Jul 22 14:49:21 -0400 2011
+
+
+
+start a show atFri Jul 22 14:51:11 -0400 2011
+got query prod_test_II info at Fri Jul 22 14:51:11 -0400 2011
+got query results at atFri Jul 22 14:51:11 -0400 2011
+got poy jobs atFri Jul 22 14:51:11 -0400 2011
+in the view starting to write the poy jobs Fri Jul 22 14:51:11 -0400 2011
+
+
+
+start a show atFri Jul 22 14:52:13 -0400 2011
+got query prod_test_II info at Fri Jul 22 14:52:13 -0400 2011
+got query results at atFri Jul 22 14:52:13 -0400 2011
+got poy jobs atFri Jul 22 14:52:13 -0400 2011
+in the view starting to write the poy jobs Fri Jul 22 14:52:13 -0400 2011
+
+
+
+start a show atFri Jul 22 14:53:14 -0400 2011
+got query prod_test_II info at Fri Jul 22 14:53:14 -0400 2011
+got query results at atFri Jul 22 14:53:14 -0400 2011
+got poy jobs atFri Jul 22 14:53:14 -0400 2011
+in the view starting to write the poy jobs Fri Jul 22 14:53:14 -0400 2011
+
+
+
+start a show atFri Jul 22 14:54:14 -0400 2011
+got query prod_test_II info at Fri Jul 22 14:54:15 -0400 2011
+got query results at atFri Jul 22 14:54:15 -0400 2011
+got poy jobs atFri Jul 22 14:54:15 -0400 2011
+in the view starting to write the poy jobs Fri Jul 22 14:54:15 -0400 2011
+
+
+
+start a show atFri Jul 22 14:55:49 -0400 2011
+got query prod_test_II info at Fri Jul 22 14:55:49 -0400 2011
+got query results at atFri Jul 22 14:55:49 -0400 2011
+got poy jobs atFri Jul 22 14:55:49 -0400 2011
+in the view starting to write the poy jobs Fri Jul 22 14:55:49 -0400 2011
+
+
+
+start a show atFri Jul 22 15:00:13 -0400 2011
+got query prod_test_I info at Fri Jul 22 15:00:13 -0400 2011
+got query results at atFri Jul 22 15:00:15 -0400 2011
+got poy jobs atFri Jul 22 15:00:15 -0400 2011
+in the view starting to write the poy jobs Fri Jul 22 15:00:15 -0400 2011
+just ran a isdone command Fri Jul 22 15:00:16 -0400 2011
+just checked for a kml Fri Jul 22 15:00:16 -0400 2011
+just checked for a fasta Fri Jul 22 15:00:16 -0400 2011
+just checked for a tree Fri Jul 22 15:00:16 -0400 2011
+page finished Fri Jul 22 15:00:17 -0400 2011
+
+
+
+start a show atFri Jul 22 15:04:36 -0400 2011
+got query prod_test_II info at Fri Jul 22 15:04:36 -0400 2011
+got query results at atFri Jul 22 15:04:36 -0400 2011
+got poy jobs atFri Jul 22 15:04:36 -0400 2011
+in the view starting to write the poy jobs Fri Jul 22 15:04:36 -0400 2011
+
+
+
+start a show atFri Jul 22 15:09:37 -0400 2011
+got query prod_test_II info at Fri Jul 22 15:09:37 -0400 2011
+got query results at atFri Jul 22 15:09:37 -0400 2011
+got poy jobs atFri Jul 22 15:09:37 -0400 2011
+in the view starting to write the poy jobs Fri Jul 22 15:09:37 -0400 2011
+
+
+
+start a show atFri Jul 22 15:11:19 -0400 2011
+got query prod_test_II info at Fri Jul 22 15:11:19 -0400 2011
+got query results at atFri Jul 22 15:11:20 -0400 2011
+got poy jobs atFri Jul 22 15:11:20 -0400 2011
+in the view starting to write the poy jobs Fri Jul 22 15:11:20 -0400 2011
+
+
+
+start a show atFri Jul 22 15:15:27 -0400 2011
+got query prod_test_II info at Fri Jul 22 15:15:28 -0400 2011
+got query results at atFri Jul 22 15:15:28 -0400 2011
+got poy jobs atFri Jul 22 15:15:28 -0400 2011
+in the view starting to write the poy jobs Fri Jul 22 15:15:28 -0400 2011
+just ran a isdone command Fri Jul 22 15:19:10 -0400 2011
+just checked for a kml Fri Jul 22 15:19:10 -0400 2011
+just checked for a fasta Fri Jul 22 15:19:10 -0400 2011
+just checked for a tree Fri Jul 22 15:19:10 -0400 2011
+page finished Fri Jul 22 15:19:10 -0400 2011
+
+
+
+start a show atFri Jul 22 15:19:18 -0400 2011
+got query prod_test_II info at Fri Jul 22 15:19:18 -0400 2011
+got query results at atFri Jul 22 15:19:19 -0400 2011
+
+
+
+start a show atFri Jul 22 15:19:51 -0400 2011
+got query prod_test_I info at Fri Jul 22 15:19:51 -0400 2011
+got query results at atFri Jul 22 15:19:52 -0400 2011
+
+
+
+start a show atFri Jul 22 15:19:56 -0400 2011
+got query prod_test_II info at Fri Jul 22 15:19:56 -0400 2011
+got query results at atFri Jul 22 15:19:56 -0400 2011
+
+
+
+start a show atFri Jul 22 15:20:25 -0400 2011
+got query prod_test_I info at Fri Jul 22 15:20:25 -0400 2011
+got query results at atFri Jul 22 15:20:26 -0400 2011
+got poy jobs atFri Jul 22 15:20:26 -0400 2011
+in the view starting to write the poy jobs Fri Jul 22 15:20:26 -0400 2011
+just ran a isdone command Fri Jul 22 15:20:27 -0400 2011
+just checked for a kml Fri Jul 22 15:20:27 -0400 2011
+just checked for a fasta Fri Jul 22 15:20:27 -0400 2011
+just checked for a tree Fri Jul 22 15:20:27 -0400 2011
+page finished Fri Jul 22 15:20:27 -0400 2011
+
+
+
+start a show atFri Jul 22 15:20:34 -0400 2011
+got query prod_test_II info at Fri Jul 22 15:20:34 -0400 2011
+got query results at atFri Jul 22 15:20:34 -0400 2011
+got poy jobs atFri Jul 22 15:20:34 -0400 2011
+in the view starting to write the poy jobs Fri Jul 22 15:20:34 -0400 2011
+just ran a isdone command Fri Jul 22 15:20:35 -0400 2011
+just checked for a kml Fri Jul 22 15:20:35 -0400 2011
+just checked for a fasta Fri Jul 22 15:20:35 -0400 2011
+just checked for a tree Fri Jul 22 15:20:35 -0400 2011
+page finished Fri Jul 22 15:20:35 -0400 2011
+
+
+
+start a show atFri Jul 22 15:20:52 -0400 2011
+got query prod_test_II info at Fri Jul 22 15:20:52 -0400 2011
+got query results at atFri Jul 22 15:20:52 -0400 2011
+got poy jobs atFri Jul 22 15:20:52 -0400 2011
+in the view starting to write the poy jobs Fri Jul 22 15:20:52 -0400 2011
+just ran a isdone command Fri Jul 22 15:20:53 -0400 2011
+just checked for a kml Fri Jul 22 15:20:53 -0400 2011
+just checked for a fasta Fri Jul 22 15:20:53 -0400 2011
+just checked for a tree Fri Jul 22 15:20:53 -0400 2011
+just ran a isdone command Fri Jul 22 15:21:02 -0400 2011
+page finished Fri Jul 22 15:21:02 -0400 2011
+
+
+
+start a show atFri Jul 22 15:21:13 -0400 2011
+got query prod_test_II info at Fri Jul 22 15:21:14 -0400 2011
+got query results at atFri Jul 22 15:21:14 -0400 2011
+got poy jobs atFri Jul 22 15:21:14 -0400 2011
+in the view starting to write the poy jobs Fri Jul 22 15:21:14 -0400 2011
+just ran a isdone command Fri Jul 22 15:21:14 -0400 2011
+just checked for a kml Fri Jul 22 15:21:14 -0400 2011
+just checked for a fasta Fri Jul 22 15:21:14 -0400 2011
+just checked for a tree Fri Jul 22 15:21:14 -0400 2011
+just ran a isdone command Fri Jul 22 15:21:14 -0400 2011
+page finished Fri Jul 22 15:21:14 -0400 2011
+
+
+
+start a show atFri Jul 22 15:33:48 -0400 2011
+got query prod_test_II info at Fri Jul 22 15:33:49 -0400 2011
+got query results at atFri Jul 22 15:33:49 -0400 2011
+got poy jobs atFri Jul 22 15:33:49 -0400 2011
+in the view starting to write the poy jobs Fri Jul 22 15:33:49 -0400 2011
+just ran a isdone command Fri Jul 22 15:33:49 -0400 2011
+just checked for a kml Fri Jul 22 15:33:49 -0400 2011
+just checked for a fasta Fri Jul 22 15:33:49 -0400 2011
+just checked for a tree Fri Jul 22 15:33:49 -0400 2011
+just ran a isdone command Fri Jul 22 15:33:52 -0400 2011
+
+
+
+start a show atMon Jul 25 14:41:02 -0400 2011
+got query Monday_I info at Mon Jul 25 14:41:02 -0400 2011
+got query results at atMon Jul 25 14:41:03 -0400 2011
+got poy jobs atMon Jul 25 14:41:03 -0400 2011
+in the view starting to write the poy jobs Mon Jul 25 14:41:03 -0400 2011
+page finished Mon Jul 25 14:41:03 -0400 2011
+
+
+
+start a show atMon Jul 25 14:54:26 -0400 2011
+got query Monday_I info at Mon Jul 25 14:54:26 -0400 2011
+got query results at atMon Jul 25 14:54:26 -0400 2011
+got poy jobs atMon Jul 25 14:54:26 -0400 2011
+in the view starting to write the poy jobs Mon Jul 25 14:54:26 -0400 2011
+
+
+
+start a show atMon Jul 25 14:56:18 -0400 2011
+got query Monday_I info at Mon Jul 25 14:56:19 -0400 2011
+got query results at atMon Jul 25 14:56:19 -0400 2011
+got poy jobs atMon Jul 25 14:56:19 -0400 2011
+in the view starting to write the poy jobs Mon Jul 25 14:56:19 -0400 2011
+
+
+
+start a show atMon Jul 25 15:07:02 -0400 2011
+got query Monday_I info at Mon Jul 25 15:07:02 -0400 2011
+got query results at atMon Jul 25 15:07:02 -0400 2011
+got poy jobs atMon Jul 25 15:07:02 -0400 2011
+in the view starting to write the poy jobs Mon Jul 25 15:07:02 -0400 2011
+
+
+
+start a show atMon Jul 25 15:40:39 -0400 2011
+got query Monday_I info at Mon Jul 25 15:40:39 -0400 2011
+got query results at atMon Jul 25 15:40:39 -0400 2011
+got poy jobs atMon Jul 25 15:40:39 -0400 2011
+in the view starting to write the poy jobs Mon Jul 25 15:40:39 -0400 2011
+
+
+
+start a show atMon Jul 25 16:41:24 -0400 2011
+got query Monday_I info at Mon Jul 25 16:41:24 -0400 2011
+got query results at atMon Jul 25 16:41:24 -0400 2011
+got poy jobs atMon Jul 25 16:41:24 -0400 2011
+in the view starting to write the poy jobs Mon Jul 25 16:41:24 -0400 2011
+just ran a isdone command Mon Jul 25 16:41:27 -0400 2011
+just checked for a kml Mon Jul 25 16:41:27 -0400 2011
+just checked for a fasta Mon Jul 25 16:41:27 -0400 2011
+just checked for a tree Mon Jul 25 16:41:27 -0400 2011
+just ran a isdone command Mon Jul 25 16:41:27 -0400 2011
+just checked for a kml Mon Jul 25 16:41:27 -0400 2011
+just checked for a fasta Mon Jul 25 16:41:27 -0400 2011
+just checked for a tree Mon Jul 25 16:41:27 -0400 2011
+page finished Mon Jul 25 16:41:27 -0400 2011
+
+
+
+start a show atMon Jul 25 16:41:30 -0400 2011
+got query Monday_I info at Mon Jul 25 16:41:30 -0400 2011
+got query results at atMon Jul 25 16:41:30 -0400 2011
+got poy jobs atMon Jul 25 16:41:30 -0400 2011
+in the view starting to write the poy jobs Mon Jul 25 16:41:30 -0400 2011
+just ran a isdone command Mon Jul 25 16:41:31 -0400 2011
+just checked for a kml Mon Jul 25 16:41:31 -0400 2011
+just checked for a fasta Mon Jul 25 16:41:31 -0400 2011
+just checked for a tree Mon Jul 25 16:41:31 -0400 2011
+just ran a isdone command Mon Jul 25 16:41:31 -0400 2011
+just checked for a kml Mon Jul 25 16:41:31 -0400 2011
+just checked for a fasta Mon Jul 25 16:41:31 -0400 2011
+just checked for a tree Mon Jul 25 16:41:31 -0400 2011
+page finished Mon Jul 25 16:41:31 -0400 2011
+
+
+
+start a show atMon Jul 25 16:41:53 -0400 2011
+got query Monday_I info at Mon Jul 25 16:41:53 -0400 2011
+got query results at atMon Jul 25 16:41:53 -0400 2011
+got poy jobs atMon Jul 25 16:41:53 -0400 2011
+in the view starting to write the poy jobs Mon Jul 25 16:41:53 -0400 2011
+just ran a isdone command Mon Jul 25 16:41:54 -0400 2011
+just checked for a kml Mon Jul 25 16:41:54 -0400 2011
+just checked for a fasta Mon Jul 25 16:41:54 -0400 2011
+just checked for a tree Mon Jul 25 16:41:54 -0400 2011
+just ran a isdone command Mon Jul 25 16:41:54 -0400 2011
+just checked for a kml Mon Jul 25 16:41:54 -0400 2011
+just checked for a fasta Mon Jul 25 16:41:54 -0400 2011
+just checked for a tree Mon Jul 25 16:41:54 -0400 2011
+just ran a isdone command Mon Jul 25 16:41:54 -0400 2011
+page finished Mon Jul 25 16:41:54 -0400 2011
+
+
+
+start a show atMon Jul 25 16:42:09 -0400 2011
+got query Monday_I info at Mon Jul 25 16:42:09 -0400 2011
+got query results at atMon Jul 25 16:42:09 -0400 2011
+got poy jobs atMon Jul 25 16:42:09 -0400 2011
+in the view starting to write the poy jobs Mon Jul 25 16:42:09 -0400 2011
+just ran a isdone command Mon Jul 25 16:42:09 -0400 2011
+just checked for a kml Mon Jul 25 16:42:09 -0400 2011
+just checked for a fasta Mon Jul 25 16:42:09 -0400 2011
+just checked for a tree Mon Jul 25 16:42:09 -0400 2011
+just ran a isdone command Mon Jul 25 16:42:10 -0400 2011
+just checked for a kml Mon Jul 25 16:42:10 -0400 2011
+just checked for a fasta Mon Jul 25 16:42:10 -0400 2011
+just checked for a tree Mon Jul 25 16:42:10 -0400 2011
+just ran a isdone command Mon Jul 25 16:42:10 -0400 2011
+page finished Mon Jul 25 16:42:10 -0400 2011
+
+
+
+start a show atMon Jul 25 16:56:25 -0400 2011
+got query Monday_I info at Mon Jul 25 16:56:25 -0400 2011
+got query results at atMon Jul 25 16:56:25 -0400 2011
+got poy jobs atMon Jul 25 16:56:26 -0400 2011
+in the view starting to write the poy jobs Mon Jul 25 16:56:26 -0400 2011
+just ran a isdone command Mon Jul 25 16:56:26 -0400 2011
+just checked for a kml Mon Jul 25 16:56:26 -0400 2011
+just checked for a fasta Mon Jul 25 16:56:26 -0400 2011
+just checked for a tree Mon Jul 25 16:56:26 -0400 2011
+just ran a isdone command Mon Jul 25 16:56:26 -0400 2011
+just checked for a kml Mon Jul 25 16:56:26 -0400 2011
+just checked for a fasta Mon Jul 25 16:56:26 -0400 2011
+just checked for a tree Mon Jul 25 16:56:26 -0400 2011
+just ran a isdone command Mon Jul 25 16:56:28 -0400 2011
+page finished Mon Jul 25 16:56:28 -0400 2011
+
+
+
+start a show atMon Jul 25 17:06:50 -0400 2011
+got query Monday_I info at Mon Jul 25 17:06:50 -0400 2011
+got query results at atMon Jul 25 17:06:50 -0400 2011
+got poy jobs atMon Jul 25 17:06:50 -0400 2011
+in the view starting to write the poy jobs Mon Jul 25 17:06:50 -0400 2011
+just ran a isdone command Mon Jul 25 17:06:50 -0400 2011
+just checked for a kml Mon Jul 25 17:06:50 -0400 2011
+just checked for a fasta Mon Jul 25 17:06:50 -0400 2011
+just checked for a tree Mon Jul 25 17:06:50 -0400 2011
+just ran a isdone command Mon Jul 25 17:06:51 -0400 2011
+just checked for a kml Mon Jul 25 17:06:51 -0400 2011
+just checked for a fasta Mon Jul 25 17:06:51 -0400 2011
+just checked for a tree Mon Jul 25 17:06:51 -0400 2011
+just ran a isdone command Mon Jul 25 17:06:51 -0400 2011
+just checked for a kml Mon Jul 25 17:06:51 -0400 2011
+just checked for a fasta Mon Jul 25 17:06:51 -0400 2011
+just checked for a tree Mon Jul 25 17:06:51 -0400 2011
+page finished Mon Jul 25 17:06:51 -0400 2011
+
+
+
+start a show atMon Jul 25 17:07:54 -0400 2011
+got query Monday_I info at Mon Jul 25 17:07:55 -0400 2011
+got query results at atMon Jul 25 17:07:55 -0400 2011
+got poy jobs atMon Jul 25 17:07:55 -0400 2011
+in the view starting to write the poy jobs Mon Jul 25 17:07:55 -0400 2011
+just ran a isdone command Mon Jul 25 17:07:55 -0400 2011
+just checked for a kml Mon Jul 25 17:07:55 -0400 2011
+just checked for a fasta Mon Jul 25 17:07:55 -0400 2011
+just checked for a tree Mon Jul 25 17:07:55 -0400 2011
+just ran a isdone command Mon Jul 25 17:07:55 -0400 2011
+just checked for a kml Mon Jul 25 17:07:55 -0400 2011
+just checked for a fasta Mon Jul 25 17:07:55 -0400 2011
+just checked for a tree Mon Jul 25 17:07:55 -0400 2011
+just ran a isdone command Mon Jul 25 17:07:55 -0400 2011
+just checked for a kml Mon Jul 25 17:07:55 -0400 2011
+just checked for a fasta Mon Jul 25 17:07:55 -0400 2011
+just checked for a tree Mon Jul 25 17:07:55 -0400 2011
+page finished Mon Jul 25 17:07:55 -0400 2011
