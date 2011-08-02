@@ -43,7 +43,7 @@
     <%  if job.status==1%>
             <%=  label_tag("Run #{(counter).to_s} : Your kml file for supra map is currently being generated for run #{(counter).to_s} please come back again soon.") %><br/><br/>
     <%# else if job.status==0%>
-  <%#=  label_tag("Run #{(counter).to_s} : Your Supramamp job has failed.") %><br/><br/>
+  <%#=  label_tag("Run #{(counter).to_s} : Your Supramamp job has failed.") %>
 <%  else %>
       <%="Run #{(counter).to_s} : " %>
       <%=  (job.iskml == "1") ? link_to('Download Supramap KML', "/poy/download_supramap_kml/#{job.id}"):' ' %>

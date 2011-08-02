@@ -4,7 +4,7 @@
 <% form_for(@job, :url => '/poy/create/'+"#{@query.id}") do |f| %>
 
        <h3>Resource</h3>
-     <%= radio_button_tag(:resource, "supradev") %>   SuperDev  (Select this one if you want your results with in a few minutes)  <br/>
+     <%= radio_button_tag(:resource, "supradev" ,checked= true) %>   SuperDev  (Select this one if you want your results with in a few minutes)  <br/>
         <%= radio_button_tag(:resource, "glenn") %>   Glenn at OSC (Select this one if you are willing to wait hours but want the most precision)     <br/>
 
          <h3>Tree</h3>
@@ -33,7 +33,7 @@
     %>
 
 
-Your job will have a search time of <%=search_time %> minutes and a max run time of 5<%#=search_time*20 %> minutes + any time spent in the queue.
+<%#Your job will have a search time of <%=search_time % minutes and a max run time of 5%#=search_time*20 % minutes + any time spent in the queue.  %>
  <br/> <br/>
   <%= f.submit 'Submit' %>
 

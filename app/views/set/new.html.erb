@@ -17,7 +17,7 @@
 <div style='width:400px; height:300px;  border-style: ridge;  overflow:auto' >
    <%  Pathogen.all.each { |p|  %>
 
-    <%= check_box_tag "pathogen[]", p.id %>
+    <%=  radio_button_tag "pathogen[]", p.id, (Pathogen.all[0]==p) %>
     <%= p.name %><br/>
   <%  } %>
     </div>
