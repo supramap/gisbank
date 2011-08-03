@@ -1,4 +1,0 @@
-#!/usr/local/bin/ruby
-require File.expand_path('../../config/boot', __FILE__)
-#require File.dirname(__FILE__) + '/../config/boot'
-require 'commands/server'
