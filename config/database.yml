@@ -1,11 +1,20 @@
 development:
   adapter: mysql
   encoding: utf8
-  host: 140.254.80.125
+  host: 127.0.0.1
   database: gisbank
   pool: 5
-  username: gisman
-  password: gisman$
+  username: root
+  password:
+
+#development:
+#  adapter: mysql
+#  encoding: utf8
+#  host: 140.254.80.125
+#  database: gisbank
+#  pool: 5
+#  username: gisman
+#  password: gisman$
 
 #development:
 #  adapter: sqlite3
@@ -25,17 +34,18 @@ development:
 test:
   adapter: mysql
   encoding: utf8
-  host: 140.254.80.125
+  host: 127.0.0.1
   database: gisbank
   pool: 5
-  username: gisman
-  #password: gisman$
+  username: root
+  password:
 
 production:
   adapter: mysql
   encoding: utf8
-  host: 140.254.80.125
+  host: xio29.osc.edu
   database: gisbank
   pool: 5
-  username: gisman
-  #password: gisman$
+  username: supramap_admin
+  password: nosnoraA
+

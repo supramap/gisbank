@@ -14,19 +14,13 @@ class PoyJob < ActiveRecord::Base
       self.search_time=60;
     end
 
-    if (self.search_time>5 && self.resource == 'superdev')
-      self.search_time=5;
-    end
-
     @hours = self.search_time.div(60);
     @minutes = self.search_time.modulo(60);
 
-      #Dan now wants 2 minute search time and 5 minute wall time regardless of the size of the data set. This will bomb on most datasets
-    @hours = 0
-    @minutes =2
+    #Dan now wants 2 minute search time and 5 minute wall time regardless of the size of the data set. This will bomb on most datasets
+    #@hours = 0
+    #@minutes =2
 
-
-#name = Query.find(self.query_id).name.gsub(" ","")
     self.poy =
         "read (\"#{job_name.gsub(" ", "")}.fasta\")
 set(root:\"#{Sequence.find(self.outgroup).accession}\")
@@ -42,21 +36,15 @@ exit ()
   end
 
   def submit
-
-    if (self.resource == 'glenn')
-      node_number= 20
-    else
-      node_number=8
-    end
-    self.service_job = Poy_service.init(self.resource)
+    node_number= 20
+    self.service_job = Poy_service.init()
     self.save
 
     name = Query2.find(self.query_id).name.gsub(" ", "")
     Poy_service.add_text_file(self.service_job, "#{name}.fasta", self.fasta)
     Poy_service.add_text_file(self.service_job, "#{name}.csv", self.geo)
     Poy_service.add_text_file(self.service_job, "run.poy", self.poy)
-      #results = Poy_service.submit_poy(self.service_job,self.search_time*20 ,10)
-    results = Poy_service.submit_poy(self.service_job, 60, node_number)
+    results = Poy_service.submit_poy(self.service_job, self.search_time*10 , node_number)
     output =(results=="Success")
     if (output)
       self.status = 1
@@ -67,8 +55,6 @@ exit ()
   end
 
   def isdone id
-    #spawn do
-
 
     debug = File.new('log/debug2.txt', "a")
     debug.write "\n\n\nstarted is done #{Time.now}\n"; debug.flush
@@ -113,19 +99,11 @@ exit ()
           end
       end
 
-     # begin
-      #  unless(poy_job.poy_output )
-      #  poy_job.poy_output = Poy_service.get_file(poy_job.service_job, "output.txt")
-       #   end
-      #end
       poy_job.status = 2
       poy_job.save
       Poy_service.delete(poy_job.service_job)
     end
     debug.write "finished #{Time.now}\n"; debug.flush; debug.close
     return output
-    #end
-
   end
-
 end
