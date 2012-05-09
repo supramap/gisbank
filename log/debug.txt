@@ -1,0 +1,350 @@
+
+
+
+start a show at2012-05-03 17:15:45 -0400
+got query Monday_I info at 2012-05-03 17:15:45 -0400
+got query results at at2012-05-03 17:15:45 -0400
+got poy jobs at2012-05-03 17:15:45 -0400
+in the view starting to write the poy jobs 2012-05-03 17:15:45 -0400
+just ran a isdone command 2012-05-03 17:15:45 -0400
+just checked for a kml 2012-05-03 17:15:45 -0400
+just checked for a fasta 2012-05-03 17:15:45 -0400
+just checked for a tree 2012-05-03 17:15:45 -0400
+
+
+
+start a show at2012-05-04 10:21:41 -0400
+got query Monday_I info at 2012-05-04 10:21:41 -0400
+got query results at at2012-05-04 10:21:41 -0400
+got poy jobs at2012-05-04 10:21:41 -0400
+in the view starting to write the poy jobs 2012-05-04 10:21:41 -0400
+just ran a isdone command 2012-05-04 10:21:41 -0400
+just checked for a kml 2012-05-04 10:21:41 -0400
+just checked for a fasta 2012-05-04 10:21:41 -0400
+just checked for a tree 2012-05-04 10:21:41 -0400
+
+
+
+start a show at2012-05-04 10:22:12 -0400
+got query Monday_I info at 2012-05-04 10:22:12 -0400
+got query results at at2012-05-04 10:22:12 -0400
+got poy jobs at2012-05-04 10:22:12 -0400
+in the view starting to write the poy jobs 2012-05-04 10:22:12 -0400
+just ran a isdone command 2012-05-04 10:22:13 -0400
+just checked for a kml 2012-05-04 10:22:13 -0400
+just checked for a fasta 2012-05-04 10:22:13 -0400
+just checked for a tree 2012-05-04 10:22:13 -0400
+
+
+
+start a show at2012-05-04 10:25:19 -0400
+got query Monday_I info at 2012-05-04 10:25:19 -0400
+got query results at at2012-05-04 10:25:20 -0400
+got poy jobs at2012-05-04 10:25:23 -0400
+in the view starting to write the poy jobs 2012-05-04 10:25:23 -0400
+just ran a isdone command 2012-05-04 10:25:23 -0400
+just checked for a kml 2012-05-04 10:25:23 -0400
+just checked for a fasta 2012-05-04 10:25:23 -0400
+just checked for a tree 2012-05-04 10:25:23 -0400
+
+
+
+start a show at2012-05-04 10:26:02 -0400
+got query Monday_I info at 2012-05-04 10:26:02 -0400
+got query results at at2012-05-04 10:26:02 -0400
+got poy jobs at2012-05-04 10:26:04 -0400
+in the view starting to write the poy jobs 2012-05-04 10:26:04 -0400
+just ran a isdone command 2012-05-04 10:26:04 -0400
+just checked for a kml 2012-05-04 10:26:04 -0400
+just checked for a fasta 2012-05-04 10:26:04 -0400
+just checked for a tree 2012-05-04 10:26:04 -0400
+
+
+
+start a show at2012-05-04 10:31:46 -0400
+got query Test_one info at 2012-05-04 10:31:46 -0400
+got query results at at2012-05-04 10:31:46 -0400
+got poy jobs at2012-05-04 10:31:46 -0400
+in the view starting to write the poy jobs 2012-05-04 10:31:47 -0400
+page finished 2012-05-04 10:31:47 -0400
+
+
+
+start a show at2012-05-04 10:32:33 -0400
+got query q2 info at 2012-05-04 10:32:33 -0400
+got query results at at2012-05-04 10:32:43 -0400
+got poy jobs at2012-05-04 10:32:43 -0400
+in the view starting to write the poy jobs 2012-05-04 10:32:43 -0400
+page finished 2012-05-04 10:32:45 -0400
+
+
+
+start a show at2012-05-04 10:38:46 -0400
+got query q3 info at 2012-05-04 10:38:46 -0400
+got query results at at2012-05-04 10:38:46 -0400
+got poy jobs at2012-05-04 10:38:46 -0400
+in the view starting to write the poy jobs 2012-05-04 10:38:46 -0400
+page finished 2012-05-04 10:38:46 -0400
+
+
+
+start a show at2012-05-04 10:48:33 -0400
+got query q3 info at 2012-05-04 10:48:34 -0400
+got query results at at2012-05-04 10:48:34 -0400
+got poy jobs at2012-05-04 10:48:34 -0400
+in the view starting to write the poy jobs 2012-05-04 10:48:34 -0400
+
+
+
+start a show at2012-05-04 10:49:58 -0400
+got query q1 info at 2012-05-04 10:49:58 -0400
+got query results at at2012-05-04 10:49:58 -0400
+got poy jobs at2012-05-04 10:49:58 -0400
+in the view starting to write the poy jobs 2012-05-04 10:49:58 -0400
+page finished 2012-05-04 10:49:58 -0400
+
+
+
+start a show at2012-05-04 10:53:28 -0400
+got query q4 info at 2012-05-04 10:53:28 -0400
+got query results at at2012-05-04 10:53:32 -0400
+got poy jobs at2012-05-04 10:53:33 -0400
+in the view starting to write the poy jobs 2012-05-04 10:53:33 -0400
+page finished 2012-05-04 10:53:35 -0400
+
+
+
+start a show at2012-05-04 11:07:03 -0400
+got query q5 info at 2012-05-04 11:07:03 -0400
+got query results at at2012-05-04 11:07:03 -0400
+got poy jobs at2012-05-04 11:07:04 -0400
+in the view starting to write the poy jobs 2012-05-04 11:07:04 -0400
+page finished 2012-05-04 11:07:04 -0400
+
+
+
+start a show at2012-05-04 11:08:45 -0400
+got query q1 info at 2012-05-04 11:08:45 -0400
+got query results at at2012-05-04 11:08:45 -0400
+got poy jobs at2012-05-04 11:08:45 -0400
+in the view starting to write the poy jobs 2012-05-04 11:08:45 -0400
+just ran a isdone command 2012-05-04 11:08:45 -0400
+just checked for a kml 2012-05-04 11:08:45 -0400
+just checked for a fasta 2012-05-04 11:08:45 -0400
+just checked for a tree 2012-05-04 11:08:45 -0400
+just ran a isdone command 2012-05-04 11:08:45 -0400
+just checked for a kml 2012-05-04 11:08:45 -0400
+just checked for a fasta 2012-05-04 11:08:45 -0400
+just checked for a tree 2012-05-04 11:08:45 -0400
+page finished 2012-05-04 11:08:45 -0400
+
+
+
+start a show at2012-05-04 11:08:58 -0400
+got query q1 info at 2012-05-04 11:08:58 -0400
+got query results at at2012-05-04 11:08:58 -0400
+got poy jobs at2012-05-04 11:08:58 -0400
+in the view starting to write the poy jobs 2012-05-04 11:08:58 -0400
+just ran a isdone command 2012-05-04 11:08:58 -0400
+just checked for a kml 2012-05-04 11:08:58 -0400
+just checked for a fasta 2012-05-04 11:08:58 -0400
+just checked for a tree 2012-05-04 11:08:58 -0400
+just ran a isdone command 2012-05-04 11:08:58 -0400
+just checked for a kml 2012-05-04 11:08:58 -0400
+just checked for a fasta 2012-05-04 11:08:58 -0400
+just checked for a tree 2012-05-04 11:08:58 -0400
+just ran a isdone command 2012-05-04 11:08:59 -0400
+page finished 2012-05-04 11:08:59 -0400
+
+
+
+start a show at2012-05-04 11:09:12 -0400
+got query q2 info at 2012-05-04 11:09:13 -0400
+got query results at at2012-05-04 11:09:15 -0400
+got poy jobs at2012-05-04 11:09:15 -0400
+in the view starting to write the poy jobs 2012-05-04 11:09:15 -0400
+just ran a isdone command 2012-05-04 11:09:16 -0400
+just checked for a kml 2012-05-04 11:09:16 -0400
+just checked for a fasta 2012-05-04 11:09:16 -0400
+just checked for a tree 2012-05-04 11:09:16 -0400
+page finished 2012-05-04 11:09:18 -0400
+
+
+
+start a show at2012-05-04 11:10:02 -0400
+got query q2 info at 2012-05-04 11:10:02 -0400
+got query results at at2012-05-04 11:10:06 -0400
+got poy jobs at2012-05-04 11:10:06 -0400
+in the view starting to write the poy jobs 2012-05-04 11:10:06 -0400
+just ran a isdone command 2012-05-04 11:10:07 -0400
+just checked for a kml 2012-05-04 11:10:07 -0400
+just checked for a fasta 2012-05-04 11:10:07 -0400
+just checked for a tree 2012-05-04 11:10:07 -0400
+just ran a isdone command 2012-05-04 11:10:07 -0400
+page finished 2012-05-04 11:10:12 -0400
+
+
+
+start a show at2012-05-04 11:10:50 -0400
+got query q1 info at 2012-05-04 11:10:50 -0400
+got query results at at2012-05-04 11:10:50 -0400
+got poy jobs at2012-05-04 11:10:50 -0400
+in the view starting to write the poy jobs 2012-05-04 11:10:50 -0400
+just ran a isdone command 2012-05-04 11:10:50 -0400
+just checked for a kml 2012-05-04 11:10:50 -0400
+just checked for a fasta 2012-05-04 11:10:50 -0400
+just checked for a tree 2012-05-04 11:10:50 -0400
+just ran a isdone command 2012-05-04 11:10:50 -0400
+just checked for a kml 2012-05-04 11:10:50 -0400
+just checked for a fasta 2012-05-04 11:10:50 -0400
+just checked for a tree 2012-05-04 11:10:50 -0400
+just ran a isdone command 2012-05-04 11:10:51 -0400
+page finished 2012-05-04 11:10:51 -0400
+
+
+
+start a show at2012-05-04 11:14:25 -0400
+got query q1 info at 2012-05-04 11:14:25 -0400
+got query results at at2012-05-04 11:14:26 -0400
+got poy jobs at2012-05-04 11:14:26 -0400
+in the view starting to write the poy jobs 2012-05-04 11:14:26 -0400
+just ran a isdone command 2012-05-04 11:14:26 -0400
+just checked for a kml 2012-05-04 11:14:26 -0400
+just checked for a fasta 2012-05-04 11:14:26 -0400
+just checked for a tree 2012-05-04 11:14:26 -0400
+just ran a isdone command 2012-05-04 11:14:26 -0400
+just checked for a kml 2012-05-04 11:14:26 -0400
+just checked for a fasta 2012-05-04 11:14:26 -0400
+just checked for a tree 2012-05-04 11:14:26 -0400
+just ran a isdone command 2012-05-04 11:14:26 -0400
+page finished 2012-05-04 11:14:26 -0400
+
+
+
+start a show at2012-05-04 11:14:30 -0400
+got query q1 info at 2012-05-04 11:14:31 -0400
+got query results at at2012-05-04 11:14:31 -0400
+got poy jobs at2012-05-04 11:14:31 -0400
+in the view starting to write the poy jobs 2012-05-04 11:14:31 -0400
+just ran a isdone command 2012-05-04 11:14:31 -0400
+just checked for a kml 2012-05-04 11:14:31 -0400
+just checked for a fasta 2012-05-04 11:14:31 -0400
+just checked for a tree 2012-05-04 11:14:31 -0400
+just ran a isdone command 2012-05-04 11:14:31 -0400
+just checked for a kml 2012-05-04 11:14:31 -0400
+just checked for a fasta 2012-05-04 11:14:31 -0400
+just checked for a tree 2012-05-04 11:14:31 -0400
+just ran a isdone command 2012-05-04 11:14:32 -0400
+page finished 2012-05-04 11:14:32 -0400
+
+
+
+start a show at2012-05-04 11:19:07 -0400
+got query q1 info at 2012-05-04 11:19:07 -0400
+got query results at at2012-05-04 11:19:07 -0400
+got poy jobs at2012-05-04 11:19:07 -0400
+in the view starting to write the poy jobs 2012-05-04 11:19:07 -0400
+just ran a isdone command 2012-05-04 11:19:08 -0400
+just checked for a kml 2012-05-04 11:19:08 -0400
+just checked for a fasta 2012-05-04 11:19:08 -0400
+just checked for a tree 2012-05-04 11:19:08 -0400
+just ran a isdone command 2012-05-04 11:19:08 -0400
+just checked for a kml 2012-05-04 11:19:08 -0400
+just checked for a fasta 2012-05-04 11:19:08 -0400
+just checked for a tree 2012-05-04 11:19:08 -0400
+just ran a isdone command 2012-05-04 11:19:08 -0400
+page finished 2012-05-04 11:19:08 -0400
+
+
+
+start a show at2012-05-04 11:20:14 -0400
+got query q1 info at 2012-05-04 11:20:15 -0400
+got query results at at2012-05-04 11:20:15 -0400
+got poy jobs at2012-05-04 11:20:15 -0400
+in the view starting to write the poy jobs 2012-05-04 11:20:15 -0400
+just ran a isdone command 2012-05-04 11:20:15 -0400
+just checked for a kml 2012-05-04 11:20:15 -0400
+just checked for a fasta 2012-05-04 11:20:15 -0400
+just checked for a tree 2012-05-04 11:20:15 -0400
+just ran a isdone command 2012-05-04 11:20:15 -0400
+just checked for a kml 2012-05-04 11:20:15 -0400
+just checked for a fasta 2012-05-04 11:20:15 -0400
+just checked for a tree 2012-05-04 11:20:15 -0400
+just ran a isdone command 2012-05-04 11:20:15 -0400
+page finished 2012-05-04 11:20:15 -0400
+
+
+
+start a show at2012-05-04 11:50:41 -0400
+got query q1 info at 2012-05-04 11:50:41 -0400
+got query results at at2012-05-04 11:50:42 -0400
+got poy jobs at2012-05-04 11:50:42 -0400
+in the view starting to write the poy jobs 2012-05-04 11:50:42 -0400
+just ran a isdone command 2012-05-04 11:50:43 -0400
+just checked for a kml 2012-05-04 11:50:43 -0400
+just checked for a fasta 2012-05-04 11:50:43 -0400
+just checked for a tree 2012-05-04 11:50:43 -0400
+just ran a isdone command 2012-05-04 11:50:43 -0400
+just checked for a kml 2012-05-04 11:50:43 -0400
+just checked for a fasta 2012-05-04 11:50:43 -0400
+just checked for a tree 2012-05-04 11:50:43 -0400
+just ran a isdone command 2012-05-04 11:50:43 -0400
+page finished 2012-05-04 11:50:43 -0400
+
+
+
+start a show at2012-05-04 11:53:28 -0400
+got query q1 info at 2012-05-04 11:53:28 -0400
+got query results at at2012-05-04 11:53:29 -0400
+got poy jobs at2012-05-04 11:53:29 -0400
+in the view starting to write the poy jobs 2012-05-04 11:53:29 -0400
+just ran a isdone command 2012-05-04 11:53:29 -0400
+just checked for a kml 2012-05-04 11:53:29 -0400
+just checked for a fasta 2012-05-04 11:53:29 -0400
+just checked for a tree 2012-05-04 11:53:29 -0400
+just ran a isdone command 2012-05-04 11:53:29 -0400
+just checked for a kml 2012-05-04 11:53:29 -0400
+just checked for a fasta 2012-05-04 11:53:29 -0400
+just checked for a tree 2012-05-04 11:53:29 -0400
+just ran a isdone command 2012-05-04 11:53:29 -0400
+page finished 2012-05-04 11:53:30 -0400
+
+
+
+start a show at2012-05-04 14:26:26 -0400
+got query q1 info at 2012-05-04 14:26:27 -0400
+got query results at at2012-05-04 14:26:27 -0400
+got poy jobs at2012-05-04 14:26:27 -0400
+in the view starting to write the poy jobs 2012-05-04 14:26:27 -0400
+page finished 2012-05-04 14:26:27 -0400
+
+
+
+start a show at2012-05-04 14:26:42 -0400
+got query q1 info at 2012-05-04 14:26:42 -0400
+got query results at at2012-05-04 14:26:42 -0400
+got poy jobs at2012-05-04 14:26:42 -0400
+in the view starting to write the poy jobs 2012-05-04 14:26:42 -0400
+just ran a isdone command 2012-05-04 14:26:43 -0400
+page finished 2012-05-04 14:26:43 -0400
+
+
+
+start a show at2012-05-07 16:53:26 -0400
+got query q1 info at 2012-05-07 16:53:26 -0400
+got query results at at2012-05-07 16:53:26 -0400
+got poy jobs at2012-05-07 16:53:26 -0400
+in the view starting to write the poy jobs 2012-05-07 16:53:26 -0400
+just ran a isdone command 2012-05-07 16:53:27 -0400
+page finished 2012-05-07 16:53:27 -0400
+
+
+
+start a show at2012-05-07 16:53:37 -0400
+got query q1 info at 2012-05-07 16:53:37 -0400
+got query results at at2012-05-07 16:53:37 -0400
+got poy jobs at2012-05-07 16:53:37 -0400
+in the view starting to write the poy jobs 2012-05-07 16:53:37 -0400
+just ran a isdone command 2012-05-07 16:53:37 -0400
+just ran a isdone command 2012-05-07 16:53:38 -0400
+page finished 2012-05-07 16:53:38 -0400
